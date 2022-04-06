@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=UTF-8>
+    <meta name=viewport content="width=device-width, initial-scale=1.0">
+    <title>Google Maps Route Finder example</title>
+
+    <style>
+        #map {
+            width: 100%;
+            height: 600px;
+            border: thin solid #CCC;
+        }
+
+        #control-panel {
+            background-color: #fff;
+            margin-bottom: 50px;
+        }
+
+        .select-location-label {
+            font-weight: bold;
+            min-width: 40px;
+            display: inline-block;
+        }
+    </style>
+
+    <!-- Google Maps -->
+    <script
+        src=https://maps.googleapis.com/maps/api/js?key=AIzaSyCQRTMuRO4K1AyH9fFr6zH7Kd2qSwz3Wuk&libraries=places></script>
+
+    <script>
+        let directionsRenderer = null
+
+        window.onload = () => {
+            new google.maps.places.Autocomplete(start);
+            new google.maps.places.Autocomplete(end);
+
+            let map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 10,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            })
+
+            directionsRenderer = new google.maps.DirectionsRenderer()
+            directionsRenderer.setMap(map)
+
+            calculateRoute()
+        }
+
+        let content = `<h1>${venues.name}</h1>`
+
+
+        function calculateRoute() {
+            let start = document.getElementById("start").value
+            let end = document.getElementById("end").value
+
+            if (start === "" || end === "") {
+                return
+            }
+
+
+            let request = {
+                origin: start,
+                destination: end,
+                travelMode: google.maps.TravelMode.DRIVING
+            }
+
+            directionsService = new google.maps.DirectionsService()
+            directionsService.route(request, (route, status) => {
+                if (status === google.maps.DirectionsStatus.OK) {
+                    directionsRenderer.setDirections(route)
+                }
+            })
+        }
+    </script>
+</head>
+
+<body>
+    <div id=control-panel>
+        <span class=select-location-label>Start:</span>
+        <input id="start">
+
+        <br>
+        <span class=select-location-label>End:</span>
+        <input id="end">
+
+        <button onclick="calculateRoute()">Submit</button>
+    </div>
+
+    <div id=map></div>
+</body>
+
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=UTF-8>
+    <meta name=viewport content="width=device-width, initial-scale=1.0">
+    <title>Google Maps basic local context example</title>
+
+    <style>
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+
+    <!-- Google Maps -->
+    <script
+        src=https://maps.googleapis.com/maps/api/js?key=AIzaSyCQRTMuRO4K1AyH9fFr6zH7Kd2qSwz3Wuk&libraries=localContext&v=beta&callback=displayMap
+        async></script>
+
+    <script>
+        function displayMap() {
+            const hotelLocation = { lat: 54.00297662931545, lng: -6.401767730712891 }
+            displayLocalContextMap(hotelLocation, 3000)
+        }
+
+
+        function displayLocalContextMap(hotelLocation, metres) {
+            const METRES_TO_DEGREES = 0.00000909091
+            const degrees = metres * METRES_TO_DEGREES
+
+            const bounds = {
+                north: hotelLocation.lat + degrees,
+                south: hotelLocation.lat - degrees,
+                west: hotelLocation.lng - degrees,
+                east: hotelLocation.lng + degrees
+            }
+
+            const localContextMapView = new google.maps.localContext.LocalContextMapView({
+                element: document.getElementById("map"),
+                placeTypePreferences: [
+                    { type: "cafe" },
+                    { type: "tourist_attraction" },
+                    { type: "bank" }
+                ],
+                maxPlaceCount: 24,
+                locationRestriction: bounds,
+                directionsOptions: { origin: hotelLocation } // Walking route starts at hotelLocation
+            })
+
+            let localContextMap = localContextMapView.map
+
+            localContextMap.setOptions({
+                center: hotelLocation, // Map is centred on Dundalk
+                zoom: 14
+            })
+
+            // add a hotel marker at the location of hotelLocation
+            new google.maps.Marker({
+                position: hotelLocation,
+                map: localContextMap,
+                icon: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAdUlEQVR4AWMYOWAU/AfhYWMBCxA3A/FlIN4MxN7I6gjg80DcD8QC+CzIxqIxH6aOSHwfYQmmBZexuQymjgTcj8uCz1gUHybDgvO4LFiMRXE4GRb8x2UBDxCXQ8PxPdSrLNSxAD+g3ALCeNQCKoHhZcHAg1EAAM3cyWj3TGxhAAAAAElFTkSuQmCC",
+                zIndex: 30,
+                title: "Your Hotel"
+            })
+
+        }
+
+        // get current location
+
+        var x = document.getElementById("demo");
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        function showPosition(position) {
+            x.innerHTML = "Latitude: " + position.coords.latitude +
+                "<br>Longitude: " + position.coords.longitude;
+        }
+    </script>
+</head>
+
+<body>
+    <div id=map></div>
+
+    <p>Click the button to get your coordinates.</p>
+
+    <button onclick="getLocation()">Try It</button>
+
+    <p id="demo"></p>
+
+    <p>This example shows cafes, banks and tourist attractions that are close to a hotel.</p>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+[
+  {
+    "venue": [
+      {
+        "name": "Alexander Stadium",
+        "description": "Located in Perry Barr, just outside of the city centre, the stadium will host Athletics and the Games opening and closing ceremonies.",
+        "address": "Walsall Road, Perry Barr, B42 2LR",
+        "location": [52.5315617447038, -1.9045345933183846],
+        "sports": ["Athletics and Para Atletics"]
+      },
+      {
+        "name": "Arena Birmingham",
+        "description": "Arena Birmingham will host artistic and rhythmic gymnastics. The venue is in the middle of the city centre with excellent public transport links and close to other attractions.",
+        "address": "King Edwards Road, Birmingham, B1 2AA",
+        "location": [52.480534651424456, -1.914829454714157],
+        "sports": ["Gymnastics - Artistic", "Gymnastics - Rhythmic"]
+      },
+      {
+        "name": "Cannock Chase Forest",
+        "description": "Cannock Chase is a large forest which is part of Forestry England.",
+        "address": "Birches Valley, Rugeley, WS15 2UQ",
+        "location": [52.5315617447038, -1.9045345933183846],
+        "sports": ["Athletics and Para Atletics"]
+      }
+    ]
+  }
+]
