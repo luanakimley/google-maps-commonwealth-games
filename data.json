@@ -19,6 +19,90 @@
         "name": "Cannock Chase Forest",
         "description": "Cannock Chase is a large forest which is part of Forestry England.",
         "address": "Birches Valley, Rugeley, WS15 2UQ",
+        "location": [52.73432188036043, -1.978928273281135],
+        "sports": ["Athletics and Para Atletics"]
+      },
+      {
+        "name": "Coventry Stadium & Arena",
+        "description": "Judo and Wrestling will take place in the arena, which is an indoor venue. Rugby 7s will take place in the stadium, which is outdoor with some cover.",
+        "address": "Judds Lane, Coventry, CV6 6GE",
+        "location": [52.44865412232723, -1.4966876585928102],
+        "sports": ["Judo", "Rugby Sevens", "Wrestling"]
+      },
+      {
+        "name": "Edgbaston Stadium",
+        "description": "Close to Birmingham city centre, Edgbaston Cricket Ground is a regular host of both domestic and international cricket.",
+        "address": "Edgbaston Road, Birmingham, B5 7QU",
+        "location": [52.45550144156892, -1.9040389579510575],
+        "sports": ["Cricket T20"]
+      },
+      {
+        "name": "Cannock Chase Forest",
+        "description": "Cannock Chase is a large forest which is part of Forestry England.",
+        "address": "Birches Valley, Rugeley, WS15 2UQ",
+        "location": [52.5315617447038, -1.9045345933183846],
+        "sports": ["Athletics and Para Atletics"]
+      },
+      {
+        "name": "Cannock Chase Forest",
+        "description": "Cannock Chase is a large forest which is part of Forestry England.",
+        "address": "Birches Valley, Rugeley, WS15 2UQ",
+        "location": [52.5315617447038, -1.9045345933183846],
+        "sports": ["Athletics and Para Atletics"]
+      },
+      {
+        "name": "Cannock Chase Forest",
+        "description": "Cannock Chase is a large forest which is part of Forestry England.",
+        "address": "Birches Valley, Rugeley, WS15 2UQ",
+        "location": [52.5315617447038, -1.9045345933183846],
+        "sports": ["Athletics and Para Atletics"]
+      },
+      {
+        "name": "Cannock Chase Forest",
+        "description": "Cannock Chase is a large forest which is part of Forestry England.",
+        "address": "Birches Valley, Rugeley, WS15 2UQ",
+        "location": [52.5315617447038, -1.9045345933183846],
+        "sports": ["Athletics and Para Atletics"]
+      },
+      {
+        "name": "Cannock Chase Forest",
+        "description": "Cannock Chase is a large forest which is part of Forestry England.",
+        "address": "Birches Valley, Rugeley, WS15 2UQ",
+        "location": [52.5315617447038, -1.9045345933183846],
+        "sports": ["Athletics and Para Atletics"]
+      },
+      {
+        "name": "Cannock Chase Forest",
+        "description": "Cannock Chase is a large forest which is part of Forestry England.",
+        "address": "Birches Valley, Rugeley, WS15 2UQ",
+        "location": [52.5315617447038, -1.9045345933183846],
+        "sports": ["Athletics and Para Atletics"]
+      },
+      {
+        "name": "Cannock Chase Forest",
+        "description": "Cannock Chase is a large forest which is part of Forestry England.",
+        "address": "Birches Valley, Rugeley, WS15 2UQ",
+        "location": [52.5315617447038, -1.9045345933183846],
+        "sports": ["Athletics and Para Atletics"]
+      },
+      {
+        "name": "Cannock Chase Forest",
+        "description": "Cannock Chase is a large forest which is part of Forestry England.",
+        "address": "Birches Valley, Rugeley, WS15 2UQ",
+        "location": [52.5315617447038, -1.9045345933183846],
+        "sports": ["Athletics and Para Atletics"]
+      },
+      {
+        "name": "Cannock Chase Forest",
+        "description": "Cannock Chase is a large forest which is part of Forestry England.",
+        "address": "Birches Valley, Rugeley, WS15 2UQ",
+        "location": [52.5315617447038, -1.9045345933183846],
+        "sports": ["Athletics and Para Atletics"]
+      },
+      {
+        "name": "Cannock Chase Forest",
+        "description": "Cannock Chase is a large forest which is part of Forestry England.",
+        "address": "Birches Valley, Rugeley, WS15 2UQ",
         "location": [52.5315617447038, -1.9045345933183846],
         "sports": ["Athletics and Para Atletics"]
       }
