@@ -33,13 +33,44 @@
         let directionsRenderer = null
 
         window.onload = () => {
+
+            let url = `data.json`
+            let locations = [];
+            fetch(url)
+                .then(response => response.json())
+                .then(jsonData =>
+                {
+                    console.log(jsonData)
+                    locations = jsonData;
+                    locations[0].venue.map(location =>
+                    {
+                        console.log(locations[0].venue[0].name)
+                        let marker = new google.maps.Marker({
+                            position: new google.maps.LatLng(location.location[0],location.location[1]),
+                            map: map
+                        })
+
+                        google.maps.event.addListener(marker, "click", () =>
+                        {
+                            infoWindow.setContent(location.description)
+                            infoWindow.open(map, marker)
+                        })
+                    })
+                    })
+
+
             new google.maps.places.Autocomplete(start);
             new google.maps.places.Autocomplete(end);
-
+            console.log(locations)
             let map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 10,
+                zoom: 12,
+                center: new google.maps.LatLng(52.489471, -1.898575),
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             })
+
+            let infoWindow = new google.maps.InfoWindow()
+
+
 
             directionsRenderer = new google.maps.DirectionsRenderer()
             directionsRenderer.setMap(map)
@@ -47,7 +78,6 @@
             calculateRoute()
         }
 
-        let content = `<h1>${venues.name}</h1>`
 
 
         function calculateRoute() {
