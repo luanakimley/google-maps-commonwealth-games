@@ -40,15 +40,26 @@
                 .then(response => response.json())
                 .then(jsonData =>
                 {
+                    let marker;
                     console.log(jsonData)
                     locations = jsonData;
                     locations[0].venue.map(location =>
                     {
-                        console.log(locations[0].venue[0].name)
-                        let marker = new google.maps.Marker({
-                            position: new google.maps.LatLng(location.location[0],location.location[1]),
-                            map: map
-                        })
+                        if(location.type === "B&B") {
+                            marker = new google.maps.Marker({
+                                position: new google.maps.LatLng(location.location[0], location.location[1]),
+                                icon: "markers/marker1.png",
+                                map: map
+                            })
+                        }
+                        else
+                        {
+                            marker = new google.maps.Marker({
+                                position: new google.maps.LatLng(location.location[0], location.location[1]),
+                                icon: "markers/venue_marker1.png",
+                                map: map
+                            })
+                        }
 
                         google.maps.event.addListener(marker, "click", () =>
                         {

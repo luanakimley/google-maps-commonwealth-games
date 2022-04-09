@@ -100,12 +100,17 @@
         "sports": ["Athletics and Para Atletics"]
       },
       {
-        "name": "Cannock Chase Forest",
-        "description": "Cannock Chase is a large forest which is part of Forestry England.",
+        "name": "Some B & B",
+        "type": "B&B",
+        "description": "Rest up!",
         "address": "Birches Valley, Rugeley, WS15 2UQ",
         "location": [52.5315617447038, -1.9045345933183846],
         "sports": ["Athletics and Para Atletics"]
       }
-    ]
+    ],
+    "B&B": [
+      {
+
+      }]
   }
 ]
