@@ -48,7 +48,7 @@
 
                         let marker = new google.maps.Marker({
                             position: new google.maps.LatLng(location.location[0], location.location[1]),
-                            icon: { url: "markers/venue_marker.png", scaledSize: new google.maps.Size(35, 35) },
+                            icon: { url: "markers/venue_marker.png", scaledSize: new google.maps.Size(40, 40) },
                             map: map,
                         })
 
@@ -63,12 +63,17 @@
 
             new google.maps.places.Autocomplete(start);
             new google.maps.places.Autocomplete(end);
-            console.log(locations)
+
             let map = new google.maps.Map(document.getElementById("map"), {
                 zoom: 12,
                 center: new google.maps.LatLng(52.489471, -1.898575),
-                mapTypeId: google.maps.MapTypeId.ROADMAP
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                mapTypeControlOptions: {
+                    mapTypeIds: ["roadmap", "hide_poi"]
+                }
             })
+
+            hidePointsOfInterest(map)
 
 
             directionsRenderer = new google.maps.DirectionsRenderer()
@@ -100,6 +105,20 @@
                     directionsRenderer.setDirections(route)
                 }
             })
+        }
+
+        function hidePointsOfInterest(map) {
+            let styles = [
+                {
+                    "featureType": "poi",
+                    "stylers": [{ "visibility": "off" }]
+                }
+            ]
+
+            let styledMapType = new google.maps.StyledMapType(styles, { name: "Hide POI", alt: "Hide Points of Interest" })
+            map.mapTypes.set("hide_poi", styledMapType)
+
+            map.setMapTypeId("hide_poi")
         }
     </script>
 </head>
