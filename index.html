@@ -36,38 +36,29 @@
 
             let url = `data.json`
             let locations = [];
+
             fetch(url)
                 .then(response => response.json())
-                .then(jsonData =>
-                {
-                    let marker;
-                    console.log(jsonData)
-                    locations = jsonData;
-                    locations[0].venue.map(location =>
-                    {
-                        if(location.type === "B&B") {
-                            marker = new google.maps.Marker({
-                                position: new google.maps.LatLng(location.location[0], location.location[1]),
-                                icon: "markers/marker1.png",
-                                map: map
-                            })
-                        }
-                        else
-                        {
-                            marker = new google.maps.Marker({
-                                position: new google.maps.LatLng(location.location[0], location.location[1]),
-                                icon: "markers/venue_marker1.png",
-                                map: map
-                            })
-                        }
+                .then(jsonData => {
 
-                        google.maps.event.addListener(marker, "click", () =>
-                        {
+                    locations = jsonData;
+                    let infoWindow = new google.maps.InfoWindow()
+
+                    locations[0].venue.map(location => {
+
+                        let marker = new google.maps.Marker({
+                            position: new google.maps.LatLng(location.location[0], location.location[1]),
+                            icon: { url: "markers/venue_marker.png", scaledSize: new google.maps.Size(35, 35) },
+                            map: map,
+                        })
+
+                        google.maps.event.addListener(marker, "click", () => {
                             infoWindow.setContent(location.description)
                             infoWindow.open(map, marker)
                         })
+
                     })
-                    })
+                })
 
 
             new google.maps.places.Autocomplete(start);
@@ -78,9 +69,6 @@
                 center: new google.maps.LatLng(52.489471, -1.898575),
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             })
-
-            let infoWindow = new google.maps.InfoWindow()
-
 
 
             directionsRenderer = new google.maps.DirectionsRenderer()
