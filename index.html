@@ -58,6 +58,10 @@
                         })
 
                     })
+
+                    const sports = locations[0].venue.map(venue => venue.sports.map(sport => sport));
+                    const uniqueSports = [...new Set(sports.flat())].sort();
+                    
                 })
 
 
