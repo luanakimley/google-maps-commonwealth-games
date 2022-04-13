@@ -61,8 +61,27 @@
 
                     const sports = locations[0].venue.map(venue => venue.sports.map(sport => sport));
                     const uniqueSports = [...new Set(sports.flat())].sort();
-                    
+
+                    // filter by sport - basic function
+                    locations[0].venue.filter(location => {
+                        if (location.sports.includes(uniqueSports[2])) {
+                            let marker = new google.maps.Marker({
+                                position: new google.maps.LatLng(location.location[0], location.location[1]),
+                                icon: { url: "markers/venue_marker.png", scaledSize: new google.maps.Size(40, 40) },
+                                map: map,
+                            })
+
+                            google.maps.event.addListener(marker, "click", () => {
+                                infoWindow.setContent(location.description)
+                                infoWindow.open(map, marker)
+                            })
+                        }
+                    }
+                    )
                 })
+
+
+
 
 
             new google.maps.places.Autocomplete(start);
