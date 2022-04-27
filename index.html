@@ -55,7 +55,13 @@
                         })
 
                         google.maps.event.addListener(marker, "click", () => {
-                            infoWindow.setContent(location.description)
+                            infoWindow.setContent(`<h1>${location.name}</h1>
+                                <p>${location.description}</p>
+                                <p>${location.address}</p>
+
+                                ${location.sports.map(sport => `<p>${sport}</p>`).join('')}
+
+                                `)
                             infoWindow.open(map, marker)
                         })
 
