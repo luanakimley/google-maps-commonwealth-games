@@ -69,7 +69,10 @@
         "description": "The Aquatics Centre hosting swimming and diving is currently being built for the Games.",
         "address": "Smethwick, B67 7HE",
         "location": [52.489444066431844, -1.989588888495918],
-        "sports": ["Aquatics - Diving", "Aquatics - Swimming and Para Swimming"],
+        "sports": [
+          "Aquatics - Diving",
+          "Aquatics - Swimming and Para Swimming"
+        ],
         "url": "venue-images/sandwell.webp"
       },
       {
@@ -83,7 +86,7 @@
           "Beach Volleyball",
           "Wheelchair Basketball 3x3"
         ],
-        "url": "venue-images/sandwell.webp"
+        "url": "venue-images/smithfield.webp"
       },
       {
         "name": "Sutton Park",
@@ -91,7 +94,7 @@
         "address": "Sutton Coldfield, B73 6LH",
         "location": [52.57112690065588, -1.8568268019855854],
         "sports": ["Triathlon and Para Triathlon"],
-        "url": "venue-images/sandwell.webp"
+        "url": "venue-images/sutton-water.webp"
       },
       {
         "name": "University of Birmingham Hockey and Squash Centre",
@@ -99,7 +102,7 @@
         "address": "Edgbaston, Birmingham, B15 2TT",
         "location": [52.44887610931857, -1.9268194522689346],
         "sports": ["Hockey", "Squash"],
-        "url": "venue-images/sandwell.webp"
+        "url": "venue-images/University-of-Birmingham-01.webp"
       },
       {
         "name": "Victoria Park",
@@ -107,7 +110,7 @@
         "address": "23 Archery Road, Leamington Spa, CV31 3PT",
         "location": [52.2871975427431, -1.5436395713103523],
         "sports": ["Lawn Bowls and Para Lawn Bowls"],
-        "url": "venue-images/sandwell.webp"
+        "url": "venue-images/Royal-Leamington-Spas-2.webp"
       },
       {
         "name": "Victoria Square",
@@ -115,7 +118,7 @@
         "address": "Birmingham, B1 1BB",
         "location": [52.47901118971896, -1.902039354650798],
         "sports": ["Athletics - Marathon"],
-        "url": "venue-images/sandwell.webp"
+        "url": "venue-images/Victoria-Square.webp"
       },
       {
         "name": "Warwick",
@@ -123,7 +126,7 @@
         "address": "Warwick, CV34 6PR",
         "location": [52.28099169776386, -1.5707745467572773],
         "sports": ["Cycling - Road Race"],
-        "url": "venue-images/sandwell.webp"
+        "url": "venue-images/wdc-parks-267-of-523.webp"
       },
       {
         "name": "West Park",
@@ -131,7 +134,7 @@
         "address": "76 Park Road, Wolverhampton, WV1 4PH",
         "location": [52.59240793142341, -2.1405104792407728],
         "sports": ["Cycling - Time Trial"],
-        "url": "venue-images/sandwell.webp"
+        "url": "venue-images/West-Park-Wolverhampton.webp"
       }
     ],
     "B&B": [{}]
