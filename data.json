@@ -6,42 +6,48 @@
         "description": "Located in Perry Barr, just outside of the city centre, the stadium will host Athletics and the Games opening and closing ceremonies.",
         "address": "Walsall Road, Perry Barr, B42 2LR",
         "location": [52.5315617447038, -1.9045345933183846],
-        "sports": ["Athletics and Para Atletics"]
+        "sports": ["Athletics and Para Atletics"],
+        "url": "venue-images/sandwell.webp"
       },
       {
         "name": "Arena Birmingham",
         "description": "Arena Birmingham will host artistic and rhythmic gymnastics. The venue is in the middle of the city centre with excellent public transport links and close to other attractions.",
         "address": "King Edwards Road, Birmingham, B1 2AA",
         "location": [52.480534651424456, -1.914829454714157],
-        "sports": ["Gymnastics - Artistic", "Gymnastics - Rhythmic"]
+        "sports": ["Gymnastics - Artistic", "Gymnastics - Rhythmic"],
+        "url": "venue-images/sandwell.webp"
       },
       {
         "name": "Cannock Chase Forest",
         "description": "Cannock Chase is a large forest which is part of Forestry England.",
         "address": "Birches Valley, Rugeley, WS15 2UQ",
         "location": [52.73432188036043, -1.978928273281135],
-        "sports": ["Cycling - Mountain Bike"]
+        "sports": ["Cycling - Mountain Bike"],
+        "url": "venue-images/sandwell.webp"
       },
       {
         "name": "Coventry Stadium & Arena",
         "description": "Judo and Wrestling will take place in the arena, which is an indoor venue. Rugby 7s will take place in the stadium, which is outdoor with some cover.",
         "address": "Judds Lane, Coventry, CV6 6GE",
         "location": [52.44865412232723, -1.4966876585928102],
-        "sports": ["Judo", "Rugby Sevens", "Wrestling"]
+        "sports": ["Judo", "Rugby Sevens", "Wrestling"],
+        "url": "venue-images/sandwell.webp"
       },
       {
         "name": "Edgbaston Stadium",
         "description": "Close to Birmingham city centre, Edgbaston Cricket Ground is a regular host of both domestic and international cricket.",
         "address": "Edgbaston Road, Birmingham, B5 7QU",
         "location": [52.45550144156892, -1.9040389579510575],
-        "sports": ["Cricket T20"]
+        "sports": ["Cricket T20"],
+        "url": "venue-images/sandwell.webp"
       },
       {
         "name": "Lee Valley Velopark",
         "description": "The indoor cycling center was one of the venues used for the London 2012 Olympic and Paralympic Games.",
         "address": "Queen Elizabeth Olympic Park, Abercrombie Road, London, E20 3A",
         "location": [51.55061009453941, -0.015363486681080365],
-        "sports": ["Cycling - Track and Para Track"]
+        "sports": ["Cycling - Track and Para Track"],
+        "url": "venue-images/sandwell.webp"
       },
       {
         "name": "The NEC",
@@ -55,14 +61,16 @@
           "Para Powerlifting",
           "Table Tennis and Para Table Tennis",
           "Weightlifting"
-        ]
+        ],
+        "url": "venue-images/sandwell.webp"
       },
       {
         "name": "Sandwell Aquatics Centre",
         "description": "The Aquatics Centre hosting swimming and diving is currently being built for the Games.",
         "address": "Smethwick, B67 7HE",
         "location": [52.489444066431844, -1.989588888495918],
-        "sports": ["Aquatics - Diving", "Aquatics - Swimming and Para Swimming"]
+        "sports": ["Aquatics - Diving", "Aquatics - Swimming and Para Swimming"],
+        "url": "venue-images/sandwell.webp"
       },
       {
         "name": "Smithfield",
@@ -74,49 +82,56 @@
           "Basketball 3x3",
           "Beach Volleyball",
           "Wheelchair Basketball 3x3"
-        ]
+        ],
+        "url": "venue-images/sandwell.webp"
       },
       {
         "name": "Sutton Park",
         "description": "The Triathlon and Para Triathlon (for athletes with a visual impairment – PTVI) events will take place within Sutton Park and on the local roads to the south of the park, in and around Boldmere High Street. Sutton Park is a 2,400 acre National Nature Reserve located 6 miles north of the city centre. It’s one of the largest urban parks in Europe.",
         "address": "Sutton Coldfield, B73 6LH",
         "location": [52.57112690065588, -1.8568268019855854],
-        "sports": ["Triathlon and Para Triathlon"]
+        "sports": ["Triathlon and Para Triathlon"],
+        "url": "venue-images/sandwell.webp"
       },
       {
         "name": "University of Birmingham Hockey and Squash Centre",
         "description": "At the University of Birmingham Hockey will take place on the site’s outdoor hockey pitches. We will also be hosting squash at this venue which will take place indoor in the Fitness Centre sports hall.",
         "address": "Edgbaston, Birmingham, B15 2TT",
         "location": [52.44887610931857, -1.9268194522689346],
-        "sports": ["Hockey", "Squash"]
+        "sports": ["Hockey", "Squash"],
+        "url": "venue-images/sandwell.webp"
       },
       {
         "name": "Victoria Park",
         "description": "Located in Leamington Spa, Victoria Park is an outdoor green recreation space with tarmac pedestrian pathways.",
         "address": "23 Archery Road, Leamington Spa, CV31 3PT",
         "location": [52.2871975427431, -1.5436395713103523],
-        "sports": ["Lawn Bowls and Para Lawn Bowls"]
+        "sports": ["Lawn Bowls and Para Lawn Bowls"],
+        "url": "venue-images/sandwell.webp"
       },
       {
         "name": "Victoria Square",
         "description": "Victoria Square in Birmingham city centre will be the official finish area for the Marathon events which will be held on Saturday 30 July 2022.",
         "address": "Birmingham, B1 1BB",
         "location": [52.47901118971896, -1.902039354650798],
-        "sports": ["Athletics - Marathon"]
+        "sports": ["Athletics - Marathon"],
+        "url": "venue-images/sandwell.webp"
       },
       {
         "name": "Warwick",
         "description": "Warwick’s Myton Fields is a green recreation space, the other side of the river to St Nicholas Park that will be used for the Birmingham 2022 Road Race events.",
         "address": "Warwick, CV34 6PR",
         "location": [52.28099169776386, -1.5707745467572773],
-        "sports": ["Cycling - Road Race"]
+        "sports": ["Cycling - Road Race"],
+        "url": "venue-images/sandwell.webp"
       },
       {
         "name": "West Park",
         "description": "West Park is an outdoor green recreation space that will host the Birmingham 2022 Cycling Time Trials.",
         "address": "76 Park Road, Wolverhampton, WV1 4PH",
         "location": [52.59240793142341, -2.1405104792407728],
-        "sports": ["Cycling - Time Trial"]
+        "sports": ["Cycling - Time Trial"],
+        "url": "venue-images/sandwell.webp"
       }
     ],
     "B&B": [{}]

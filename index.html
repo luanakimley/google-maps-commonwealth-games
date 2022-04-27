@@ -60,8 +60,9 @@
                                 <p>${location.address}</p>
 
                                 ${location.sports.map(sport => `<p>${sport}</p>`).join('')}
-
+                                <img src = ${location.url} />
                                 `)
+
                             infoWindow.open(map, marker)
                         })
 
