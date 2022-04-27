@@ -88,6 +88,7 @@
                     //     }
                     // }
                     // )
+
                 })
 
             new google.maps.places.Autocomplete(start);
@@ -145,7 +146,31 @@
             markers.push(marker)
 
             google.maps.event.addListener(marker, "click", () => {
+                request = {
+                    placeId: place.place_id,
+                    fields: ["name", "formatted_address", "formatted_phone_number", "icon", "geometry"],
+                };
 
+                let photo = null
+                if (typeof (place.photos) !== "undefined") {
+                    photo = place.photos[0].getUrl()
+                }
+
+                if (photo === null) {
+                    service.getDetails(request, (placeDetails) => {
+                        infoWindow.setContent(`<p><strong> ${placeDetails.name}</strong><br>
+                        ${(placeDetails.formatted_address).replaceAll(',', '</br>')}</br>
+                        ${placeDetails.formatted_phone_number}</p>`)
+                    })
+                }  
+                else {
+                    service.getDetails(request, (placeDetails) => {
+                        infoWindow.setContent(`<p><strong> ${placeDetails.name}</strong><br>
+                        ${(placeDetails.formatted_address).replaceAll(',', '</br>')}</br>
+                        <img src="${photo}" width=200><br>
+                        ${placeDetails.formatted_phone_number}</p>`)
+                    })
+                }
 
                 infoWindow.open(map, marker)
             })
