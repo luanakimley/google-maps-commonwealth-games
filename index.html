@@ -4,7 +4,7 @@
 <head>
     <meta charset=UTF-8>
     <meta name=viewport content="width=device-width, initial-scale=1.0">
-    <title>Google Maps Route Finder example</title>
+    <title>2022 Commonwealth Games Birmingham</title>
 
     <style>
         #map {
@@ -31,6 +31,9 @@
 
     <script>
         let directionsRenderer = null
+        let map = null
+        let placeType = null
+        let services_centre_location = { lat: 52.489471, lng: -1.898575 }
 
         window.onload = () => {
 
@@ -42,10 +45,9 @@
                 .then(jsonData => {
 
                     locations = jsonData;
-                    let infoWindow = new google.maps.InfoWindow()
+
 
                     locations[0].venue.map(location => {
-
                         let marker = new google.maps.Marker({
                             position: new google.maps.LatLng(location.location[0], location.location[1]),
                             icon: { url: "markers/venue_marker.png", scaledSize: new google.maps.Size(40, 40) },
@@ -57,37 +59,34 @@
                             infoWindow.open(map, marker)
                         })
 
+
                     })
 
                     const sports = locations[0].venue.map(venue => venue.sports.map(sport => sport));
                     const uniqueSports = [...new Set(sports.flat())].sort();
 
                     // filter by sport - basic function
-                    locations[0].venue.filter(location => {
-                        if (location.sports.includes(uniqueSports[2])) {
-                            let marker = new google.maps.Marker({
-                                position: new google.maps.LatLng(location.location[0], location.location[1]),
-                                icon: { url: "markers/venue_marker.png", scaledSize: new google.maps.Size(40, 40) },
-                                map: map,
-                            })
+                    // locations[0].venue.filter(location => {
+                    //     if (location.sports.includes(uniqueSports[2])) {
+                    //         let marker = new google.maps.Marker({
+                    //             position: new google.maps.LatLng(location.location[0], location.location[1]),
+                    //             icon: { url: "markers/venue_marker.png", scaledSize: new google.maps.Size(40, 40) },
+                    //             map: map,
+                    //         })
 
-                            google.maps.event.addListener(marker, "click", () => {
-                                infoWindow.setContent(location.description)
-                                infoWindow.open(map, marker)
-                            })
-                        }
-                    }
-                    )
+                    //         google.maps.event.addListener(marker, "click", () => {
+                    //             infoWindow.setContent(location.description)
+                    //             infoWindow.open(map, marker)
+                    //         })
+                    //     }
+                    // }
+                    // )
                 })
-
-
-
-
 
             new google.maps.places.Autocomplete(start);
             new google.maps.places.Autocomplete(end);
 
-            let map = new google.maps.Map(document.getElementById("map"), {
+            map = new google.maps.Map(document.getElementById("map"), {
                 zoom: 12,
                 center: new google.maps.LatLng(52.489471, -1.898575),
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -99,13 +98,51 @@
             hidePointsOfInterest(map)
 
 
+
+            let service = new google.maps.places.PlacesService(map)
+
+
             directionsRenderer = new google.maps.DirectionsRenderer()
             directionsRenderer.setMap(map)
 
             calculateRoute()
+
+        }
+
+        let markers = []
+        function getNearbyServicesMarkers(results, status) {
+            markers.map(marker => marker.setVisible(false))
+            markers = []
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+                results.map(result => {
+                    createMarker(result)
+                })
+            }
         }
 
 
+        let infoWindow = new google.maps.InfoWindow()
+        function createMarker(place) {
+            let icon = {
+                url: `markers/${place.types[0]}_marker.png`,
+                scaledSize: new google.maps.Size(40, 40) // scale the image to an icon size
+            }
+
+
+            let marker = new google.maps.Marker({
+                map: map,
+                icon: icon,
+                position: place.geometry.location
+            })
+
+            markers.push(marker)
+
+            google.maps.event.addListener(marker, "click", () => {
+
+
+                infoWindow.open(map, marker)
+            })
+        }
 
         function calculateRoute() {
             let start = document.getElementById("start").value
@@ -143,6 +180,15 @@
 
             map.setMapTypeId("hide_poi")
         }
+
+        function displayMap() {
+            service = new google.maps.places.PlacesService(map)
+            service.nearbySearch({
+                location: services_centre_location, // centre of the search
+                radius: 500, // radius (in metres) of the search
+                keyword: placeType // https://developers.google.com/maps/documentation/places/web-service/supported_types
+            }, getNearbyServicesMarkers)
+        }
     </script>
 </head>
 
@@ -157,6 +203,10 @@
 
         <button onclick="calculateRoute()">Submit</button>
     </div>
+
+    <span onclick="placeType = 'restaurant'; displayMap()">Restaurant</span>
+    <span onclick="placeType = 'bar'; displayMap()">Bar</span>
+    <span onclick="placeType = 'hospital'; displayMap()">Hospital</span>
 
     <div id=map></div>
 </body>
