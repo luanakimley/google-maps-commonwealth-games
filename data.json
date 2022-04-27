@@ -7,7 +7,7 @@
         "address": "Walsall Road, Perry Barr, B42 2LR",
         "location": [52.5315617447038, -1.9045345933183846],
         "sports": ["Athletics and Para Atletics"],
-        "url": "venue-images/sandwell.webp"
+        "url": "venue-images/alexander.jpg"
       },
       {
         "name": "Arena Birmingham",
@@ -15,7 +15,7 @@
         "address": "King Edwards Road, Birmingham, B1 2AA",
         "location": [52.480534651424456, -1.914829454714157],
         "sports": ["Gymnastics - Artistic", "Gymnastics - Rhythmic"],
-        "url": "venue-images/sandwell.webp"
+        "url": "venue-images/Arena-Birmingham.jpg"
       },
       {
         "name": "Cannock Chase Forest",
@@ -23,7 +23,7 @@
         "address": "Birches Valley, Rugeley, WS15 2UQ",
         "location": [52.73432188036043, -1.978928273281135],
         "sports": ["Cycling - Mountain Bike"],
-        "url": "venue-images/sandwell.webp"
+        "url": "venue-images/cannock.webp"
       },
       {
         "name": "Coventry Stadium & Arena",
@@ -31,7 +31,7 @@
         "address": "Judds Lane, Coventry, CV6 6GE",
         "location": [52.44865412232723, -1.4966876585928102],
         "sports": ["Judo", "Rugby Sevens", "Wrestling"],
-        "url": "venue-images/sandwell.webp"
+        "url": "venue-images/Conventry.webp"
       },
       {
         "name": "Edgbaston Stadium",
@@ -39,7 +39,7 @@
         "address": "Edgbaston Road, Birmingham, B5 7QU",
         "location": [52.45550144156892, -1.9040389579510575],
         "sports": ["Cricket T20"],
-        "url": "venue-images/sandwell.webp"
+        "url": "venue-images/Edgbaston-2-.webp"
       },
       {
         "name": "Lee Valley Velopark",
@@ -47,7 +47,7 @@
         "address": "Queen Elizabeth Olympic Park, Abercrombie Road, London, E20 3A",
         "location": [51.55061009453941, -0.015363486681080365],
         "sports": ["Cycling - Track and Para Track"],
-        "url": "venue-images/sandwell.webp"
+        "url": "venue-images/Lee-Valley.webp"
       },
       {
         "name": "The NEC",
@@ -62,7 +62,7 @@
           "Table Tennis and Para Table Tennis",
           "Weightlifting"
         ],
-        "url": "venue-images/sandwell.webp"
+        "url": "venue-images/NEC-.webp"
       },
       {
         "name": "Sandwell Aquatics Centre",
