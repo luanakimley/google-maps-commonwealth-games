@@ -260,6 +260,7 @@
     <div id="control-panel">
         <span class=select-location-label>Start:</span>
         <input id="start">
+        <input type="button" value="Add stop" onClick="addInput();">
         <br>
 
         <div id="stops"></div>
@@ -267,13 +268,12 @@
         <br>
         <span class=select-location-label>End:</span>
         <input id="end">
-
-
+       
     </div>
 
     <button onclick=" calculateRoute('start', 'end', stops)">Submit</button>
     <br>
-    <input type="button" value="Add stop" onClick="addInput();">
+    
 
     <span onclick="placeType = 'restaurant'; displayMap()">Restaurant</span>
     <span onclick="placeType = 'bar'; displayMap()">Bar</span>
