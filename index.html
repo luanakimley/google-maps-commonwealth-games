@@ -94,6 +94,8 @@
             new google.maps.places.Autocomplete(start);
             new google.maps.places.Autocomplete(end);
 
+
+
             map = new google.maps.Map(document.getElementById("map"), {
                 zoom: 12,
                 center: new google.maps.LatLng(52.489471, -1.898575),
@@ -113,7 +115,6 @@
             directionsRenderer = new google.maps.DirectionsRenderer()
             directionsRenderer.setMap(map)
 
-            calculateRoute()
 
         }
 
@@ -162,7 +163,7 @@
                         ${(placeDetails.formatted_address).replaceAll(',', '</br>')}</br>
                         ${placeDetails.formatted_phone_number}</p>`)
                     })
-                }  
+                }
                 else {
                     service.getDetails(request, (placeDetails) => {
                         infoWindow.setContent(`<p><strong> ${placeDetails.name}</strong><br>
@@ -176,9 +177,17 @@
             })
         }
 
-        function calculateRoute() {
-            let start = document.getElementById("start").value
-            let end = document.getElementById("end").value
+        function calculateRoute(startId, endId, stopsArr) {
+            let start = document.getElementById(startId).value
+            let end = document.getElementById(endId).value
+            let waypoint = []
+
+            stopsArr.forEach(stop => {
+                let obj = {}
+                obj.location = document.getElementById(stop).value
+                waypoint.push(obj)
+            })
+
 
             if (start === "" || end === "") {
                 return
@@ -187,6 +196,7 @@
 
             let request = {
                 origin: start,
+                waypoints: waypoint,
                 destination: end,
                 travelMode: google.maps.TravelMode.DRIVING
             }
@@ -221,20 +231,49 @@
                 keyword: placeType // https://developers.google.com/maps/documentation/places/web-service/supported_types
             }, getNearbyServicesMarkers)
         }
+
+        let counter = 1
+        let dynamicInput = []
+        let stops = []
+
+        function addInput() {
+            var newdiv = document.createElement('span');
+            let name = "stop" + counter;
+            newdiv.id = dynamicInput[counter];
+            newdiv.innerHTML = `<br>Stop<br><input type='text' id='${name}'> <input type='button' value='-' onClick='removeInput(${dynamicInput[counter]})'>`
+            document.getElementById('stops').appendChild(newdiv);
+            let stop = document.getElementById(name)
+            new google.maps.places.Autocomplete(stop);
+            stops.push(name)
+            counter++;
+        }
+
+        function removeInput(id) {
+            let elem = document.getElementById(id);
+            stops = stops.filter(item => item !== elem.childNodes[3].id)
+            return elem.parentNode.removeChild(elem);
+        }
     </script>
 </head>
 
 <body>
-    <div id=control-panel>
+    <div id="control-panel">
         <span class=select-location-label>Start:</span>
         <input id="start">
+        <br>
+
+        <div id="stops"></div>
 
         <br>
         <span class=select-location-label>End:</span>
         <input id="end">
 
-        <button onclick="calculateRoute()">Submit</button>
+
     </div>
+
+    <button onclick=" calculateRoute('start', 'end', stops)">Submit</button>
+    <br>
+    <input type="button" value="Add stop" onClick="addInput();">
 
     <span onclick="placeType = 'restaurant'; displayMap()">Restaurant</span>
     <span onclick="placeType = 'bar'; displayMap()">Bar</span>
