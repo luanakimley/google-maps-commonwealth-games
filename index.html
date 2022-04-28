@@ -233,7 +233,6 @@
         }
 
         let counter = 1
-        let dynamicInput = []
         let stops = []
 
         function addInput() {
@@ -243,7 +242,6 @@
             newdiv.id = spanName
             newdiv.innerHTML = `<br>Stop<br><input type='text' id='${name}'> <input type='button' value='-' onClick='removeInput("input${counter}")'>`
             document.getElementById('stops').appendChild(newdiv);
-            console.log(newdiv)
             let stop = document.getElementById(name)
             new google.maps.places.Autocomplete(stop);
             stops.push(name)
@@ -251,7 +249,6 @@
         }
 
         function removeInput(id) {
-            console.log(id)
             let elem = document.getElementById(id);
             stops = stops.filter(item => item !== elem.childNodes[3].id)
             return elem.parentNode.removeChild(elem);
