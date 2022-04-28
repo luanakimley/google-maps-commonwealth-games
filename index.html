@@ -239,9 +239,11 @@
         function addInput() {
             var newdiv = document.createElement('span');
             let name = "stop" + counter;
-            newdiv.id = dynamicInput[counter];
-            newdiv.innerHTML = `<br>Stop<br><input type='text' id='${name}'> <input type='button' value='-' onClick='removeInput(${dynamicInput[counter]})'>`
+            let spanName = "input" + counter
+            newdiv.id = spanName
+            newdiv.innerHTML = `<br>Stop<br><input type='text' id='${name}'> <input type='button' value='-' onClick='removeInput("input${counter}")'>`
             document.getElementById('stops').appendChild(newdiv);
+            console.log(newdiv)
             let stop = document.getElementById(name)
             new google.maps.places.Autocomplete(stop);
             stops.push(name)
@@ -249,6 +251,7 @@
         }
 
         function removeInput(id) {
+            console.log(id)
             let elem = document.getElementById(id);
             stops = stops.filter(item => item !== elem.childNodes[3].id)
             return elem.parentNode.removeChild(elem);
@@ -268,12 +271,12 @@
         <br>
         <span class=select-location-label>End:</span>
         <input id="end">
-       
+
     </div>
 
     <button onclick=" calculateRoute('start', 'end', stops)">Submit</button>
     <br>
-    
+
 
     <span onclick="placeType = 'restaurant'; displayMap()">Restaurant</span>
     <span onclick="placeType = 'bar'; displayMap()">Bar</span>
