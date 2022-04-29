@@ -232,19 +232,12 @@
         }
 
         let places = []
+        let temp = []
         function callback(results, status) {
             if (status == google.maps.places.PlacesServiceStatus.OK) {
-                results.map(result => {
-                    if (places.indexOf(result) === -1) {
-                        places.push(result)
-                    }
-                    else {
-                        places.filter(item => item !== result);
-                    }
-                })
-                console.log(places)
-                getNearbyServicesMarkers(places)
+                results.map(result => places.push(result))
             }
+            getNearbyServicesMarkers(places)
 
         }
 
@@ -323,7 +316,7 @@
     <input class="places" type="checkbox" value="bank">
     <label>Bank</label>
 
-    <button onclick="displayMap()">Submit</button>
+    <button onclick="displayMap(); places = []">Submit</button>
     <br>
 
     <div id=map></div>
