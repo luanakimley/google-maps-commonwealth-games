@@ -34,11 +34,13 @@
         let map = null
         let placeType = []
         let services_centre_location = { lat: 52.489471, lng: -1.898575 }
+        let locations = [];
+        let venueMarkers = []
 
         window.onload = () => {
 
             let url = `data.json`
-            let locations = [];
+
 
 
             fetch(url)
@@ -49,26 +51,7 @@
 
 
                     locations[0].venue.map(location => {
-                        let marker = new google.maps.Marker({
-                            position: new google.maps.LatLng(location.location[0], location.location[1]),
-                            icon: { url: "markers/venue_marker.png", scaledSize: new google.maps.Size(40, 40) },
-                            map: map,
-                        })
-
-                        google.maps.event.addListener(marker, "click", () => {
-                            infoWindow.setContent(`<h1>${location.name}</h1>
-                                <p>${location.description}</p>
-                                <p>${location.address}</p>
-
-                                ${location.sports.map(sport => `<p>${sport}</p>`).join('')}
-                                <img src = ${location.url} >
-                                ${console.log(location.url)}
-                                `)
-
-                            infoWindow.open(map, marker)
-                        })
-
-
+                        createVenueMarkers(location)
                     })
 
                     const userSelection = Object.values(document.getElementsByClassName('places'));
@@ -78,27 +61,19 @@
                     const sports = locations[0].venue.map(venue => venue.sports.map(sport => sport));
                     const uniqueSports = [...new Set(sports.flat())].sort();
 
-                    // filter by sport - basic function
-                    // locations[0].venue.filter(location => {
-                    //     if (location.sports.includes(uniqueSports[2])) {
-                    //         let marker = new google.maps.Marker({
-                    //             position: new google.maps.LatLng(location.location[0], location.location[1]),
-                    //             icon: { url: "markers/venue_marker.png", scaledSize: new google.maps.Size(40, 40) },
-                    //             map: map,
-                    //         })
+                    uniqueSports.forEach(sport => {
+                        let sportStr = sport.replaceAll(" ", "-")
+                        document.getElementById("image-container").innerHTML += `<img src="sport-icons/${sport.toLowerCase().replaceAll(" ", "-")}.png" id="${sportStr}" width=50 onclick="selectSport('${sport}')">`;
+                    })
 
-                    //         google.maps.event.addListener(marker, "click", () => {
-                    //             infoWindow.setContent(location.description)
-                    //             infoWindow.open(map, marker)
-                    //         })
-                    //     }
-                    // }
-                    // )
+                    return locations
 
                 })
 
             new google.maps.places.Autocomplete(start);
             new google.maps.places.Autocomplete(end);
+
+            let service = new google.maps.places.PlacesService(map)
 
 
 
@@ -114,62 +89,34 @@
             hidePointsOfInterest(map)
 
 
-
-
-
-
             directionsRenderer = new google.maps.DirectionsRenderer()
             directionsRenderer.setMap(map)
-
-
         }
 
 
-        let infoWindow = new google.maps.InfoWindow()
-        function createMarker(place) {
-            let icon = {
-                url: place.icon,
-                scaledSize: new google.maps.Size(40, 40) // scale the image to an icon size
+        let sports = []
+        function selectSport(sportName) {
+            if (sports.indexOf(sportName) === -1) {
+                sports.push(sportName)
+                document.getElementById(sportName.replaceAll(" ", "-")).style.border = "5px solid red";
+            }
+            else {
+                sports.splice(sports.indexOf(sportName), 1);
+                document.getElementById(sportName.replaceAll(" ", "-")).style.border = "none";
             }
 
+        }
 
-            let marker = new google.maps.Marker({
-                map: map,
-                icon: icon,
-                position: place.geometry.location
+        let filteredSports = []
+        function filterbySports() {
+            sports.forEach(sportName => {
+                let found = locations[0].venue.filter(location =>
+                    location.sports.includes(sportName))
+                filteredSports.push(...found)
             })
-
-            markers.push(marker)
-
-            google.maps.event.addListener(marker, "click", () => {
-                request = {
-                    placeId: place.place_id,
-                    fields: ["name", "formatted_address", "formatted_phone_number", "icon", "geometry"],
-                };
-
-                let photo = null
-                if (typeof (place.photos) !== "undefined") {
-                    photo = place.photos[0].getUrl()
-                }
-
-                if (photo === null) {
-                    service.getDetails(request, (placeDetails) => {
-                        infoWindow.setContent(`<p><strong> ${placeDetails.name}</strong><br>
-                        ${(placeDetails.formatted_address).replaceAll(',', '</br>')}</br>
-                        ${placeDetails.formatted_phone_number}</p>`)
-                    })
-                }
-                else {
-                    service.getDetails(request, (placeDetails) => {
-                        infoWindow.setContent(`<p><strong> ${placeDetails.name}</strong><br>
-                        ${(placeDetails.formatted_address).replaceAll(',', '</br>')}</br>
-                        <img src="${photo}" width=200><br>
-                        ${placeDetails.formatted_phone_number}</p>`)
-                    })
-                }
-
-                infoWindow.open(map, marker)
-            })
+            getVenueMarkers(filteredSports)
+            console.log(filteredSports)
+            
         }
 
         function calculateRoute(startId, endId, stopsArr) {
@@ -218,8 +165,8 @@
             map.setMapTypeId("hide_poi")
         }
 
-        function displayMap() {
-            let service = new google.maps.places.PlacesService(map)
+        function servicesSearch() {
+            service = new google.maps.places.PlacesService(map)
 
             placeType.forEach(type => {
                 service.nearbySearch({
@@ -232,21 +179,96 @@
         }
 
         let places = []
-        let temp = []
         function callback(results, status) {
             if (status == google.maps.places.PlacesServiceStatus.OK) {
                 results.map(result => places.push(result))
             }
             getNearbyServicesMarkers(places)
-
         }
 
-        let markers = []
+        function createVenueMarkers(location) {
+            let marker = new google.maps.Marker({
+                position: new google.maps.LatLng(location.location[0], location.location[1]),
+                icon: { url: "markers/venue_marker.png", scaledSize: new google.maps.Size(40, 40) },
+                map: map,
+            })
+
+            venueMarkers.push(marker)
+
+            google.maps.event.addListener(marker, "click", () => {
+                infoWindow.setContent(`<h1>${location.name}</h1>
+                                <p>${location.description}</p>
+                                <p>${location.address}</p>
+
+                                ${location.sports.map(sport => `<p>${sport}</p>`).join('')}
+                                <img src = ${location.url} >
+                                `)
+
+                infoWindow.open(map, marker)
+            })
+        }
+
+        function getVenueMarkers(location) {
+            venueMarkers.map(marker => marker.setVisible(false))
+            venueMarkers = []
+            location.map(result => {
+                createVenueMarkers(result)
+            })
+        }
+
+        let infoWindow = new google.maps.InfoWindow()
+        function createNearbyServicesMarker(place) {
+            let icon = {
+                url: place.icon,
+                scaledSize: new google.maps.Size(25, 25) // scale the image to an icon size
+            }
+
+
+            let marker = new google.maps.Marker({
+                map: map,
+                icon: icon,
+                position: place.geometry.location
+            })
+
+            nearbyServicesMarkers.push(marker)
+
+            google.maps.event.addListener(marker, "click", () => {
+                request = {
+                    placeId: place.place_id,
+                    fields: ["name", "formatted_address", "formatted_phone_number", "icon", "geometry"],
+                };
+
+                let photo = null
+                if (typeof (place.photos) !== "undefined") {
+                    photo = place.photos[0].getUrl()
+                }
+
+                if (photo === null) {
+                    service.getDetails(request, (placeDetails) => {
+                        infoWindow.setContent(`<p><strong> ${placeDetails.name}</strong><br>
+                        ${(placeDetails.formatted_address).replaceAll(',', '</br>')}</br>
+                        ${placeDetails.formatted_phone_number}</p>`)
+                    })
+                }
+                else {
+                    service.getDetails(request, (placeDetails) => {
+                        infoWindow.setContent(`<p><strong> ${placeDetails.name}</strong><br>
+                        ${(placeDetails.formatted_address).replaceAll(',', '</br>')}</br>
+                        <img src="${photo}" width=200><br>
+                        ${placeDetails.formatted_phone_number}</p>`)
+                    })
+                }
+
+                infoWindow.open(map, marker)
+            })
+        }
+
+        let nearbyServicesMarkers = []
         function getNearbyServicesMarkers(results) {
-            markers.map(marker => marker.setVisible(false))
-            markers = []
+            nearbyServicesMarkers.map(marker => marker.setVisible(false))
+            nearbyServicesMarkers = []
             results.map(result => {
-                createMarker(result)
+                createNearbyServicesMarker(result)
             })
         }
 
@@ -273,17 +295,13 @@
         }
 
         function selectTypes(e) {
-
             if (placeType.indexOf(e.target.value) === -1) {
                 placeType.push(e.target.value)
             }
             else {
                 placeType.splice(placeType.indexOf(e.target.value), 1);
             }
-            console.log(placeType)
-
         }
-
 
 
     </script>
@@ -301,10 +319,13 @@
         <br>
         <span class=select-location-label>End:</span>
         <input id="end">
+        <button onclick=" calculateRoute('start', 'end', stops)">Submit</button>
 
     </div>
 
-    <button onclick=" calculateRoute('start', 'end', stops)">Submit</button>
+    <div id="image-container"></div>
+    <button onclick="filterbySports(); filteredSports = []">Submit</button>
+    <br>
     <br>
 
     <input class="places" type="checkbox" value="restaurant">
@@ -316,7 +337,7 @@
     <input class="places" type="checkbox" value="bank">
     <label>Bank</label>
 
-    <button onclick="displayMap(); places = []">Submit</button>
+    <button onclick="servicesSearch(); places = []">Submit</button>
     <br>
 
     <div id=map></div>
