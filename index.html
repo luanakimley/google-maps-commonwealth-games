@@ -32,7 +32,7 @@
     <script>
         let directionsRenderer = null
         let map = null
-        let placeType = null
+        let placeType = []
         let services_centre_location = { lat: 52.489471, lng: -1.898575 }
 
         window.onload = () => {
@@ -60,7 +60,8 @@
                                 <p>${location.address}</p>
 
                                 ${location.sports.map(sport => `<p>${sport}</p>`).join('')}
-                                <img src = ${location.url} />
+                                <img src = ${location.url} >
+                                ${console.log(location.url)}
                                 `)
 
                             infoWindow.open(map, marker)
@@ -69,6 +70,10 @@
 
                     })
 
+                    const userSelection = Object.values(document.getElementsByClassName('places'));
+                    userSelection.forEach(link => {
+                        link.addEventListener('click', selectTypes);
+                    });
                     const sports = locations[0].venue.map(venue => venue.sports.map(sport => sport));
                     const uniqueSports = [...new Set(sports.flat())].sort();
 
@@ -253,6 +258,13 @@
             stops = stops.filter(item => item !== elem.childNodes[3].id)
             return elem.parentNode.removeChild(elem);
         }
+
+        function selectTypes(e) {
+            
+            placeType.push(e.target.value)
+            console.log(placeType)
+        }
+
     </script>
 </head>
 
@@ -274,10 +286,13 @@
     <button onclick=" calculateRoute('start', 'end', stops)">Submit</button>
     <br>
 
-
-    <span onclick="placeType = 'restaurant'; displayMap()">Restaurant</span>
-    <span onclick="placeType = 'bar'; displayMap()">Bar</span>
-    <span onclick="placeType = 'hospital'; displayMap()">Hospital</span>
+    <input class="places" type="checkbox" value="restaurant">
+    <label>Restaurant</label>
+    <input class="places" type="checkbox" value="bar">
+    <label>Bar</label>
+    <input class="places" type="checkbox" value="hospital">
+    <label>Hospital</label>
+    
 
     <div id=map></div>
 </body>
