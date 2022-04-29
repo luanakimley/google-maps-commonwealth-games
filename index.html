@@ -40,6 +40,7 @@
             let url = `data.json`
             let locations = [];
 
+
             fetch(url)
                 .then(response => response.json())
                 .then(jsonData => {
@@ -114,7 +115,7 @@
 
 
 
-            let service = new google.maps.places.PlacesService(map)
+
 
 
             directionsRenderer = new google.maps.DirectionsRenderer()
@@ -138,7 +139,7 @@
         let infoWindow = new google.maps.InfoWindow()
         function createMarker(place) {
             let icon = {
-                url: `markers/${place.types[0]}_marker.png`,
+                url: place.icon,
                 scaledSize: new google.maps.Size(40, 40) // scale the image to an icon size
             }
 
@@ -229,12 +230,23 @@
         }
 
         function displayMap() {
-            service = new google.maps.places.PlacesService(map)
+            let service = new google.maps.places.PlacesService(map)
+            let service2 = new google.maps.places.PlacesService(map)
+
+
             service.nearbySearch({
                 location: services_centre_location, // centre of the search
-                radius: 500, // radius (in metres) of the search
-                keyword: placeType // https://developers.google.com/maps/documentation/places/web-service/supported_types
+                radius: 1000, // radius (in metres) of the search
+                type: "bar" // https://developers.google.com/maps/documentation/places/web-service/supported_types
             }, getNearbyServicesMarkers)
+            service2.nearbySearch({
+                location: services_centre_location, // centre of the search
+                radius: 1000, // radius (in metres) of the search
+                type: "hospital" // https://developers.google.com/maps/documentation/places/web-service/supported_types
+            }, getNearbyServicesMarkers)
+
+            console.log(service.nearbySearch );
+            console.log(service2);
         }
 
         let counter = 1
@@ -260,10 +272,19 @@
         }
 
         function selectTypes(e) {
-            
-            placeType.push(e.target.value)
+
+            if(placeType.indexOf(e.target.value) === -1) {
+                placeType.push(e.target.value)
+            }
+            else
+            {
+                placeType.splice(placeType.indexOf(e.target.value), 1);
+            }
             console.log(placeType)
+
         }
+
+
 
     </script>
 </head>
@@ -292,7 +313,11 @@
     <label>Bar</label>
     <input class="places" type="checkbox" value="hospital">
     <label>Hospital</label>
-    
+    <input class="places" type="checkbox" value="bank">
+    <label>Bank</label>
+
+    <button onclick="displayMap()">Submit</button>
+    <br>
 
     <div id=map></div>
 </body>
