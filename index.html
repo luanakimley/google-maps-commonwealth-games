@@ -28,7 +28,7 @@
 
     <!-- Google Maps -->
     <script
-        src=https://maps.googleapis.com/maps/api/js?key=AIzaSyCQRTMuRO4K1AyH9fFr6zH7Kd2qSwz3Wuk&libraries=places></script>
+        src=https://maps.googleapis.com/maps/api/js?key=AIzaSyD_SlpC6mrPb3QwpDxpHKXVYK-rm2Xvdtg&libraries=places></script>
 
     <script>
         let directionsRenderer = null
@@ -46,184 +46,196 @@
 
             if (localStorage.getItem("default")) {
                 document.getElementById("start").value = localStorage.getItem("default");
+                geocoder = new google.maps.Geocoder();
+                var address = localStorage.getItem("default")
+                geocoder.geocode({'address': address}, function (results, status) {
+                    if (status == 'OK') {
+                        console.log(results[0].geometry.location)
+                        services_centre_location = results[0].geometry.location;
+
+                    } else {
+                        alert('Geocode was not successful for the following reason: ' + status);
+                    }
+                });
+            }
+                fetch(url)
+                    .then(response => response.json())
+                    .then(jsonData => {
+
+                        locations = jsonData;
+
+                        locations[0].venue.map(location => {
+                            createVenueMarkers(location)
+                        })
+
+                        const userSelection = Object.values(document.getElementsByClassName('places'));
+                        userSelection.forEach(link => {
+                            link.addEventListener('click', selectTypes);
+                        });
+                        const sports = locations[0].venue.map(venue => venue.sports.map(sport => sport));
+                        const uniqueSports = [...new Set(sports.flat())].sort();
+
+                        uniqueSports.forEach(sport => {
+                            let sportStr = sport.replaceAll(" ", "-")
+                            document.getElementById("image-container").innerHTML += `<img src="sport-icons/${sport.toLowerCase().replaceAll(" ", "-")}.png" id="${sportStr}" width=50 onclick="selectSport('${sport}')">`;
+                        })
+
+                        return locations
+
+                    })
+
+                new google.maps.places.Autocomplete(start, {componentRestrictions: {country: ["uk"]},});
+                new google.maps.places.Autocomplete(end, {componentRestrictions: {country: ["uk"]},});
+
+                map = new google.maps.Map(document.getElementById("map"), {
+                    zoom: 8,
+                    center: new google.maps.LatLng(52.083498, -1.145653),
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                    mapTypeControlOptions: {
+                        mapTypeIds: ["roadmap", "hide_poi"]
+                    }
+                })
+
+                hidePointsOfInterest(map)
+
+                directionsRenderer = new google.maps.DirectionsRenderer()
+                directionsRenderer.setMap(map)
+                directionsRenderer.setPanel(document.getElementById("directions"))
             }
 
 
+            let sports = []
 
-            fetch(url)
-                .then(response => response.json())
-                .then(jsonData => {
+            function selectSport(sportName) {
+                if (sports.indexOf(sportName) === -1) {
+                    sports.push(sportName)
+                    document.getElementById(sportName.replaceAll(" ", "-")).style.border = "5px solid red";
+                } else {
+                    sports.splice(sports.indexOf(sportName), 1);
+                    document.getElementById(sportName.replaceAll(" ", "-")).style.border = "none";
+                }
 
-                    locations = jsonData;
+            }
 
+            let filteredSports = []
+            let copy = []
+
+            function filterbySports() {
+                nearbyServicesMarkers.map(marker => marker.setVisible(false))
+                sports.forEach(sportName => {
+                    let found = locations[0].venue.filter(location =>
+                        location.sports.includes(sportName))
+                    filteredSports.push(...found)
+                    copy = filteredSports
+                })
+                getVenueMarkers(filteredSports)
+
+                if (filteredSports.length === 0) {
+                    copy = []
                     locations[0].venue.map(location => {
                         createVenueMarkers(location)
                     })
+                }
+            }
 
-                    const userSelection = Object.values(document.getElementsByClassName('places'));
-                    userSelection.forEach(link => {
-                        link.addEventListener('click', selectTypes);
-                    });
-                    const sports = locations[0].venue.map(venue => venue.sports.map(sport => sport));
-                    const uniqueSports = [...new Set(sports.flat())].sort();
+            function calculateRoute(startId, endId, stopsArr) {
+                let start = document.getElementById(startId).value
+                let end = document.getElementById(endId).value
+                let waypoint = []
 
-                    uniqueSports.forEach(sport => {
-                        let sportStr = sport.replaceAll(" ", "-")
-                        document.getElementById("image-container").innerHTML += `<img src="sport-icons/${sport.toLowerCase().replaceAll(" ", "-")}.png" id="${sportStr}" width=50 onclick="selectSport('${sport}')">`;
+                stopsArr.forEach(stop => {
+                    let obj = {}
+                    obj.location = document.getElementById(stop).value
+                    waypoint.push(obj)
+                })
+
+
+                if (start === "" || end === "") {
+                    return
+                }
+
+
+                let request = {
+                    origin: start,
+                    waypoints: waypoint,
+                    destination: end,
+                    travelMode: travelMode
+                }
+
+                directionsService = new google.maps.DirectionsService()
+                directionsService.route(request, (route, status) => {
+                    if (status === google.maps.DirectionsStatus.OK) {
+                        directionsRenderer.setDirections(route)
+                    }
+                })
+            }
+
+            function hidePointsOfInterest(map) {
+                let styles = [
+                    {
+                        "featureType": "poi",
+                        "stylers": [{"visibility": "off"}]
+                    }
+                ]
+
+                let styledMapType = new google.maps.StyledMapType(styles, {
+                    name: "Hide POI",
+                    alt: "Hide Points of Interest"
+                })
+                map.mapTypes.set("hide_poi", styledMapType)
+
+                map.setMapTypeId("hide_poi")
+            }
+
+            function servicesSearch() {
+                service = new google.maps.places.PlacesService(map)
+                if (placeType.length === 0)
+                    nearbyServicesMarkers.map(marker => marker.setVisible(false))
+                if (copy.length > 0) {
+                    placeType.forEach(type => {
+                        copy.forEach(venue => {
+                            service.nearbySearch({
+                                location: {lat: venue.location[0], lng: venue.location[1]}, // centre of the search
+                                radius: 1000, // radius (in metres) of the search
+                                type: type // https://developers.google.com/maps/documentation/places/web-service/supported_types
+                            }, callback)
+                        })
                     })
-
-                    return locations
-
-                })
-
-            new google.maps.places.Autocomplete(start, { componentRestrictions: { country: ["uk"] }, });
-            new google.maps.places.Autocomplete(end, { componentRestrictions: { country: ["uk"] }, });
-
-            map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 8,
-                center: new google.maps.LatLng(52.083498, -1.145653),
-                mapTypeId: google.maps.MapTypeId.ROADMAP,
-                mapTypeControlOptions: {
-                    mapTypeIds: ["roadmap", "hide_poi"]
-                }
-            })
-
-            hidePointsOfInterest(map)
-
-            directionsRenderer = new google.maps.DirectionsRenderer()
-            directionsRenderer.setMap(map)
-            directionsRenderer.setPanel(document.getElementById("directions"))
-        }
-
-
-        let sports = []
-        function selectSport(sportName) {
-            if (sports.indexOf(sportName) === -1) {
-                sports.push(sportName)
-                document.getElementById(sportName.replaceAll(" ", "-")).style.border = "5px solid red";
-            }
-            else {
-                sports.splice(sports.indexOf(sportName), 1);
-                document.getElementById(sportName.replaceAll(" ", "-")).style.border = "none";
-            }
-
-        }
-
-        let filteredSports = []
-        let copy = []
-        function filterbySports() {
-            nearbyServicesMarkers.map(marker => marker.setVisible(false))
-            sports.forEach(sportName => {
-                let found = locations[0].venue.filter(location =>
-                    location.sports.includes(sportName))
-                filteredSports.push(...found)
-                copy = filteredSports
-            })
-            getVenueMarkers(filteredSports)
-
-            if (filteredSports.length === 0) {
-                copy = []
-                locations[0].venue.map(location => {
-                    createVenueMarkers(location)
-                })
-            }
-        }
-
-        function calculateRoute(startId, endId, stopsArr) {
-            let start = document.getElementById(startId).value
-            let end = document.getElementById(endId).value
-            let waypoint = []
-
-            stopsArr.forEach(stop => {
-                let obj = {}
-                obj.location = document.getElementById(stop).value
-                waypoint.push(obj)
-            })
-
-
-            if (start === "" || end === "") {
-                return
-            }
-
-
-            let request = {
-                origin: start,
-                waypoints: waypoint,
-                destination: end,
-                travelMode: travelMode
-            }
-
-            directionsService = new google.maps.DirectionsService()
-            directionsService.route(request, (route, status) => {
-                if (status === google.maps.DirectionsStatus.OK) {
-                    directionsRenderer.setDirections(route)
-                }
-            })
-        }
-
-        function hidePointsOfInterest(map) {
-            let styles = [
-                {
-                    "featureType": "poi",
-                    "stylers": [{ "visibility": "off" }]
-                }
-            ]
-
-            let styledMapType = new google.maps.StyledMapType(styles, { name: "Hide POI", alt: "Hide Points of Interest" })
-            map.mapTypes.set("hide_poi", styledMapType)
-
-            map.setMapTypeId("hide_poi")
-        }
-
-        function servicesSearch() {
-            service = new google.maps.places.PlacesService(map)
-            if (placeType.length === 0)
-                nearbyServicesMarkers.map(marker => marker.setVisible(false))
-            if (copy.length > 0) {
-                placeType.forEach(type => {
-                    copy.forEach(venue => {
+                } else {
+                    placeType.forEach(type => {
                         service.nearbySearch({
-                            location: { lat: venue.location[0], lng: venue.location[1] }, // centre of the search
-                            radius: 1000, // radius (in metres) of the search
+                            location: services_centre_location, // centre of the search
+                            radius: 10000, // radius (in metres) of the search
                             type: type // https://developers.google.com/maps/documentation/places/web-service/supported_types
                         }, callback)
                     })
+                }
+
+                places = []
+
+            }
+
+            let places = []
+
+            function callback(results, status) {
+                if (status == google.maps.places.PlacesServiceStatus.OK) {
+                    results.map(result => places.push(result))
+                }
+
+                getNearbyServicesMarkers(places)
+            }
+
+            function createVenueMarkers(location) {
+                let marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(location.location[0], location.location[1]),
+                    icon: {url: "markers/venue_marker.png", scaledSize: new google.maps.Size(40, 40)},
+                    map: map,
                 })
-            }
-            else {
-                placeType.forEach(type => {
-                    service.nearbySearch({
-                        location: services_centre_location, // centre of the search
-                        radius: 10000, // radius (in metres) of the search
-                        type: type // https://developers.google.com/maps/documentation/places/web-service/supported_types
-                    }, callback)
-                })
-            }
 
-            places = []
+                venueMarkers.push(marker)
 
-        }
-
-        let places = []
-        function callback(results, status) {
-            if (status == google.maps.places.PlacesServiceStatus.OK) {
-                results.map(result => places.push(result))
-            }
-
-            getNearbyServicesMarkers(places)
-        }
-
-        function createVenueMarkers(location) {
-            let marker = new google.maps.Marker({
-                position: new google.maps.LatLng(location.location[0], location.location[1]),
-                icon: { url: "markers/venue_marker.png", scaledSize: new google.maps.Size(40, 40) },
-                map: map,
-            })
-
-            venueMarkers.push(marker)
-
-            google.maps.event.addListener(marker, "click", () => {
-                infoWindow.setContent(`<h1>${location.name}</h1>
+                google.maps.event.addListener(marker, "click", () => {
+                    infoWindow.setContent(`<h1>${location.name}</h1>
                                 <p>${location.description}</p>
                                 <p>${location.address}</p>
 
@@ -231,109 +243,110 @@
                                 <img src = ${location.url} >
                                 `)
 
-                infoWindow.open(map, marker)
-            })
-        }
-
-        function getVenueMarkers(location) {
-            venueMarkers.map(marker => marker.setVisible(false))
-            venueMarkers = []
-            location.map(result => {
-                createVenueMarkers(result)
-            })
-        }
-
-        let infoWindow = new google.maps.InfoWindow()
-        function createNearbyServicesMarker(place) {
-            let icon = {
-                url: place.icon,
-                scaledSize: new google.maps.Size(25, 25) // scale the image to an icon size
+                    infoWindow.open(map, marker)
+                })
             }
 
+            function getVenueMarkers(location) {
+                venueMarkers.map(marker => marker.setVisible(false))
+                venueMarkers = []
+                location.map(result => {
+                    createVenueMarkers(result)
+                })
+            }
 
-            let marker = new google.maps.Marker({
-                map: map,
-                icon: icon,
-                position: place.geometry.location
-            })
+            let infoWindow = new google.maps.InfoWindow()
 
-            nearbyServicesMarkers.push(marker)
-
-            google.maps.event.addListener(marker, "click", () => {
-                request = {
-                    placeId: place.place_id,
-                    fields: ["name", "formatted_address", "formatted_phone_number", "icon", "geometry"],
-                };
-
-                let photo = null
-                if (typeof (place.photos) !== "undefined") {
-                    photo = place.photos[0].getUrl()
+            function createNearbyServicesMarker(place) {
+                let icon = {
+                    url: place.icon,
+                    scaledSize: new google.maps.Size(25, 25) // scale the image to an icon size
                 }
 
-                if (photo === null) {
-                    service.getDetails(request, (placeDetails) => {
-                        infoWindow.setContent(`<p><strong> ${placeDetails.name}</strong><br>
+
+                let marker = new google.maps.Marker({
+                    map: map,
+                    icon: icon,
+                    position: place.geometry.location
+                })
+
+                nearbyServicesMarkers.push(marker)
+
+                google.maps.event.addListener(marker, "click", () => {
+                    request = {
+                        placeId: place.place_id,
+                        fields: ["name", "formatted_address", "formatted_phone_number", "icon", "geometry"],
+                    };
+
+                    let photo = null
+                    if (typeof (place.photos) !== "undefined") {
+                        photo = place.photos[0].getUrl()
+                    }
+
+                    if (photo === null) {
+                        service.getDetails(request, (placeDetails) => {
+                            infoWindow.setContent(`<p><strong> ${placeDetails.name}</strong><br>
                         ${(placeDetails.formatted_address).replaceAll(',', '</br>')}</br>
                         ${placeDetails.formatted_phone_number}</p>`)
-                    })
-                }
-                else {
-                    service.getDetails(request, (placeDetails) => {
-                        infoWindow.setContent(`<p><strong> ${placeDetails.name}</strong><br>
+                        })
+                    } else {
+                        service.getDetails(request, (placeDetails) => {
+                            infoWindow.setContent(`<p><strong> ${placeDetails.name}</strong><br>
                         ${(placeDetails.formatted_address).replaceAll(',', '</br>')}</br>
                         <img src="${photo}" width=200><br>
                         ${placeDetails.formatted_phone_number}</p>`)
-                    })
+                        })
+                    }
+
+                    infoWindow.open(map, marker)
+                })
+            }
+
+            let nearbyServicesMarkers = []
+
+            function getNearbyServicesMarkers(results) {
+                nearbyServicesMarkers.map(marker => marker.setVisible(false))
+                nearbyServicesMarkers = []
+                results.map(result => {
+                    createNearbyServicesMarker(result)
+                })
+            }
+
+            let counter = 1
+            let stops = []
+
+            function addInput() {
+                var newdiv = document.createElement('span');
+                let name = "stop" + counter;
+                let spanName = "input" + counter
+                newdiv.id = spanName
+                newdiv.innerHTML = `<br>Stop<br><input type='text' id='${name}'> <input type='button' value='-' onClick='removeInput("input${counter}")'>`
+                document.getElementById('stops').appendChild(newdiv);
+                let stop = document.getElementById(name)
+                new google.maps.places.Autocomplete(stop);
+                stops.push(name)
+                counter++;
+            }
+
+            function removeInput(id) {
+                let elem = document.getElementById(id);
+                stops = stops.filter(item => item !== elem.childNodes[3].id)
+                return elem.parentNode.removeChild(elem);
+            }
+
+            function selectTypes(e) {
+                if (placeType.indexOf(e.target.value) === -1) {
+                    placeType.push(e.target.value)
+                } else {
+                    placeType.splice(placeType.indexOf(e.target.value), 1);
                 }
-
-                infoWindow.open(map, marker)
-            })
-        }
-
-        let nearbyServicesMarkers = []
-        function getNearbyServicesMarkers(results) {
-            nearbyServicesMarkers.map(marker => marker.setVisible(false))
-            nearbyServicesMarkers = []
-            results.map(result => {
-                createNearbyServicesMarker(result)
-            })
-        }
-
-        let counter = 1
-        let stops = []
-
-        function addInput() {
-            var newdiv = document.createElement('span');
-            let name = "stop" + counter;
-            let spanName = "input" + counter
-            newdiv.id = spanName
-            newdiv.innerHTML = `<br>Stop<br><input type='text' id='${name}'> <input type='button' value='-' onClick='removeInput("input${counter}")'>`
-            document.getElementById('stops').appendChild(newdiv);
-            let stop = document.getElementById(name)
-            new google.maps.places.Autocomplete(stop);
-            stops.push(name)
-            counter++;
-        }
-
-        function removeInput(id) {
-            let elem = document.getElementById(id);
-            stops = stops.filter(item => item !== elem.childNodes[3].id)
-            return elem.parentNode.removeChild(elem);
-        }
-
-        function selectTypes(e) {
-            if (placeType.indexOf(e.target.value) === -1) {
-                placeType.push(e.target.value)
             }
-            else {
-                placeType.splice(placeType.indexOf(e.target.value), 1);
-            }
-        }
 
-        function setDefault() {
-            let start = document.getElementById("start").value
-            localStorage.setItem("default", start)
-        }
+            function setDefault() {
+                let start = document.getElementById("start").value
+                localStorage.setItem("default", start)
+            }
+
 
 
     </script>
