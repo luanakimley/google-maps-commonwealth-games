@@ -39,25 +39,12 @@
         let venueMarkers = []
         let travelMode = "DRIVING"
         let autocomplete = null
+        let defaultMarker = null
 
         window.onload = () => {
 
             let url = `data.json`
 
-            if (localStorage.getItem("default")) {
-                document.getElementById("start").value = localStorage.getItem("default");
-                geocoder = new google.maps.Geocoder();
-                var address = localStorage.getItem("default")
-                geocoder.geocode({ 'address': address }, function (results, status) {
-                    if (status == 'OK') {
-                        console.log(results[0].geometry.location)
-                        services_centre_location = results[0].geometry.location;
-
-                    } else {
-                        alert('Geocode was not successful for the following reason: ' + status);
-                    }
-                });
-            }
             fetch(url)
                 .then(response => response.json())
                 .then(jsonData => {
@@ -103,6 +90,29 @@
                     mapTypeIds: ["roadmap", "hide_poi"]
                 }
             })
+
+            if (localStorage.getItem("default")) {
+                document.getElementById("start").value = localStorage.getItem("default");
+                geocoder = new google.maps.Geocoder();
+                var address = localStorage.getItem("default")
+                geocoder.geocode({ 'address': address }, function (results, status) {
+                    if (status == 'OK') {
+                        services_centre_location = results[0].geometry.location;
+
+                        defaultMarker
+                            = new google.maps.Marker({
+                                map: map,
+                                icon: { url: "markers/default_location_marker.png", scaledSize: new google.maps.Size(27, 27) },
+                                position: services_centre_location,
+                                animation: google.maps.Animation.DROP,
+                            })
+
+                        defaultMarker.setZIndex(100)
+                    } else {
+                        alert('Geocode was not successful for the following reason: ' + status);
+                    }
+                });
+            }
 
             hidePointsOfInterest(map)
 
@@ -266,9 +276,11 @@
         let infoWindow = new google.maps.InfoWindow()
 
         function createNearbyServicesMarker(place) {
+            console.log(place)
             let icon = {
-                url: place.icon,
-                scaledSize: new google.maps.Size(25, 25) // scale the image to an icon size
+                //url: place.icon,
+                url: `markers/${place.types[0]}_marker.png`,
+                scaledSize: new google.maps.Size(27, 27) // scale the image to an icon size
             }
 
 
@@ -353,6 +365,25 @@
         function setDefault() {
             let start = document.getElementById("start").value
             localStorage.setItem("default", start)
+
+            geocoder = new google.maps.Geocoder();
+            var address = localStorage.getItem("default")
+            geocoder.geocode({ 'address': address }, function (results, status) {
+                if (status == 'OK') {
+                    defaultMarker.setVisible(false)
+                    services_centre_location = results[0].geometry.location;
+                    defaultMarker = new google.maps.Marker({
+                        map: map,
+                        icon: { url: "markers/default_location_marker.png", scaledSize: new google.maps.Size(27, 27) },
+                        position: services_centre_location,
+                        animation: google.maps.Animation.DROP,
+                    })
+                    defaultMarker.setZIndex(100)
+
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
         }
 
 
@@ -410,7 +441,7 @@
     <div id="sports-icon-container"></div>
 
     <input class="places" type="checkbox" value="lodging">
-    <label>Lodging</label>
+    <label>Accommodation</label>
     <input class="places" type="checkbox" value="restaurant">
     <label>Restaurant</label>
     <input class="places" type="checkbox" value="bar">
@@ -419,6 +450,18 @@
     <label>Hospital</label>
     <input class="places" type="checkbox" value="bank">
     <label>Bank</label>
+    <input class="places" type="checkbox" value="atm">
+    <label>ATM</label>
+    <input class="places" type="checkbox" value="shopping_mall">
+    <label>Shopping Mall</label>
+    <input class="places" type="checkbox" value="supermarket">
+    <label>Supermarket</label>
+    <input class="places" type="checkbox" value="convenience_store">
+    <label>Convenience Store</label>
+    <input class="places" type="checkbox" value="pharmacy">
+    <label>Pharmacy</label>
+    <input class="places" type="checkbox" value="tourist_attraction">
+    <label>Attraction</label>
 
     <button onclick="filterbySports(); filteredSports = []; servicesSearch();">Submit</button>
     <button type="reset" onclick="uncheckAll(); sports = []; filterbySports(); placeType = []">Clear
