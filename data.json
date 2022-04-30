@@ -135,6 +135,14 @@
         "location": [52.59240793142341, -2.1405104792407728],
         "sports": ["Cycling - Time Trial"],
         "url": "venue-images/West-Park-Wolverhampton.webp"
+      },
+      {
+        "name": "Birmingham Commonwealth Main Office",
+        "description": "The main address for the Birmingham Commonwealth games.",
+        "address": "One Brindley Place, Birmingham, West Midlands, B1 2JB",
+        "location": [52.477400, -1.912370],
+        "sports": [],
+        "url": "https://ichef.bbci.co.uk/news/976/cpsprodpb/73E4/production/_108086692_july27-birmingham2022commonwealthgamesofficiallogo.jpg"
       }
     ],
     "B&B": [{}]
