@@ -97,6 +97,7 @@
                 var address = localStorage.getItem("default")
                 geocoder.geocode({ 'address': address }, function (results, status) {
                     if (status == 'OK') {
+
                         services_centre_location = results[0].geometry.location;
 
                         defaultMarker
@@ -147,7 +148,19 @@
                 copy = filteredSports
             })
             getVenueMarkers(filteredSports)
-
+            let totalX = 0;
+            let totalY= 0;
+            let count = 0;
+            filteredSports.map(result =>
+            {
+                totalX+= result.location[0]
+                totalY+= result.location[1]
+                count++;
+            })
+            let lat = totalX / count;
+            let long = totalY / count;
+            map.setZoom(10)
+            map.panTo(new google.maps.LatLng(lat, long))
             if (filteredSports.length === 0) {
                 copy = []
                 locations[0].venue.map(location => {
@@ -247,6 +260,7 @@
             let marker = new google.maps.Marker({
                 position: new google.maps.LatLng(location.location[0], location.location[1]),
                 icon: { url: "markers/venue_marker.png", scaledSize: new google.maps.Size(40, 40) },
+                animation: google.maps.Animation.DROP,
                 map: map,
             })
 
