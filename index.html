@@ -99,6 +99,7 @@
                     if (status == 'OK') {
 
                         services_centre_location = results[0].geometry.location;
+                        console.log(services_centre_location)
 
                         defaultMarker
                             = new google.maps.Marker({
@@ -107,8 +108,12 @@
                                 position: services_centre_location,
                                 animation: google.maps.Animation.DROP,
                             })
-
                         defaultMarker.setZIndex(100)
+                        google.maps.event.addListener(defaultMarker, "click", () => {
+                            infoWindow.setContent(`<h1>Your Home Location</h1>`)
+                            infoWindow.open(map, defaultMarker)
+                        })
+
                     } else {
                         alert('Geocode was not successful for the following reason: ' + status);
                     }
@@ -140,6 +145,7 @@
         let copy = []
 
         function filterbySports() {
+
             nearbyServicesMarkers.map(marker => marker.setVisible(false))
             sports.forEach(sportName => {
                 let found = locations[0].venue.filter(location =>
@@ -148,25 +154,28 @@
                 copy = filteredSports
             })
             getVenueMarkers(filteredSports)
-            let totalX = 0;
-            let totalY= 0;
-            let count = 0;
-            filteredSports.map(result =>
-            {
-                totalX+= result.location[0]
-                totalY+= result.location[1]
-                count++;
-            })
-            let lat = totalX / count;
-            let long = totalY / count;
-            map.setZoom(10)
-            map.panTo(new google.maps.LatLng(lat, long))
             if (filteredSports.length === 0) {
                 copy = []
                 locations[0].venue.map(location => {
                     createVenueMarkers(location)
                 })
             }
+            else {
+                let totalX = 0;
+                let totalY = 0;
+                let count = 0;
+                filteredSports.map(result => {
+                    totalX += result.location[0]
+                    totalY += result.location[1]
+                    count++;
+                })
+                let lat = totalX / count;
+                let long = totalY / count;
+
+                map.setZoom(10)
+                map.panTo(new google.maps.LatLng(lat, long))
+            }
+
         }
 
         function calculateRoute(startId, endId, stopsArr) {
@@ -219,7 +228,9 @@
         }
 
         function servicesSearch() {
+
             service = new google.maps.places.PlacesService(map)
+
             if (placeType.length === 0)
                 nearbyServicesMarkers.map(marker => marker.setVisible(false))
             if (copy.length > 0) {
@@ -290,7 +301,7 @@
         let infoWindow = new google.maps.InfoWindow()
 
         function createNearbyServicesMarker(place) {
-            console.log(place)
+
             let icon = {
                 //url: place.icon,
                 url: `markers/${place.types[0]}_marker.png`,
@@ -393,7 +404,14 @@
                         animation: google.maps.Animation.DROP,
                     })
                     defaultMarker.setZIndex(100)
+                    infoWindow.setContent(`<h1>${location.name}</h1>
+                                <p>${location.description}</p>
+                                <p>${location.address}</p>
 
+                                ${location.sports.map(sport => `<p>${sport}</p>`).join('')}
+                                <img src = ${location.url} >
+                                `)
+                    infoWindow.open(map, defaultMarker)
                 } else {
                     alert('Geocode was not successful for the following reason: ' + status);
                 }
@@ -478,7 +496,7 @@
     <label>Attraction</label>
 
     <button onclick="filterbySports(); filteredSports = []; servicesSearch();">Submit</button>
-    <button type="reset" onclick="uncheckAll(); sports = []; filterbySports(); placeType = []">Clear
+    <button type="reset" onclick="uncheckAll(); sports = []; services_centre_location={ lat: 52.489471, lng: -1.898575 }; filterbySports(); placeType = []; ">Clear
         Filters</button>
     <br>
 
