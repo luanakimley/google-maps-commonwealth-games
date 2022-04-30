@@ -108,15 +108,16 @@
         }
 
         let filteredSports = []
+        let copy = []
         function filterbySports() {
+            nearbyServicesMarkers.map(marker => marker.setVisible(false))
             sports.forEach(sportName => {
                 let found = locations[0].venue.filter(location =>
                     location.sports.includes(sportName))
                 filteredSports.push(...found)
+                copy = [...filteredSports]
             })
             getVenueMarkers(filteredSports)
-            console.log(filteredSports)
-            
         }
 
         function calculateRoute(startId, endId, stopsArr) {
@@ -168,14 +169,28 @@
         function servicesSearch() {
             service = new google.maps.places.PlacesService(map)
 
-            placeType.forEach(type => {
-                service.nearbySearch({
-                    location: services_centre_location, // centre of the search
-                    radius: 1000, // radius (in metres) of the search
-                    type: type // https://developers.google.com/maps/documentation/places/web-service/supported_types
-                }, callback)
-            })
+            if (copy.length > 0) {
+                placeType.forEach(type => {
+                    copy.forEach(venue => {
+                        service.nearbySearch({
+                            location: { lat: venue.location[0], lng: venue.location[1] }, // centre of the search
+                            radius: 1000, // radius (in metres) of the search
+                            type: type // https://developers.google.com/maps/documentation/places/web-service/supported_types
+                        }, callback)
+                    })
+                })
+            }
+            else {
+                placeType.forEach(type => {
+                    service.nearbySearch({
+                        location: services_centre_location, // centre of the search
+                        radius: 10000, // radius (in metres) of the search
+                        type: type // https://developers.google.com/maps/documentation/places/web-service/supported_types
+                    }, callback)
+                })
+            }
 
+            places = []
         }
 
         let places = []
@@ -183,6 +198,7 @@
             if (status == google.maps.places.PlacesServiceStatus.OK) {
                 results.map(result => places.push(result))
             }
+
             getNearbyServicesMarkers(places)
         }
 
@@ -337,7 +353,7 @@
     <input class="places" type="checkbox" value="bank">
     <label>Bank</label>
 
-    <button onclick="servicesSearch(); places = []">Submit</button>
+    <button onclick="servicesSearch();">Submit</button>
     <br>
 
     <div id=map></div>
