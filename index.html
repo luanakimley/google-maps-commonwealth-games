@@ -72,6 +72,7 @@
                         userSelection.forEach(link => {
                             link.addEventListener('click', selectTypes);
                         });
+
                         const sports = locations[0].venue.map(venue => venue.sports.map(sport => sport));
                         const uniqueSports = [...new Set(sports.flat())].sort();
 
@@ -348,7 +349,16 @@
             }
 
 
+        function uncheckAll() {
+            sports.forEach(sportName => {
+                document.getElementById(sportName.replaceAll(" ", "-")).style.border = "none";
+            })
 
+            const userSelection2 = Object.values(document.getElementsByClassName('places'));
+            userSelection2.forEach(link => {
+                link.checked = false
+            });
+        }
     </script>
 </head>
 
@@ -379,7 +389,7 @@
         <span class=select-location-label>End:</span>
         <input style="width:50%" id="end">
         <button onclick=" calculateRoute('start', 'end', stops)">Submit</button>
-
+        <button onclick="document.getElementById('start').value = ''; document.getElementById('end').value = ''">Clear Routes</button>
         <br><br>
 
         <details>
@@ -392,9 +402,9 @@
 
 
     <div id="image-container"></div>
-    <button onclick="filterbySports(); filteredSports = []; servicesSearch();">Submit</button>
-    <br>
-    <br>
+<!--    <button onclick="filterbySports(); filteredSports = []; servicesSearch();">Submit</button>-->
+<!--    <br>-->
+<!--    <br>-->
 
     <input class="places" type="checkbox" value="lodging">
     <label>Lodging</label>
@@ -407,7 +417,8 @@
     <input class="places" type="checkbox" value="bank">
     <label>Bank</label>
 
-    <button onclick="servicesSearch();">Submit</button>
+    <button onclick="filterbySports(); filteredSports = [];servicesSearch();">Submit</button>
+    <button type="reset" onclick="uncheckAll(); sports = []; filterbySports()">Clear Filters</button>
     <br>
 
     <div id=map></div>
