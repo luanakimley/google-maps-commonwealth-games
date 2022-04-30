@@ -5,12 +5,12 @@
     <meta charset=UTF-8>
     <meta name=viewport content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
     <title>2022 Commonwealth Games Birmingham</title>
 
     <style>
         #map {
-            width: 100%;
-            height: 600px;
+            
             border: thin solid #CCC;
         }
 
@@ -65,7 +65,7 @@
 
                     uniqueSports.forEach(sport => {
                         let sportStr = sport.replaceAll(" ", "-")
-                        document.getElementById("sports-icon-container").innerHTML += `<img src="sport-icons/${sport.toLowerCase().replaceAll(" ", "-")}.png" id="${sportStr}" width=50 onclick="selectSport('${sport}')">`;
+                        document.getElementById("sports-icon-container").innerHTML += `<a id="tooltip"><span class="tooltiptext">${sport}</span><img src="sport-icons/${sport.toLowerCase().replaceAll(" ", "-")}.png" id="${sportStr}" width=100% style="opacity: .7; cursor: pointer;" onclick="selectSport('${sport}')"></a>`;
                     })
 
                     return locations
@@ -133,10 +133,10 @@
         function selectSport(sportName) {
             if (sports.indexOf(sportName) === -1) {
                 sports.push(sportName)
-                document.getElementById(sportName.replaceAll(" ", "-")).style.border = "5px solid red";
+                document.getElementById(sportName.replaceAll(" ", "-")).style.opacity = "1";
             } else {
                 sports.splice(sports.indexOf(sportName), 1);
-                document.getElementById(sportName.replaceAll(" ", "-")).style.border = "none";
+                document.getElementById(sportName.replaceAll(" ", "-")).style.opacity = ".7";
             }
 
         }
@@ -421,7 +421,7 @@
 
         function uncheckAll() {
             sports.forEach(sportName => {
-                document.getElementById(sportName.replaceAll(" ", "-")).style.border = "none";
+                document.getElementById(sportName.replaceAll(" ", "-")).style.opacity = ".7";
             })
 
             const userSelection2 = Object.values(document.getElementsByClassName('places'));
@@ -433,74 +433,102 @@
 </head>
 
 <body>
-    <div id="control-panel">
-        <button onclick="travelMode = 'DRIVING'"><span class="material-icons">
-                directions_car_filled
-            </span></button>
-        <button onclick="travelMode = 'BICYCLING'"><span class="material-icons">
-                directions_bike
-            </span></button>
-        <button onclick="travelMode = 'TRANSIT'"><span class="material-icons">
-                directions_bus
-            </span></button>
-        <button onclick="travelMode = 'WALKING'"><span class="material-icons">
-                directions_walk
-            </span></button>
-        <br><br>
-        <span class=select-location-label>Start:</span>
-        <input style="width:50%" id="start">
-        <input type="button" value="Add stop" onClick="addInput();">
-        <input type="button" value="Set Default Start Location" onClick="setDefault();">
+    <header>
+        <div class="header-wrapper">
+            <div class="header-inner">
+                <div class="header-left">
+                    <div class="header-left-inner">
+                        <a href=""></a><h1>Tickets</h1>
+                    </div>
+                </div>
+                <div class="header-logo">
+                    <img src="logo\birminghamLogo.png"/>
+                </div>
+                <div class="header-right">
+                    <div class="header-right-inner">
+                        <h1>Tickets</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div id="control-panel">
+            <button onclick="travelMode = 'DRIVING'"><span class="material-icons">
+                    directions_car_filled
+                </span></button>
+            <button onclick="travelMode = 'BICYCLING'"><span class="material-icons">
+                    directions_bike
+                </span></button>
+            <button onclick="travelMode = 'TRANSIT'"><span class="material-icons">
+                    directions_bus
+                </span></button>
+            <button onclick="travelMode = 'WALKING'"><span class="material-icons">
+                    directions_walk
+                </span></button>
+            <br><br>
+            <span class=select-location-label>Start:</span>
+            <input style="width:50%" id="start">
+            <input type="button" value="Add stop" onClick="addInput();">
+            <input type="button" value="Set Default Start Location" onClick="setDefault();">
+            <br>
+
+            <div id="stops"></div>
+
+            <br>
+            <span class=select-location-label>End:</span>
+            <input style="width:50%" id="end">
+            <button onclick=" calculateRoute('start', 'end', stops)">Submit</button>
+            <button onclick="document.getElementById('start').value = ''; document.getElementById('end').value = ''">Clear
+                Routes</button>
+            <br><br>
+
+            <details>
+                <summary>Directions</summary>
+                <div id=directions></div>
+            </details>
+
+        </div>
+
+        
+
+        <input class="places" type="checkbox" value="lodging">
+        <label>Accommodation</label>
+        <input class="places" type="checkbox" value="restaurant">
+        <label>Restaurant</label>
+        <input class="places" type="checkbox" value="bar">
+        <label>Bar</label>
+        <input class="places" type="checkbox" value="hospital">
+        <label>Hospital</label>
+        <input class="places" type="checkbox" value="bank">
+        <label>Bank</label>
+        <input class="places" type="checkbox" value="atm">
+        <label>ATM</label>
+        <input class="places" type="checkbox" value="shopping_mall">
+        <label>Shopping Mall</label>
+        <input class="places" type="checkbox" value="supermarket">
+        <label>Supermarket</label>
+        <input class="places" type="checkbox" value="convenience_store">
+        <label>Convenience Store</label>
+        <input class="places" type="checkbox" value="pharmacy">
+        <label>Pharmacy</label>
+        <input class="places" type="checkbox" value="tourist_attraction">
+        <label>Attraction</label>
+
+        <button onclick="filterbySports(); filteredSports = []; servicesSearch();">Update</button>
+        <button type="reset" onclick="uncheckAll(); sports = []; services_centre_location={ lat: 52.489471, lng: -1.898575 }; filterbySports(); placeType = []; ">Clear
+            Filters</button>
         <br>
-
-        <div id="stops"></div>
-
-        <br>
-        <span class=select-location-label>End:</span>
-        <input style="width:50%" id="end">
-        <button onclick=" calculateRoute('start', 'end', stops)">Submit</button>
-        <button onclick="document.getElementById('start').value = ''; document.getElementById('end').value = ''">Clear
-            Routes</button>
-        <br><br>
-
-        <details>
-            <summary>Directions</summary>
-            <div id=directions></div>
-        </details>
-
-    </div>
-
-    <div id="sports-icon-container"></div>
-
-    <input class="places" type="checkbox" value="lodging">
-    <label>Accommodation</label>
-    <input class="places" type="checkbox" value="restaurant">
-    <label>Restaurant</label>
-    <input class="places" type="checkbox" value="bar">
-    <label>Bar</label>
-    <input class="places" type="checkbox" value="hospital">
-    <label>Hospital</label>
-    <input class="places" type="checkbox" value="bank">
-    <label>Bank</label>
-    <input class="places" type="checkbox" value="atm">
-    <label>ATM</label>
-    <input class="places" type="checkbox" value="shopping_mall">
-    <label>Shopping Mall</label>
-    <input class="places" type="checkbox" value="supermarket">
-    <label>Supermarket</label>
-    <input class="places" type="checkbox" value="convenience_store">
-    <label>Convenience Store</label>
-    <input class="places" type="checkbox" value="pharmacy">
-    <label>Pharmacy</label>
-    <input class="places" type="checkbox" value="tourist_attraction">
-    <label>Attraction</label>
-
-    <button onclick="filterbySports(); filteredSports = []; servicesSearch();">Submit</button>
-    <button type="reset" onclick="uncheckAll(); sports = []; services_centre_location={ lat: 52.489471, lng: -1.898575 }; filterbySports(); placeType = []; ">Clear
-        Filters</button>
-    <br>
-
-    <div id=map></div>
+        <div class="map-wrapper">
+            <div class="icons">
+                <div id="sports-icon-container"></div>
+                <button id="filter-button" onclick="filterbySports(); filteredSports = []; servicesSearch();"><h1>Filter</h1></button>
+            </div>
+            <div id=map></div>
+        </div>
+        <div class="spacer">
+        </div>
+    </main>
 </body>
 
 </html>
