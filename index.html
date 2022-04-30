@@ -38,6 +38,7 @@
         let locations = [];
         let venueMarkers = []
         let travelMode = "DRIVING"
+        let autocomplete = null
 
         window.onload = () => {
 
@@ -46,12 +47,14 @@
             if (localStorage.getItem("default")) {
                 document.getElementById("start").value = localStorage.getItem("default");
             }
+
+
+
             fetch(url)
                 .then(response => response.json())
                 .then(jsonData => {
 
                     locations = jsonData;
-
 
                     locations[0].venue.map(location => {
                         createVenueMarkers(location)
@@ -73,12 +76,12 @@
 
                 })
 
-            new google.maps.places.Autocomplete(start);
-            new google.maps.places.Autocomplete(end);
+            new google.maps.places.Autocomplete(start, { componentRestrictions: { country: ["uk"] }, });
+            new google.maps.places.Autocomplete(end, { componentRestrictions: { country: ["uk"] }, });
 
             map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 12,
-                center: new google.maps.LatLng(52.489471, -1.898575),
+                zoom: 8,
+                center: new google.maps.LatLng(52.083498, -1.145653),
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 mapTypeControlOptions: {
                     mapTypeIds: ["roadmap", "hide_poi"]
@@ -114,9 +117,16 @@
                 let found = locations[0].venue.filter(location =>
                     location.sports.includes(sportName))
                 filteredSports.push(...found)
-                copy = [...filteredSports]
+                copy = filteredSports
             })
             getVenueMarkers(filteredSports)
+
+            if (filteredSports.length === 0) {
+                copy = []
+                locations[0].venue.map(location => {
+                    createVenueMarkers(location)
+                })
+            }
         }
 
         function calculateRoute(startId, endId, stopsArr) {
@@ -191,6 +201,7 @@
             }
 
             places = []
+
         }
 
         let places = []
@@ -322,7 +333,6 @@
         function setDefault() {
             let start = document.getElementById("start").value
             localStorage.setItem("default", start)
-
         }
 
 
@@ -345,7 +355,7 @@
             </span></button>
         <br><br>
         <span class=select-location-label>Start:</span>
-        <input id="start">
+        <input style="width:50%" id="start">
         <input type="button" value="Add stop" onClick="addInput();">
         <input type="button" value="Set Default Start Location" onClick="setDefault();">
         <br>
@@ -354,7 +364,7 @@
 
         <br>
         <span class=select-location-label>End:</span>
-        <input id="end">
+        <input style="width:50%" id="end">
         <button onclick=" calculateRoute('start', 'end', stops)">Submit</button>
 
         <br><br>
