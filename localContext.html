@@ -4,6 +4,11 @@
 <head>
     <meta charset=UTF-8>
     <meta name=viewport content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed&display=swap" rel="stylesheet">
     <title>Google Maps basic local context example</title>
 
     <style>
@@ -30,7 +35,7 @@
 
 
         function displayMap() {
-            const hotelLocation = {lat: 25.3548, lng: 51.183}
+            const hotelLocation = {lat: 25.42078968278592, lng: 51.490451571075916}
 
             if (localStorage.getItem("default")) {
                 document.getElementById("default").value = localStorage.getItem("defaultContext");
@@ -98,13 +103,13 @@
 
         var x = document.getElementById("demo");
 
-        function getLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition);
-            } else {
-                x.innerHTML = "Geolocation is not supported by this browser.";
-            }
-        }
+        // function getLocation() {
+        //     if (navigator.geolocation) {
+        //         navigator.geolocation.getCurrentPosition(showPosition);
+        //     } else {
+        //         x.innerHTML = "Geolocation is not supported by this browser.";
+        //     }
+        // }
 
         function showPosition(position) {
             x.innerHTML = "Latitude: " + position.coords.latitude +
@@ -118,21 +123,45 @@
 
     </script>
 </head>
-
+<header id="header">
+    <div class="header-wrapper">
+        <div class="header-inner">
+            <div class="header-left">
+                <div class="header-left-inner">
+                    <a href="https://www.birmingham2022.com/schedule/day-by-day"><h1>Schedule</h1></a>
+                </div>
+            </div>
+            <div class="header-logo">
+                <img id="logoImg" src="logo\2022Qatar.png"/>
+            </div>
+            <div class="header-right">
+                <div class="header-right-inner">
+                    <a href="https://tickets.birmingham2022.com/"><h1>Tickets</h1></a>
+                </div>
+                <div class="header-right-inner-right">
+                    <a href="index.html"><h1>Birmingham CommonWealth Games</h1></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
 <body>
+<main>
 <div>
     <input style="width:50%" id="default">
     <input type="button" value="Set Default Start Location" onClick="setDefault();">
 </div>
-<div id=map></div>
+    <div class="map-wrapper">
+    <div class="map-inner">
 
-<p>Click the button to get your coordinates.</p>
+        <div id=map></div>
+    </div>
+    </div>
 
-<button onclick="getLocation()">Try It</button>
+</main>
+<footer>
 
-<p id="demo"></p>
-
-<p>This example shows cafes, banks and tourist attractions that are close to a hotel.</p>
+</footer>
 </body>
 
 </html>

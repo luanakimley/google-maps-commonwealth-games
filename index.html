@@ -34,6 +34,7 @@
         let travelMode = "DRIVING"
         let autocomplete = null
         let defaultMarker = null
+        let infoWindow = new google.maps.InfoWindow()
 
         window.onload = () => {
 
@@ -76,6 +77,8 @@
             new google.maps.places.Autocomplete(start, autoCompleteOptions);
             new google.maps.places.Autocomplete(end, autoCompleteOptions);
 
+
+
             map = new google.maps.Map(document.getElementById("map"), {
                 zoom: 8,
                 center: new google.maps.LatLng(52.083498, -1.145653),
@@ -84,6 +87,85 @@
                     mapTypeIds: ["roadmap", "hide_poi"]
                 }
             })
+
+            const input = document.getElementById("pac-input");
+            const searchBox = new google.maps.places.Autocomplete(input, autoCompleteOptions);
+
+
+            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+            // Bias the SearchBox results towards current map's viewport.
+            map.addListener("bounds_changed", () => {
+                searchBox.setBounds(map.getBounds());
+            });
+
+            const marker = new google.maps.Marker({
+                map,
+                anchorPoint: new google.maps.Point(0, -29),
+            });
+            searchBox.addListener("place_changed", () => {
+                service = new google.maps.places.PlacesService(map)
+
+                const infowindow = new google.maps.InfoWindow();
+                const infowindowContent = document.getElementById("infowindow-content");
+
+                infowindow.setContent(infowindowContent);
+                const place = searchBox.getPlace();
+                // Clear out the old markers.
+                venueMarkers.forEach((marker) => {
+                    marker.setMap(null);
+                });
+                venueMarkers = [];
+
+                // For each place, get the icon, name and location.
+                const bounds = new google.maps.LatLngBounds();
+
+                if (!place.geometry || !place.geometry.location) {
+                    // User entered the name of a Place that was not suggested and
+                    // pressed the Enter key, or the Place Details request failed.
+                    window.alert("No details available for input: '" + place.name + "'");
+                    return;
+                }
+
+
+
+                marker.setVisible(false);
+
+                map.fitBounds(bounds);
+
+                map.setCenter(place.geometry.location);
+                marker.setPosition(place.geometry.location);
+                marker.setVisible(true)
+
+
+                google.maps.event.addListener(marker, "click", () => {
+                    request = {
+                        placeId: place.place_id,
+                        fields: ["name", "formatted_address", "formatted_phone_number", "icon", "geometry"],
+                    };
+
+                    let photo = null
+                    if (typeof (place.photos) !== "undefined") {
+                        photo = place.photos[0].getUrl()
+                    }
+
+                    if (photo === null) {
+                        service.getDetails(request, (placeDetails) => {
+                            infoWindow.setContent(`<p><strong> ${placeDetails.name}</strong><br>
+                        ${(placeDetails.formatted_address).replaceAll(',', '</br>')}</br>
+                        ${placeDetails.formatted_phone_number}</p>`)
+                        })
+                    } else {
+                        service.getDetails(request, (placeDetails) => {
+                            infoWindow.setContent(`<p><strong> ${placeDetails.name}</strong><br>
+                        ${(placeDetails.formatted_address).replaceAll(',', '</br>')}</br>
+                        <img src="${photo}" width=200><br></p>`)
+                        })
+                    }
+
+                    infoWindow.open(map, marker)
+                })
+            });
+
 
             if (localStorage.getItem("default")) {
                 document.getElementById("start").value = localStorage.getItem("default");
@@ -292,7 +374,7 @@
             })
         }
 
-        let infoWindow = new google.maps.InfoWindow()
+
 
         function createNearbyServicesMarker(place) {
 
@@ -472,6 +554,9 @@
                     <div class="header-right-inner">
                         <a href="https://tickets.birmingham2022.com/"><h1>Tickets</h1></a>
                     </div>
+                    <div class="header-right-inner-right">
+                        <a href="localContext.html"><h1>Qatar World Cup</h1></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -518,6 +603,12 @@
                         <h1>Filter</h1>
                     </button>
                 </div>
+                <input
+                        id="pac-input"
+                        class="controls"
+                        type="text"
+                        placeholder="Search Box"
+                />
                 <div id=map></div>
             </div>
             <div class="triangle-wrapper">
@@ -597,12 +688,12 @@
         <footer>
 
         </footer>
-
+    </div>
     </main>
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script>
-            
+
         $(window).scroll ( function() {
         if ($(document).scrollTop() > 50) {
             document.getElementById('header').style.height = '60px';

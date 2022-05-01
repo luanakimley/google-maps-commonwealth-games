@@ -69,6 +69,8 @@ header {
 .header-right {
     height: 100%;
     float: right;
+    width: 20vw;
+
 }
 
 .header-right-inner {
@@ -79,8 +81,16 @@ header {
     z-index: 1;
     background-color: transparent;
 }
-
-.header-right-inner h1 {
+.header-right-inner-right {
+    display: inline-block;
+    position: relative;
+    top: 50%;
+    float: right;
+    transform: translate(-0%, -50%);
+    z-index: 1;
+    background-color: transparent;
+}
+.header-right-inner h1, .header-right-inner-right h1 {
     font-size: 25px;
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: bold;
@@ -283,11 +293,11 @@ main {
     border-right: 50px solid transparent;
     border-bottom: 50px solid #e8308a;
   }
-
 .directions-wrapper {
     padding-top: 50px;
     height: 500px;
     background-color: #e8308a;
+    text-align: center;
 }
 
 .directions-inner {
@@ -297,9 +307,11 @@ main {
 
 .directions-text {
     height: 150px;
+    width: 30vw;
 }
 
 .directions-text h1 {
+
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 80px;
     color: white;
