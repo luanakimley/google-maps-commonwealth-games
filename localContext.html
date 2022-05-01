@@ -28,37 +28,26 @@
 
     <!-- Google Maps -->
     <script
-            src=https://maps.googleapis.com/maps/api/js?key=AIzaSyD_SlpC6mrPb3QwpDxpHKXVYK-rm2Xvdtg&libraries=localContext&v=beta&callback=displayMap
+            src=https://maps.googleapis.com/maps/api/js?key=AIzaSyD_SlpC6mrPb3QwpDxpHKXVYK-rm2Xvdtg&libraries=localContext,places&v=beta&callback=displayMap
             async></script>
 
     <script>
 
 
         function displayMap() {
-            const hotelLocation = {lat: 25.42078968278592, lng: 51.490451571075916}
-
-            if (localStorage.getItem("default")) {
-                document.getElementById("default").value = localStorage.getItem("defaultContext");
-                geocoder = new google.maps.Geocoder();
-                var address = localStorage.getItem("default")
-                geocoder.geocode({'address': address}, function (results, status) {
-                    if (status == 'OK') {
-                        console.log(results[0].geometry.location)
-                        services_centre_location = results[0].geometry.location;
-
-                    } else {
-                        alert('Geocode was not successful for the following reason: ' + status);
-                    }
-                });
-            }
+            var hotelLocation = {lat: 25.42078968278592, lng: 51.490451571075916}
 
 
 
             displayLocalContextMap(hotelLocation, 3000)
         }
+        window.onload = () => {
 
+        }
 
         function displayLocalContextMap(hotelLocation, metres) {
+
+
             const METRES_TO_DEGREES = 0.00000909091
             const degrees = metres * METRES_TO_DEGREES
 
@@ -68,7 +57,36 @@
                 west: hotelLocation.lng - degrees,
                 east: hotelLocation.lng + degrees
             }
+            if (localStorage.getItem("defaultContext")) {
+                document.getElementById("pac-input").value = localStorage.getItem("defaultContext");
+                geocoder = new google.maps.Geocoder();
+                var address = localStorage.getItem("defaultContext")
+                geocoder.geocode({ 'address': address }, function (results, status) {
+                    if (status == 'OK') {
 
+                        hotelLocation = results[0].geometry.location;
+                        defaultMarker
+                            = new google.maps.Marker({
+                            map: localContextMap,
+                            icon: { url: "markers/default_location_marker.png", scaledSize: new google.maps.Size(27, 27) },
+                            position: hotelLocation,
+                            animation: google.maps.Animation.DROP,
+                        })
+                        defaultMarker.setZIndex(100)
+                        google.maps.event.addListener(defaultMarker, "click", () => {
+                            infoWindow.setContent(`<h1>Your Home Location</h1>`)
+                            infoWindow.open(map, defaultMarker)
+                        })
+                        localContextMap.setOptions({
+                            center: hotelLocation,
+                            zoom: 14
+                        })
+                    } else {
+                        alert('Geocode was not successful for the following reason: ' + status);
+                    }
+                });
+
+            }
             const localContextMapView = new google.maps.localContext.LocalContextMapView({
                 element: document.getElementById("map"),
                 placeTypePreferences: [
@@ -81,13 +99,94 @@
                 directionsOptions: {origin: hotelLocation} // Walking route starts at hotelLocation
             })
 
+
             let localContextMap = localContextMapView.map
 
-            localContextMap.setOptions({
-                center: hotelLocation, // Map is centred on Dundalk
-                zoom: 14
-            })
+            const input = document.getElementById("pac-input");
+            const searchBox = new google.maps.places.Autocomplete(input);
 
+
+            localContextMap.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+            // Bias the SearchBox results towards current map's viewport.
+            localContextMap.addListener("bounds_changed", () => {
+                searchBox.setBounds(localContextMap.getBounds());
+            });
+
+            let marker = new google.maps.Marker({
+                localContextMap,
+                anchorPoint: new google.maps.Point(0, -29),
+            });
+
+            searchBox.addListener("place_changed", () => {
+                service = new google.maps.places.PlacesService(localContextMap)
+
+                const infowindow = new google.maps.InfoWindow();
+                const infowindowContent = document.getElementById("infowindow-content");
+
+                infowindow.setContent(infowindowContent);
+                const place = searchBox.getPlace();
+
+
+
+                // For each place, get the icon, name and location.
+                const bounds = new google.maps.LatLngBounds();
+
+                if (!place.geometry || !place.geometry.location) {
+                    // User entered the name of a Place that was not suggested and
+                    // pressed the Enter key, or the Place Details request failed.
+                    window.alert("No details available for input: '" + place.name + "'");
+                    return;
+                }
+
+
+
+                marker.setVisible(false);
+                marker = new google.maps.Marker({
+                    position: place.geometry.location,
+                    map: localContextMap,
+                    zIndex: 30,
+                    title: "Your Hotel"
+                })
+                localContextMap.fitBounds(bounds);
+
+                localContextMap.setCenter(place.geometry.location);
+                marker.setPosition(place.geometry.location);
+                marker.setVisible(true)
+                console.log(marker)
+
+
+                // google.maps.event.addListener(marker, "click", () => {
+                //     request = {
+                //         placeId: place.place_id,
+                //         fields: ["name", "formatted_address", "formatted_phone_number", "icon", "geometry"],
+                //     };
+                //
+                //     let photo = null
+                //     if (typeof (place.photos) !== "undefined") {
+                //         photo = place.photos[0].getUrl()
+                //     }
+                //
+                //     if (photo === null) {
+                //         service.getDetails(request, (placeDetails) => {
+                //             infoWindow.setContent(`<p><strong> ${placeDetails.name}</strong><br>
+                //         ${(placeDetails.formatted_address).replaceAll(',', '</br>')}</br>
+                //         ${placeDetails.formatted_phone_number}</p>`)
+                //         })
+                //     } else {
+                //         service.getDetails(request, (placeDetails) => {
+                //             infoWindow.setContent(`<p><strong> ${placeDetails.name}</strong><br>
+                //         ${(placeDetails.formatted_address).replaceAll(',', '</br>')}</br>
+                //         <img src="${photo}" width=200><br></p>`)
+                //         })
+                //     }
+                //
+                //     infoWindow.open(localContextMap, marker)
+                // })
+            });
+
+
+
+            console.log(hotelLocation)
             // add a hotel marker at the location of hotelLocation
             new google.maps.Marker({
                 position: hotelLocation,
@@ -117,8 +216,10 @@
         }
 
         function setDefault() {
-            let start = document.getElementById("default").value
-            localStorage.setItem("defaultContext", start)
+
+            let location = document.getElementById("pac-input").value
+            console.log(location)
+            localStorage.setItem("defaultContext", location)
         }
 
     </script>
@@ -153,7 +254,13 @@
 </div>
     <div class="map-wrapper">
     <div class="map-inner">
-
+        <input
+                id="pac-input"
+                class="controls"
+                type="text"
+                placeholder="Search Box"
+        />
+        <input type="button" value="Set Default Start Location" onClick="setDefault();">
         <div id=map></div>
     </div>
     </div>
