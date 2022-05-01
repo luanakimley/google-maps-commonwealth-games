@@ -115,9 +115,19 @@ main {
 .countdown-timer {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 100px;
+    color: white;
     margin-bottom: 20px;
     display: flex;
     text-align: center;
+}
+
+#triangle-bottomleft {
+    width: 0;
+    height: 0;
+    position: absolute;
+    bottom: 0;
+    border-bottom: 100px solid #804f9b;
+    border-right: 500px solid transparent;
 }
 
 .days {
@@ -165,7 +175,24 @@ main {
 }
 
 .map-wrapper {
-    height: auto;
+    height: 1000px;
+    padding-bottom: 50px;
+    padding-top: 50px;
+    background-color: #804f9b;
+}
+
+.map-text {
+    height: 150px;
+}
+
+.map-text h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 80px;
+    color: white;
+}
+
+.map-inner {
+    height: 100%;
     width: 90%;
 }
 
