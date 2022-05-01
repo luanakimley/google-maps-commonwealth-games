@@ -57,16 +57,6 @@
         }
 
         function displayLocalContextMap(hotelLocation, metres) {
-            const METRES_TO_DEGREES = 0.00000909091
-            const degrees = metres * METRES_TO_DEGREES
-
-            const bounds = {
-                north: hotelLocation.lat + degrees,
-                south: hotelLocation.lat - degrees,
-                west: hotelLocation.lng - degrees,
-                east: hotelLocation.lng + degrees
-            }
-
             const localContextMapView = new google.maps.localContext.LocalContextMapView({
                 element: document.getElementById("map"),
                 placeTypePreferences: [
@@ -75,7 +65,6 @@
                     { type: "bank" }
                 ],
                 maxPlaceCount: 24,
-                //locationRestriction: bounds,
                 directionsOptions: { origin: hotelLocation } // Walking route starts at hotelLocation
             })
 
@@ -145,7 +134,10 @@
                 })
                 localContextMap.fitBounds(bounds);
 
-                localContextMap.setCenter(place.geometry.location);
+                localContextMap.setOptions({
+                    center: place.geometry.location,
+                    zoom: 14
+                })
                 marker.setPosition(place.geometry.location);
                 marker.setVisible(true)
             });
@@ -170,9 +162,7 @@
         }
 
         function setDefault() {
-
             let location = document.getElementById("pac-input").value
-            console.log(location)
             localStorage.setItem("defaultContext", location)
         }
 
@@ -209,14 +199,10 @@
 
 <body>
     <main>
-        <div>
-            <input style="width:50%" id="default">
-            <input type="button" value="Set Default Start Location" onClick="setDefault();">
-        </div>
         <div class="map-wrapper">
             <div class="map-inner">
                 <input id="pac-input" class="controls" type="text" placeholder="Search Box" />
-                <input type="button" value="Set Default Start Location" onClick="setDefault();">
+                <input type="button" value="Set Default Start Location" onClick="setDefault(); displayMap()">
                 <div id=map></div>
             </div>
         </div>
