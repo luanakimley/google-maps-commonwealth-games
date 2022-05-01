@@ -201,6 +201,24 @@
             directionsRenderer = new google.maps.DirectionsRenderer()
             directionsRenderer.setMap(map)
             directionsRenderer.setPanel(document.getElementById("directions"))
+
+            map.data.loadGeoJson(
+                'map.geojson'
+            );
+
+            map.data.setStyle(function (feature) {
+                var ascii = feature.getProperty('name');
+                var color = feature.getProperty('fill');
+                return {
+                    fillColor: color,
+                    strokeWeight: 0,
+                    fillOpacity: 0.8,
+                };
+            });
+
+            map.data.addListener('click', function (event) {
+                map.data.setStyle({ visible: false });
+            });
         }
 
 
@@ -528,13 +546,13 @@
             if (distance < 0) {
                 clearInterval(x);
                 document.getElementById("countdown-timer").innerHTML = "The Games Have Begun";
-                }
-            }, 1000);
+            }
+        }, 1000);
 
-            function Scroll() {
-                      var elmnt = document.getElementById("map");
-                      elmnt.scrollIntoView({behavior: 'smooth'});
-                    }
+        function Scroll() {
+            var elmnt = document.getElementById("map");
+            elmnt.scrollIntoView({ behavior: 'smooth' });
+        }
     </script>
 </head>
 
@@ -544,18 +562,24 @@
             <div class="header-inner">
                 <div class="header-left">
                     <div class="header-left-inner">
-                        <a href="https://www.birmingham2022.com/schedule/day-by-day"><h1>Schedule</h1></a>
+                        <a href="https://www.birmingham2022.com/schedule/day-by-day">
+                            <h1>Schedule</h1>
+                        </a>
                     </div>
                 </div>
                 <div class="header-logo">
-                    <img id="logoImg" src="logo\birminghamLogo.png"/>
+                    <img id="logoImg" src="logo\birminghamLogo.png" />
                 </div>
                 <div class="header-right">
                     <div class="header-right-inner">
-                        <a href="https://tickets.birmingham2022.com/"><h1>Tickets</h1></a>
+                        <a href="https://tickets.birmingham2022.com/">
+                            <h1>Tickets</h1>
+                        </a>
                     </div>
                     <div class="header-right-inner-right">
-                        <a href="localContext.html"><h1>Qatar World Cup</h1></a>
+                        <a href="localContext.html">
+                            <h1>Qatar World Cup</h1>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -603,12 +627,7 @@
                         <h1>Filter</h1>
                     </button>
                 </div>
-                <input
-                        id="pac-input"
-                        class="controls"
-                        type="text"
-                        placeholder="Search Box"
-                />
+                <input id="pac-input" class="controls" type="text" placeholder="Search Box" />
                 <div id=map></div>
             </div>
             <div class="triangle-wrapper">
@@ -633,78 +652,78 @@
                 <div id="triangle-up"></div>
                 <div id="triangle-up"></div>
             </div>
-            
+
         </div>
         <div class="directions-wrapper">
             <div class="directions-inner">
                 <div class="directions-text">
                     <h1>Plan Your Trip!</h1>
                 </div>
-            <div id="control-panel">
-                <button onclick="travelMode = 'DRIVING'; calculateRoute('start', 'end', stops)"><span
-                        class="material-icons">
-                        directions_car_filled
-                    </span></button>
-                <button onclick="travelMode = 'BICYCLING'; calculateRoute('start', 'end', stops)"><span
-                        class="material-icons">
-                        directions_bike
-                    </span></button>
-                <button onclick="travelMode = 'TRANSIT'; calculateRoute('start', 'end', stops)"><span
-                        class="material-icons">
-                        directions_bus
-                    </span></button>
-                <button onclick="travelMode = 'WALKING'; calculateRoute('start', 'end', stops)"><span
-                        class="material-icons">
-                        directions_walk
-                    </span></button>
-                <br><br>
-                <span class=select-location-label>Start:</span>
-                <input style="width:50%" id="start">
-                <input type="button" value="Add stop" onClick="addInput();">
-                <input type="button" value="Set Default Start Location" onClick="setDefault();">
-                <br>
+                <div id="control-panel">
+                    <button onclick="travelMode = 'DRIVING'; calculateRoute('start', 'end', stops)"><span
+                            class="material-icons">
+                            directions_car_filled
+                        </span></button>
+                    <button onclick="travelMode = 'BICYCLING'; calculateRoute('start', 'end', stops)"><span
+                            class="material-icons">
+                            directions_bike
+                        </span></button>
+                    <button onclick="travelMode = 'TRANSIT'; calculateRoute('start', 'end', stops)"><span
+                            class="material-icons">
+                            directions_bus
+                        </span></button>
+                    <button onclick="travelMode = 'WALKING'; calculateRoute('start', 'end', stops)"><span
+                            class="material-icons">
+                            directions_walk
+                        </span></button>
+                    <br><br>
+                    <span class=select-location-label>Start:</span>
+                    <input style="width:50%" id="start">
+                    <input type="button" value="Add stop" onClick="addInput();">
+                    <input type="button" value="Set Default Start Location" onClick="setDefault();">
+                    <br>
 
-                <div id="stops"></div>
+                    <div id="stops"></div>
 
-                <br>
-                <span class=select-location-label>End:</span>
-                <input style="width:50%" id="end">
-                <button onclick=" calculateRoute('start', 'end', stops)">Submit</button>
-                <button
-                    onclick="document.getElementById('start').value = ''; document.getElementById('end').value = ''">Clear
-                    Routes</button>
-                <br><br>
+                    <br>
+                    <span class=select-location-label>End:</span>
+                    <input style="width:50%" id="end">
+                    <button onclick=" calculateRoute('start', 'end', stops)">Submit</button>
+                    <button
+                        onclick="document.getElementById('start').value = ''; document.getElementById('end').value = ''">Clear
+                        Routes</button>
+                    <br><br>
 
-                <details>
-                    <summary>Directions</summary>
-                    <div id=directions></div>
-                </details>
+                    <details>
+                        <summary>Directions</summary>
+                        <div id=directions></div>
+                    </details>
+
+                </div>
+            </div>
+            <div class="common-link">
 
             </div>
-        </div>
-        <div class="common-link">
-            
-        </div>
-        <footer>
+            <footer>
 
-        </footer>
-    </div>
+            </footer>
+        </div>
     </main>
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script>
 
-        $(window).scroll ( function() {
-        if ($(document).scrollTop() > 50) {
-            document.getElementById('header').style.height = '60px';
-            document.getElementById('logoImg').style.height = '60px';
-        } else {
-            document.getElementById('header').style.height = '';
-            document.getElementById('logoImg').style.height = '';
-        }    
+        $(window).scroll(function () {
+            if ($(document).scrollTop() > 50) {
+                document.getElementById('header').style.height = '60px';
+                document.getElementById('logoImg').style.height = '60px';
+            } else {
+                document.getElementById('header').style.height = '';
+                document.getElementById('logoImg').style.height = '';
+            }
         }
         );
-        
+
     </script>
 </body>
 
