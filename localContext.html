@@ -28,26 +28,35 @@
 
     <!-- Google Maps -->
     <script
-            src=https://maps.googleapis.com/maps/api/js?key=AIzaSyD_SlpC6mrPb3QwpDxpHKXVYK-rm2Xvdtg&libraries=localContext,places&v=beta&callback=displayMap
-            async></script>
+        src=https://maps.googleapis.com/maps/api/js?key=AIzaSyD_SlpC6mrPb3QwpDxpHKXVYK-rm2Xvdtg&libraries=localContext,places&v=beta&callback=displayMap
+        async></script>
 
     <script>
 
 
         function displayMap() {
-            var hotelLocation = {lat: 25.42078968278592, lng: 51.490451571075916}
+            let hotelLocation = { lat: 25.42078968278592, lng: 51.490451571075916 }
 
+            if (localStorage.getItem("defaultContext")) {
+                //document.getElementById("pac-input").value = localStorage.getItem("defaultContext");
+                geocoder = new google.maps.Geocoder();
+                let address = localStorage.getItem("defaultContext")
+                geocoder.geocode({ 'address': address }, function (results, status) {
+                    if (status == 'OK') {
+                        hotelLocation = results[0].geometry.location;
 
+                        displayLocalContextMap(hotelLocation, 3000)
 
-            displayLocalContextMap(hotelLocation, 3000)
-        }
-        window.onload = () => {
+                    } else {
+                        alert('Geocode was not successful for the following reason: ' + status);
+                    }
+                });
+            }
+
 
         }
 
         function displayLocalContextMap(hotelLocation, metres) {
-
-
             const METRES_TO_DEGREES = 0.00000909091
             const degrees = metres * METRES_TO_DEGREES
 
@@ -57,42 +66,17 @@
                 west: hotelLocation.lng - degrees,
                 east: hotelLocation.lng + degrees
             }
-            if (localStorage.getItem("defaultContext")) {
-                document.getElementById("pac-input").value = localStorage.getItem("defaultContext");
-                geocoder = new google.maps.Geocoder();
-                var address = localStorage.getItem("defaultContext")
-                geocoder.geocode({ 'address': address }, function (results, status) {
-                    if (status == 'OK') {
 
-                        hotelLocation = results[0].geometry.location;
-                        defaultMarker
-                            = new google.maps.Marker({
-                            map: localContextMap,
-                            icon: { url: "markers/default_location_marker.png", scaledSize: new google.maps.Size(27, 27) },
-                            position: hotelLocation,
-                            animation: google.maps.Animation.DROP,
-                        })
-                        defaultMarker.setZIndex(100)
-                        google.maps.event.addListener(defaultMarker, "click", () => {
-                            infoWindow.setContent(`<h1>Your Home Location</h1>`)
-                            infoWindow.open(map, defaultMarker)
-                        })
-
-                    } else {
-                        alert('Geocode was not successful for the following reason: ' + status);
-                    }
-                });
-            }
             const localContextMapView = new google.maps.localContext.LocalContextMapView({
                 element: document.getElementById("map"),
                 placeTypePreferences: [
-                    {type: "cafe"},
-                    {type: "tourist_attraction"},
-                    {type: "bank"}
+                    { type: "cafe" },
+                    { type: "tourist_attraction" },
+                    { type: "bank" }
                 ],
                 maxPlaceCount: 24,
-                locationRestriction: bounds,
-                directionsOptions: {origin: hotelLocation} // Walking route starts at hotelLocation
+                //locationRestriction: bounds,
+                directionsOptions: { origin: hotelLocation } // Walking route starts at hotelLocation
             })
 
 
@@ -100,6 +84,24 @@
 
             const input = document.getElementById("pac-input");
             const searchBox = new google.maps.places.Autocomplete(input);
+
+            localContextMap.setOptions({
+                center: hotelLocation,
+                zoom: 14
+            })
+
+            defaultMarker
+                = new google.maps.Marker({
+                    map: localContextMap,
+                    icon: { url: "markers/default_location_marker.png", scaledSize: new google.maps.Size(27, 27) },
+                    position: hotelLocation,
+                    animation: google.maps.Animation.DROP,
+                })
+            defaultMarker.setZIndex(100)
+            google.maps.event.addListener(defaultMarker, "click", () => {
+                infoWindow.setContent(`<h1>Your Home Location</h1>`)
+                infoWindow.open(map, defaultMarker)
+            })
 
 
             localContextMap.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
@@ -134,8 +136,6 @@
                     return;
                 }
 
-
-
                 marker.setVisible(false);
                 marker = new google.maps.Marker({
                     position: place.geometry.location,
@@ -148,52 +148,7 @@
                 localContextMap.setCenter(place.geometry.location);
                 marker.setPosition(place.geometry.location);
                 marker.setVisible(true)
-                console.log(marker)
-
-
-                // google.maps.event.addListener(marker, "click", () => {
-                //     request = {
-                //         placeId: place.place_id,
-                //         fields: ["name", "formatted_address", "formatted_phone_number", "icon", "geometry"],
-                //     };
-                //
-                //     let photo = null
-                //     if (typeof (place.photos) !== "undefined") {
-                //         photo = place.photos[0].getUrl()
-                //     }
-                //
-                //     if (photo === null) {
-                //         service.getDetails(request, (placeDetails) => {
-                //             infoWindow.setContent(`<p><strong> ${placeDetails.name}</strong><br>
-                //         ${(placeDetails.formatted_address).replaceAll(',', '</br>')}</br>
-                //         ${placeDetails.formatted_phone_number}</p>`)
-                //         })
-                //     } else {
-                //         service.getDetails(request, (placeDetails) => {
-                //             infoWindow.setContent(`<p><strong> ${placeDetails.name}</strong><br>
-                //         ${(placeDetails.formatted_address).replaceAll(',', '</br>')}</br>
-                //         <img src="${photo}" width=200><br></p>`)
-                //         })
-                //     }
-                //
-                //     infoWindow.open(localContextMap, marker)
-                // })
             });
-
-            localContextMap.setOptions({
-                center: hotelLocation,
-                zoom: 14
-            })
-
-            console.log(hotelLocation)
-            // add a hotel marker at the location of hotelLocation
-            new google.maps.Marker({
-                position: hotelLocation,
-                map: localContextMap,
-                icon: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAdUlEQVR4AWMYOWAU/AfhYWMBCxA3A/FlIN4MxN7I6gjg80DcD8QC+CzIxqIxH6aOSHwfYQmmBZexuQymjgTcj8uCz1gUHybDgvO4LFiMRXE4GRb8x2UBDxCXQ8PxPdSrLNSxAD+g3ALCeNQCKoHhZcHAg1EAAM3cyWj3TGxhAAAAAElFTkSuQmCC",
-                zIndex: 30,
-                title: "Your Hotel"
-            })
 
         }
 
@@ -228,46 +183,48 @@
         <div class="header-inner">
             <div class="header-left">
                 <div class="header-left-inner">
-                    <a href="https://www.birmingham2022.com/schedule/day-by-day"><h1>Schedule</h1></a>
+                    <a href="https://www.birmingham2022.com/schedule/day-by-day">
+                        <h1>Schedule</h1>
+                    </a>
                 </div>
             </div>
             <div class="header-logo">
-                <img id="logoImg" src="logo\2022Qatar.png"/>
+                <img id="logoImg" src="logo\2022Qatar.png" />
             </div>
             <div class="header-right">
                 <div class="header-right-inner">
-                    <a href="https://tickets.birmingham2022.com/"><h1>Tickets</h1></a>
+                    <a href="https://tickets.birmingham2022.com/">
+                        <h1>Tickets</h1>
+                    </a>
                 </div>
                 <div class="header-right-inner-right">
-                    <a href="index.html"><h1>Birmingham CommonWealth Games</h1></a>
+                    <a href="index.html">
+                        <h1>Birmingham CommonWealth Games</h1>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 </header>
+
 <body>
-<main>
-<div>
-    <input style="width:50%" id="default">
-    <input type="button" value="Set Default Start Location" onClick="setDefault();">
-</div>
-    <div class="map-wrapper">
-    <div class="map-inner">
-        <input
-                id="pac-input"
-                class="controls"
-                type="text"
-                placeholder="Search Box"
-        />
-        <input type="button" value="Set Default Start Location" onClick="setDefault();">
-        <div id=map></div>
-    </div>
-    </div>
+    <main>
+        <div>
+            <input style="width:50%" id="default">
+            <input type="button" value="Set Default Start Location" onClick="setDefault();">
+        </div>
+        <div class="map-wrapper">
+            <div class="map-inner">
+                <input id="pac-input" class="controls" type="text" placeholder="Search Box" />
+                <input type="button" value="Set Default Start Location" onClick="setDefault();">
+                <div id=map></div>
+            </div>
+        </div>
 
-</main>
-<footer>
+    </main>
+    <footer>
 
-</footer>
+    </footer>
 </body>
 
 </html>
