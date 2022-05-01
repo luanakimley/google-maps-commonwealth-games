@@ -107,6 +107,7 @@
 
 
             localContextMap.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+            localContextMap.controls[google.maps.ControlPosition.TOP_LEFT].push(document.getElementById("default-location"));
             // Bias the SearchBox results towards current map's viewport.
             localContextMap.addListener("bounds_changed", () => {
                 searchBox.setBounds(localContextMap.getBounds());
@@ -209,6 +210,7 @@
     <main>
         <div class="map-wrapper">
             <div class="map-inner">
+
                 <input id="pac-input" class="controls" type="text" placeholder="Search for a location" />
                 <input id="default-location" type="button" class="controls" value="Set Default Start Location"
                     onclick="setDefault(); displayMap()">

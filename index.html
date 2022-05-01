@@ -93,6 +93,7 @@
 
 
             map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+            map.controls[google.maps.ControlPosition.TOP_LEFT].push(document.getElementById("default-location"));
             // Bias the SearchBox results towards current map's viewport.
             map.addListener("bounds_changed", () => {
                 searchBox.setBounds(map.getBounds());
@@ -695,7 +696,8 @@
                     <span class=select-location-label>Start:</span>
                     <input style="width:50%" id="start">
                     <input type="button" value="Add stop" onClick="addInput();">
-                    <input type="button" value="Set Default Start Location" onClick="setDefault();">
+                    <input id="default-location"  type="button" value="Set Default Start Location" onClick="setDefault();">
+
                     <br>
 
                     <div id="stops"></div>
