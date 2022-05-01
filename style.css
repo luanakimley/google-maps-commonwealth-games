@@ -1,330 +1,336 @@
-*{
-    margin: 0 auto;
-    padding: 0;
-    list-style: none;
-    text-decoration: none;
+* {
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
 }
 
 header {
-    width: 100%;
-    height: 100px;
-    position: fixed;
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-    border-bottom: .1rem solid #e3e3e3;
-    display: block;
-    z-index: 1;
-    background-color: white;
+  width: 100%;
+  height: 100px;
+  position: fixed;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  border-bottom: 0.1rem solid #e3e3e3;
+  display: block;
+  z-index: 1;
+  background-color: white;
 }
 
 .header-wrapper {
-    height: 100%;
-    margin-left: 10%;
-    margin-right: 10%;
+  height: 100%;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 .header-inner {
-    height: 100%;
-    margin-left: 5vw;
-    margin-right: 5vw;
+  height: 100%;
+  margin-left: 5vw;
+  margin-right: 5vw;
 }
 
 .header-left {
-    height: 100%;
-    float: left;
+  height: 100%;
+  float: left;
 }
 
 .header-left-inner {
-    position: relative;
-    top: 50%;
-    transform: translate(-0%, -50%);
-    z-index: 1;
-    background-color: transparent;
-    overflow: hidden;
+  position: relative;
+  top: 50%;
+  transform: translate(-0%, -50%);
+  z-index: 1;
+  background-color: transparent;
+  overflow: hidden;
 }
 
 .header-left-inner h1 {
-    font-size: 25px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: black;
-    position: relative;
+  font-size: 25px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: black;
+  position: relative;
 }
 
 .header-logo {
-    display: inline-block;
-    left: 50%;
-    top: 50%;
-    position: absolute;
-    transform: translate(-50%, -50%);
+  display: inline-block;
+  left: 50%;
+  top: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
 }
 
 .header-logo img {
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-    height: 100px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  height: 100px;
 }
 
 .header-right {
-    height: 100%;
-    float: right;
-    width: 20vw;
-
+  height: 100%;
+  float: right;
+  width: 20vw;
 }
 
 .header-right-inner {
-    display: inline-block;
-    position: relative;
-    top: 50%;
-    transform: translate(-0%, -50%);
-    z-index: 1;
-    background-color: transparent;
+  display: inline-block;
+  position: relative;
+  top: 50%;
+  transform: translate(-0%, -50%);
+  z-index: 1;
+  background-color: transparent;
 }
 .header-right-inner-right {
-    display: inline-block;
-    position: relative;
-    top: 50%;
-    float: right;
-    transform: translate(-0%, -50%);
-    z-index: 1;
-    background-color: transparent;
+  display: inline-block;
+  position: relative;
+  top: 50%;
+  float: right;
+  transform: translate(-0%, -50%);
+  z-index: 1;
+  background-color: transparent;
 }
-.header-right-inner h1, .header-right-inner-right h1 {
-    font-size: 25px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: black;
-    position: relative;
+.header-right-inner h1,
+.header-right-inner-right h1 {
+  font-size: 25px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: black;
+  position: relative;
 }
 
 main {
-    height: auto;
-    padding-top: 50px;
-    background-color: #f1f1f1;
+  height: auto;
+  padding-top: 50px;
+  background-color: #f1f1f1;
 }
 
 .countdown-wrapper {
-    position: relative;
-    padding-top: 50px;
-    height: 500px;
-    width: 100%;
-    background-color: #e8308a;
+  position: relative;
+  padding-top: 50px;
+  height: 500px;
+  width: 100%;
+  background-color: #e8308a;
 }
 
 .countdown-inner {
-    left: 50%;
-    top: 50%;
-    position: absolute;
-    transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
 }
 
-.countdown-text h1{
-    font-family: 'Barlow Condensed', sans-serif;
-    text-transform: uppercase;
-    color: white;
-    font-size: 30px;
-    text-align: center;
+.countdown-text h1 {
+  font-family: "Barlow Condensed", sans-serif;
+  text-transform: uppercase;
+  color: white;
+  font-size: 30px;
+  text-align: center;
 }
 
 .countdown-timer {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 100px;
-    color: white;
-    margin-bottom: 20px;
-    display: flex;
-    text-align: center;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 100px;
+  color: white;
+  margin-bottom: 20px;
+  display: flex;
+  text-align: center;
 }
 
 #triangle-bottomleft {
-    width: 0;
-    height: 0;
-    position: absolute;
-    bottom: 0;
-    border-bottom: 80px solid #804f9b;
-    border-right: 500px solid transparent;
+  width: 0;
+  height: 0;
+  position: absolute;
+  bottom: 0;
+  border-bottom: 80px solid #804f9b;
+  border-right: 500px solid transparent;
 }
 
 .days {
-    color: white;
-    margin-right: 20px;
-    margin-left: 20px;
+  color: white;
+  margin-right: 20px;
+  margin-left: 20px;
 }
 
-.days h1{
-    color: white;
-    font-size: 30px;
+.days h1 {
+  color: white;
+  font-size: 30px;
 }
 
 .hrs {
-    color: white;
-    margin-right: 20px;
-    margin-left: 20px;
+  color: white;
+  margin-right: 20px;
+  margin-left: 20px;
 }
 
-.hrs h1{
-    color: white;
-    font-size: 30px;
+.hrs h1 {
+  color: white;
+  font-size: 30px;
 }
 
 .mins {
-    color: white;
-    margin-right: 20px;
-    margin-left: 20px;
+  color: white;
+  margin-right: 20px;
+  margin-left: 20px;
 }
 
-.mins h1{
-    color: white;
-    font-size: 30px;
+.mins h1 {
+  color: white;
+  font-size: 30px;
 }
 
 .secs {
-    color: white;
-    margin-right: 20px;
-    margin-left: 20px;
+  color: white;
+  margin-right: 20px;
+  margin-left: 20px;
 }
 
-.secs h1{
-    color: white;
-    font-size: 30px;
+.secs h1 {
+  color: white;
+  font-size: 30px;
 }
 
 .map-wrapper {
-    height: 1000px;
-    padding-bottom: 50px;
-    padding-top: 50px;
-    position: relative;
-    background-color: #804f9b;
+  height: 1000px;
+  padding-bottom: 50px;
+  padding-top: 50px;
+  position: relative;
+  background-color: #804f9b;
 }
 
 .map-inner {
-    height: 100%;
-    width: 90%;
+  height: 100%;
+  width: 90%;
 }
 
 .map-text {
-    height: 150px;
+  height: 150px;
 }
 
 .map-text h1 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 80px;
-    color: white;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 80px;
+  color: white;
 }
 
 #map {
-    float: right;
-    width: 84%;
-    height: 90vh;
-    margin-bottom: 100px;
+  float: right;
+  width: 84%;
+  height: 90vh;
+  margin-bottom: 100px;
 }
 
 #filter-button {
-    background-color: #0E1732;
-    width: 100%;
-    border-radius: 5px;
+  background-color: #0e1732;
+  width: 100%;
+  border-radius: 5px;
 }
 
-#filter-button h1{
-    color: white;
-    font-family: gineso,Arial,Helvetica Neue,sans-serif;
+#filter-button h1 {
+  color: white;
+  font-family: gineso, Arial, Helvetica Neue, sans-serif;
 }
 
 .icons {
-    width: 15%;
-    height: 100%;
-    float: left;
+  width: 15%;
+  height: 100%;
+  float: left;
 }
 
 #sports-icon-container {
-    
 }
 
 #tooltip {
-    position: relative;
-    width: 31.3%;
-    margin: 2px;
-    display: inline-block;
-  }
+  position: relative;
+  width: 31.3%;
+  margin: 2px;
+  display: inline-block;
+}
 
 .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-    top: -5px;
-    left: 105%;
-    position: absolute;
-    z-index: 1;
-  }
-  
-  #tooltip:hover .tooltiptext {
-    visibility: visible;
-  }
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  top: -5px;
+  left: 105%;
+  position: absolute;
+  z-index: 1;
+}
 
-  #tooltip .tooltiptext::after {
-    content: " ";
-    position: absolute;
-    top: 50%;
-    right: 100%; /* To the left of the tooltip */
-    margin-top: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent black transparent transparent;
-  }
+#tooltip:hover .tooltiptext {
+  visibility: visible;
+}
 
-  .triangle-wrapper {
-    display: flex;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    overflow: hidden;
-  }
+#tooltip .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  right: 100%; /* To the left of the tooltip */
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent black transparent transparent;
+}
 
-  #triangle-up {
-    width: 0;
-    height: 0;
-    bottom: 0;
-    border-left: 50px solid transparent;
-    border-right: 50px solid transparent;
-    border-bottom: 50px solid #e8308a;
-  }
+.triangle-wrapper {
+  display: flex;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  overflow: hidden;
+}
+
+#triangle-up {
+  width: 0;
+  height: 0;
+  bottom: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 50px solid #e8308a;
+}
 .directions-wrapper {
-    padding-top: 50px;
-    height: 500px;
-    background-color: #e8308a;
-    text-align: center;
+  padding-top: 50px;
+  height: 500px;
+  background-color: #e8308a;
+  text-align: center;
 }
 
 .directions-inner {
-    height: 100%;
-    width: 90%;
+  height: 100%;
+  width: 90%;
 }
 
 .directions-text {
-    height: 150px;
-    width: 30vw;
+  height: 150px;
+  width: 30vw;
 }
 
 .directions-text h1 {
-
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 80px;
-    color: white;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 80px;
+  color: white;
 }
 
 .common-link {
-    height: 50px;
-    width: 100%;
-    background-color: #f1f1f1;
+  height: 50px;
+  width: 100%;
+  background-color: #f1f1f1;
+}
+
+#pac-input {
+  width: 50%;
+  margin-top: 11px;
+  padding: 11px;
+  border: none;
+  border-radius: 20px;
 }
 
 footer {
-    background-color: #0E1732;
-    width: 100%;
-    height: 200px;
+  background-color: #0e1732;
+  width: 100%;
+  height: 200px;
 }

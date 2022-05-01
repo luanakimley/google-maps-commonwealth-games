@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed&display=swap" rel="stylesheet">
     <title>Google Maps basic local context example</title>
 
@@ -24,6 +23,18 @@
             margin: 0;
             padding: 0;
         }
+
+        #pac-input {
+            float: right;
+        }
+
+        #default-location {
+            display: inline-block;
+            position: relative;
+            padding: 11px;
+            float: right;
+
+        }
     </style>
 
     <!-- Google Maps -->
@@ -37,8 +48,8 @@
         function displayMap() {
             let hotelLocation = { lat: 25.42078968278592, lng: 51.490451571075916 }
 
+
             if (localStorage.getItem("defaultContext")) {
-                //document.getElementById("pac-input").value = localStorage.getItem("defaultContext");
                 geocoder = new google.maps.Geocoder();
                 let address = localStorage.getItem("defaultContext")
                 geocoder.geocode({ 'address': address }, function (results, status) {
@@ -52,6 +63,8 @@
                     }
                 });
             }
+
+
 
 
         }
@@ -82,7 +95,7 @@
             defaultMarker
                 = new google.maps.Marker({
                     map: localContextMap,
-                    icon: { url: "markers/default_location_marker.png", scaledSize: new google.maps.Size(27, 27) },
+                    icon: { url: "markers/default_location_marker.png", scaledSize: new google.maps.Size(35, 35) },
                     position: hotelLocation,
                     animation: google.maps.Animation.DROP,
                 })
@@ -148,14 +161,6 @@
 
         var x = document.getElementById("demo");
 
-        // function getLocation() {
-        //     if (navigator.geolocation) {
-        //         navigator.geolocation.getCurrentPosition(showPosition);
-        //     } else {
-        //         x.innerHTML = "Geolocation is not supported by this browser.";
-        //     }
-        // }
-
         function showPosition(position) {
             x.innerHTML = "Latitude: " + position.coords.latitude +
                 "<br>Longitude: " + position.coords.longitude;
@@ -163,7 +168,10 @@
 
         function setDefault() {
             let location = document.getElementById("pac-input").value
-            localStorage.setItem("defaultContext", location)
+
+            if (location !== "") {
+                localStorage.setItem("defaultContext", location)
+            }
         }
 
     </script>
@@ -201,8 +209,9 @@
     <main>
         <div class="map-wrapper">
             <div class="map-inner">
-                <input id="pac-input" class="controls" type="text" placeholder="Search Box" />
-                <input type="button" value="Set Default Start Location" onClick="setDefault(); displayMap()">
+                <input id="pac-input" class="controls" type="text" placeholder="Search for a location" />
+                <input id="default-location" type="button" class="controls" value="Set Default Start Location"
+                    onclick="setDefault(); displayMap()">
                 <div id=map></div>
             </div>
         </div>
