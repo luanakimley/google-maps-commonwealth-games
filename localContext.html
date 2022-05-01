@@ -41,7 +41,9 @@
 
             displayLocalContextMap(hotelLocation, 3000)
         }
+        window.onload = () => {
 
+        }
 
         function displayLocalContextMap(hotelLocation, metres) {
 
@@ -75,15 +77,11 @@
                             infoWindow.setContent(`<h1>Your Home Location</h1>`)
                             infoWindow.open(map, defaultMarker)
                         })
-                        localContextMap.setOptions({
-                            center: hotelLocation,
-                            zoom: 14
-                        })
+
                     } else {
                         alert('Geocode was not successful for the following reason: ' + status);
                     }
                 });
-
             }
             const localContextMapView = new google.maps.localContext.LocalContextMapView({
                 element: document.getElementById("map"),
@@ -182,7 +180,10 @@
                 // })
             });
 
-
+            localContextMap.setOptions({
+                center: hotelLocation,
+                zoom: 14
+            })
 
             console.log(hotelLocation)
             // add a hotel marker at the location of hotelLocation
