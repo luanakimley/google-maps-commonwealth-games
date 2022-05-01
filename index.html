@@ -216,8 +216,23 @@
                 };
             });
 
-            map.data.addListener('click', function (event) {
-                map.data.setStyle({ visible: false });
+            google.maps.event.addListener(map, 'zoom_changed', function () {
+                zoomLevel = map.getZoom();
+                if (zoomLevel >= 9) {
+                    map.data.setStyle({ visible: false });
+                }
+                else {
+                    map.data.setStyle({ visible: true });
+                    map.data.setStyle(function (feature) {
+                        var ascii = feature.getProperty('name');
+                        var color = feature.getProperty('fill');
+                        return {
+                            fillColor: color,
+                            strokeWeight: 0,
+                            fillOpacity: 0.8,
+                        };
+                    });
+                }
             });
         }
 
