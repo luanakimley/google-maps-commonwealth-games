@@ -32,7 +32,7 @@
             display: inline-block;
             position: relative;
             padding: 11px;
-            float: right;
+            margin-left: 5px;
 
         }
     </style>
@@ -48,7 +48,6 @@
         function displayMap() {
             let hotelLocation = { lat: 25.42078968278592, lng: 51.490451571075916 }
 
-
             if (localStorage.getItem("defaultContext")) {
                 geocoder = new google.maps.Geocoder();
                 let address = localStorage.getItem("defaultContext")
@@ -63,10 +62,6 @@
                     }
                 });
             }
-
-
-
-
         }
 
         function displayLocalContextMap(hotelLocation, metres) {
@@ -85,7 +80,8 @@
             let localContextMap = localContextMapView.map
 
             const input = document.getElementById("pac-input");
-            const searchBox = new google.maps.places.Autocomplete(input);
+            const searchBoxOptions = { componentRestrictions: { country: ["qa"] } }
+            const searchBox = new google.maps.places.Autocomplete(input, searchBoxOptions);
 
             localContextMap.setOptions({
                 center: hotelLocation,
@@ -104,7 +100,6 @@
                 infoWindow.setContent(`<h1>Your Home Location</h1>`)
                 infoWindow.open(map, defaultMarker)
             })
-
 
             localContextMap.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
             localContextMap.controls[google.maps.ControlPosition.TOP_LEFT].push(document.getElementById("default-location"));
@@ -126,8 +121,6 @@
 
                 infowindow.setContent(infowindowContent);
                 const place = searchBox.getPlace();
-
-
 
                 // For each place, get the icon, name and location.
                 const bounds = new google.maps.LatLngBounds();
