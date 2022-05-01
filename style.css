@@ -7,11 +7,12 @@
 
 header {
     width: 100%;
-    height: 80px;
+    height: 100px;
     position: fixed;
+    border-bottom: .1rem solid #e3e3e3;
     display: block;
     z-index: 1;
-    background-color: #0E1732;
+    background-color: white;
 }
 
 .header-wrapper {
@@ -49,7 +50,7 @@ header {
 }
 
 .header-logo {
-    width: 150px;
+    height: 100px;
     display: inline-block;
     left: 50%;
     top: 50%;
@@ -58,7 +59,7 @@ header {
 }
 
 .header-logo img {
-    width: 150px;
+    height: 100px;
 }
 
 .header-right {
@@ -84,7 +85,83 @@ header {
 }
 
 main {
-    padding-top: 120px;
+    height: auto;
+    padding-top: 100px;
+    background-color: #f1f1f1;
+}
+
+.countdown-wrapper {
+    position: relative;
+    height: 500px;
+    width: 100%;
+    background-color: #e8308a;
+}
+
+.countdown-inner {
+    left: 50%;
+    top: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+
+.countdown-text h1{
+    font-family: 'Barlow Condensed', sans-serif;
+    text-transform: uppercase;
+    color: white;
+    font-size: 30px;
+    text-align: center;
+}
+
+.countdown-timer {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 100px;
+    margin-bottom: 20px;
+    display: flex;
+    text-align: center;
+}
+
+.days {
+    color: white;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.days h1{
+    color: white;
+    font-size: 30px;
+}
+
+.hrs {
+    color: white;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.hrs h1{
+    color: white;
+    font-size: 30px;
+}
+
+.mins {
+    color: white;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.mins h1{
+    color: white;
+    font-size: 30px;
+}
+
+.secs {
+    color: white;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.secs h1{
+    color: white;
+    font-size: 30px;
 }
 
 .map-wrapper {
