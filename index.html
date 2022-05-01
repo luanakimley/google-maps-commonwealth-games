@@ -544,46 +544,52 @@
             </div>
             
         </div>
-        <div id="control-panel">
-            <button onclick="travelMode = 'DRIVING'; calculateRoute('start', 'end', stops)"><span
-                    class="material-icons">
-                    directions_car_filled
-                </span></button>
-            <button onclick="travelMode = 'BICYCLING'; calculateRoute('start', 'end', stops)"><span
-                    class="material-icons">
-                    directions_bike
-                </span></button>
-            <button onclick="travelMode = 'TRANSIT'; calculateRoute('start', 'end', stops)"><span
-                    class="material-icons">
-                    directions_bus
-                </span></button>
-            <button onclick="travelMode = 'WALKING'; calculateRoute('start', 'end', stops)"><span
-                    class="material-icons">
-                    directions_walk
-                </span></button>
-            <br><br>
-            <span class=select-location-label>Start:</span>
-            <input style="width:50%" id="start">
-            <input type="button" value="Add stop" onClick="addInput();">
-            <input type="button" value="Set Default Start Location" onClick="setDefault();">
-            <br>
+        <div class="directions-wrapper">
+            <div class="directions-inner">
+                <div class="directions-text">
+                    <h1>Plan Your Trip!</h1>
+                </div>
+            <div id="control-panel">
+                <button onclick="travelMode = 'DRIVING'; calculateRoute('start', 'end', stops)"><span
+                        class="material-icons">
+                        directions_car_filled
+                    </span></button>
+                <button onclick="travelMode = 'BICYCLING'; calculateRoute('start', 'end', stops)"><span
+                        class="material-icons">
+                        directions_bike
+                    </span></button>
+                <button onclick="travelMode = 'TRANSIT'; calculateRoute('start', 'end', stops)"><span
+                        class="material-icons">
+                        directions_bus
+                    </span></button>
+                <button onclick="travelMode = 'WALKING'; calculateRoute('start', 'end', stops)"><span
+                        class="material-icons">
+                        directions_walk
+                    </span></button>
+                <br><br>
+                <span class=select-location-label>Start:</span>
+                <input style="width:50%" id="start">
+                <input type="button" value="Add stop" onClick="addInput();">
+                <input type="button" value="Set Default Start Location" onClick="setDefault();">
+                <br>
 
-            <div id="stops"></div>
+                <div id="stops"></div>
 
-            <br>
-            <span class=select-location-label>End:</span>
-            <input style="width:50%" id="end">
-            <button onclick=" calculateRoute('start', 'end', stops)">Submit</button>
-            <button
-                onclick="document.getElementById('start').value = ''; document.getElementById('end').value = ''">Clear
-                Routes</button>
-            <br><br>
+                <br>
+                <span class=select-location-label>End:</span>
+                <input style="width:50%" id="end">
+                <button onclick=" calculateRoute('start', 'end', stops)">Submit</button>
+                <button
+                    onclick="document.getElementById('start').value = ''; document.getElementById('end').value = ''">Clear
+                    Routes</button>
+                <br><br>
 
-            <details>
-                <summary>Directions</summary>
-                <div id=directions></div>
-            </details>
+                <details>
+                    <summary>Directions</summary>
+                    <div id=directions></div>
+                </details>
 
+            </div>
         </div>
         <div class="common-link">
             
