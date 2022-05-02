@@ -395,7 +395,7 @@
                                 <p>${location.address}</p>
 
                                 ${location.sports.map(sport => `<p>${sport}</p>`).join('')}
-                                <img src = ${location.url} >
+                                <img src = ${location.url} width=200>
                                 `)
 
                 infoWindow.open(map, marker)
@@ -664,6 +664,28 @@
                     </label>
                     <p>Traffic layer</p>
                 </div>
+                <input class="places" type="checkbox" value="lodging">
+                <label>Accommodation</label>
+                <input class="places" type="checkbox" value="restaurant">
+                <label>Restaurant</label>
+                <input class="places" type="checkbox" value="bar">
+                <label>Bar</label>
+                <input class="places" type="checkbox" value="hospital">
+                <label>Hospital</label>
+                <input class="places" type="checkbox" value="bank">
+                <label>Bank</label>
+                <input class="places" type="checkbox" value="atm">
+                <label>ATM</label>
+                <input class="places" type="checkbox" value="shopping_mall">
+                <label>Shopping Mall</label>
+                <input class="places" type="checkbox" value="supermarket">
+                <label>Supermarket</label>
+                <input class="places" type="checkbox" value="convenience_store">
+                <label>Convenience Store</label>
+                <input class="places" type="checkbox" value="pharmacy">
+                <label>Pharmacy</label>
+                <input class="places" type="checkbox" value="tourist_attraction">
+                <label>Attraction</label>
                 <div id=map></div>
 
             </div>
@@ -744,28 +766,7 @@
             <div class="common-link">
 
             </div>
-            <input class="places" type="checkbox" value="lodging">
-            <label>Accommodation</label>
-            <input class="places" type="checkbox" value="restaurant">
-            <label>Restaurant</label>
-            <input class="places" type="checkbox" value="bar">
-            <label>Bar</label>
-            <input class="places" type="checkbox" value="hospital">
-            <label>Hospital</label>
-            <input class="places" type="checkbox" value="bank">
-            <label>Bank</label>
-            <input class="places" type="checkbox" value="atm">
-            <label>ATM</label>
-            <input class="places" type="checkbox" value="shopping_mall">
-            <label>Shopping Mall</label>
-            <input class="places" type="checkbox" value="supermarket">
-            <label>Supermarket</label>
-            <input class="places" type="checkbox" value="convenience_store">
-            <label>Convenience Store</label>
-            <input class="places" type="checkbox" value="pharmacy">
-            <label>Pharmacy</label>
-            <input class="places" type="checkbox" value="tourist_attraction">
-            <label>Attraction</label>
+
             <footer>
 
             </footer>
