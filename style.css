@@ -261,14 +261,14 @@ main {
   font-size: 4.830917874396135vh;
   margin-bottom: 1.2077294685990339vh;
   color: white;
-  font-family: "Barlow Condensed", sans-serif;;
+  font-family: "Barlow Condensed", sans-serif;
 }
 
 .individual-checkboxes {
   margin-bottom: 0.6038647342995169vh;
 }
 
-.individual-checkboxes input.places{
+.individual-checkboxes input.places {
   height: 2.4154589371980677vh;
   width: 2.4154589371980677vh;
 }
@@ -276,7 +276,7 @@ main {
 .individual-checkboxes label {
   font-size: 2.4154589371980677vh;
   color: white;
-  font-family: "Barlow Condensed", sans-serif;;
+  font-family: "Barlow Condensed", sans-serif;
 }
 
 .icons {
@@ -285,7 +285,6 @@ main {
 }
 
 #sports-icon-container {
-
 }
 
 #tooltip {
@@ -392,19 +391,19 @@ main {
   display: inline-block;
 }
 
-#control-panel input{
+#control-panel input {
   border: #e3e3e3 solid 2px;
-    padding: 1.2077294685990339vh;
-    display: inline-block;
-    background-color: white;
-    border-radius: 0.6038647342995169vh;
-    cursor: pointer;
-    font-size: 2.4154589371980677vh;
-    padding-top: 0.6038647342995169vh;
-    padding-bottom: 0.6038647342995169vh;
-    margin-bottom: 2.4154589371980677vh;
-    color: #804f9b;
-    font-family: "Barlow Condensed", sans-serif;
+  padding: 1.2077294685990339vh;
+  display: inline-block;
+  background-color: white;
+  border-radius: 0.6038647342995169vh;
+  cursor: pointer;
+  font-size: 2.4154589371980677vh;
+  padding-top: 0.6038647342995169vh;
+  padding-bottom: 0.6038647342995169vh;
+  margin-bottom: 2.4154589371980677vh;
+  color: #804f9b;
+  font-family: "Barlow Condensed", sans-serif;
 }
 
 #stops-button {
@@ -418,19 +417,19 @@ main {
   color: white;
 }
 
-#control-panel button{
+#control-panel button {
   border: #e3e3e3 solid 2px;
-    padding: 1.2077294685990339vh;
-    display: inline-block;
-    background-color: #804f9b;
-    border-radius: 0.6038647342995169vh;
-    cursor: pointer;
-    font-size: 2.4154589371980677vh;
-    padding-top: 0.6038647342995169vh;
-    padding-bottom: 0.6038647342995169vh;
-    margin-bottom: 2.4154589371980677vh;
-    color: white;
-    font-family: "Barlow Condensed", sans-serif;
+  padding: 1.2077294685990339vh;
+  display: inline-block;
+  background-color: #804f9b;
+  border-radius: 0.6038647342995169vh;
+  cursor: pointer;
+  font-size: 2.4154589371980677vh;
+  padding-top: 0.6038647342995169vh;
+  padding-bottom: 0.6038647342995169vh;
+  margin-bottom: 2.4154589371980677vh;
+  color: white;
+  font-family: "Barlow Condensed", sans-serif;
 }
 
 .select-location-label {
@@ -445,12 +444,9 @@ main {
   width: 100%;
   background-color: #f1f1f1;
 }
-.infowindow
-{
-
+.infowindow {
 }
-.infowindow-image
-{
+.infowindow-image {
   width: 30vw;
 }
 .infowindow-tooltip {
@@ -571,7 +567,7 @@ input:checked + .slider:before {
 .countdown-text-sec h1 {
   font-family: "Barlow Condensed", sans-serif;
   text-transform: uppercase;
-  color: #9A1032;
+  color: #9a1032;
   font-size: 3.6231884057971016vh;
   text-align: center;
 }
@@ -579,7 +575,7 @@ input:checked + .slider:before {
 .countdown-timer-sec {
   font-family: "Barlow Condensed", sans-serif;
   font-size: 12.077294685990339vh;
-  color: #9A1032;
+  color: #9a1032;
   margin-bottom: 2.4154589371980677vh;
   display: flex;
   text-align: center;
@@ -595,46 +591,46 @@ input:checked + .slider:before {
 }
 
 .days-sec {
-  color: #9A1032;
+  color: #9a1032;
   margin-right: 2.4154589371980677vh;
   margin-left: 2.4154589371980677vh;
 }
 
 .days-sec h1 {
-  color: #9A1032;
+  color: #9a1032;
   font-size: 3.6231884057971016vh;
 }
 
 .hrs-sec {
-  color: #9A1032;
+  color: #9a1032;
   margin-right: 2.4154589371980677vh;
   margin-left: 2.4154589371980677vh;
 }
 
 .hrs-sec h1 {
-  color: #9A1032;
+  color: #9a1032;
   font-size: 3.6231884057971016vh;
 }
 
 .mins-sec {
-  color: #9A1032;
+  color: #9a1032;
   margin-right: 2.4154589371980677vh;
   margin-left: 2.4154589371980677vh;
 }
 
 .mins-sec h1 {
-  color: #9A1032;
+  color: #9a1032;
   font-size: 3.6231884057971016vh;
 }
 
 .secs-sec {
-  color: #9A1032;
+  color: #9a1032;
   margin-right: 2.4154589371980677vh;
   margin-left: 2.4154589371980677vh;
 }
 
 .secs-sec h1 {
-  color: #9A1032;
+  color: #9a1032;
   font-size: 3.6231884057971016vh;
 }
 
@@ -657,7 +653,7 @@ footer .footer-bottom .footer-bottom-container {
 }
 
 footer .footer-bottom .footer-bottom-container .footer-bottom-copyright {
-  width: 33%; 
+  width: 33%;
   float: left;
   top: 50%;
   transform: translate(-0%, -50%);
@@ -670,11 +666,11 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-copyright h3 {
   font-size: 2.4154589371980677vh;
   font-weight: 600;
   color: white;
-  opacity: .75;
+  opacity: 0.75;
 }
 
 footer .footer-bottom .footer-bottom-container .footer-bottom-credit {
-  width: 33%; 
+  width: 33%;
   float: right;
   top: 50%;
   transform: translate(-0%, -50%);
@@ -688,11 +684,11 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-credit h3 {
   font-weight: 600;
   color: white;
   text-align: right;
-  opacity: .75;
+  opacity: 0.75;
 }
 
 footer .footer-bottom .footer-bottom-container .footer-bottom-extra {
-  width: 33%; 
+  width: 33%;
   top: 50%;
   transform: translate(-0%, -50%);
   position: relative;
@@ -708,7 +704,7 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
   font-size: 2.4154589371980677vh;
   font-weight: 600;
   color: white;
-  opacity: .75;
+  opacity: 0.75;
 }
 
 /* (phones - Portrait) */
@@ -718,7 +714,7 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     padding-top: 6.038647342995169vh;
     background-color: #f1f1f1;
   }
-  
+
   .countdown-wrapper {
     position: relative;
     padding-top: 6.038647342995169vh;
@@ -726,14 +722,14 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     width: 100%;
     background-color: #e8308a;
   }
-  
+
   .countdown-inner {
     left: 50%;
     top: 50%;
     position: absolute;
     transform: translate(-50%, -50%);
   }
-  
+
   .countdown-text h1 {
     font-family: "Barlow Condensed", sans-serif;
     text-transform: uppercase;
@@ -741,7 +737,7 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     font-size: 3.6231884057971016vh;
     text-align: center;
   }
-  
+
   .countdown-timer {
     font-family: "Barlow Condensed", sans-serif;
     font-size: 12.077294685990339vh;
@@ -750,7 +746,7 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     display: flex;
     text-align: center;
   }
-  
+
   #triangle-bottomleft {
     display: none;
     width: 0;
@@ -761,84 +757,84 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     border-bottom: 9.66183574879227vh solid #804f9b;
     border-right: 60.38647342995169vh solid transparent;
   }
-  
+
   .days {
     color: white;
     font-size: 70px;
     margin-right: 2.4154589371980677vh;
     margin-left: 2.4154589371980677vh;
   }
-  
+
   .days h1 {
     color: white;
     font-size: 3.6231884057971016vh;
   }
-  
+
   .hrs {
     color: white;
     font-size: 70px;
     margin-right: 2.4154589371980677vh;
     margin-left: 2.4154589371980677vh;
   }
-  
+
   .hrs h1 {
     color: white;
     font-size: 3.6231884057971016vh;
   }
-  
+
   .mins {
     color: white;
     font-size: 70px;
     margin-right: 2.4154589371980677vh;
     margin-left: 2.4154589371980677vh;
   }
-  
+
   .mins h1 {
     color: white;
     font-size: 3.6231884057971016vh;
   }
-  
+
   .secs {
     color: white;
     font-size: 70px;
     margin-right: 2.4154589371980677vh;
     margin-left: 2.4154589371980677vh;
   }
-  
+
   .secs h1 {
     color: white;
     font-size: 3.6231884057971016vh;
   }
-  
+
   .map-wrapper {
     height: 241.54589371980677vh;
     padding-top: 6.038647342995169vh;
     position: relative;
     background-color: #804f9b;
   }
-  
+
   .map-inner {
     height: 100%;
   }
-  
+
   .map-text {
     height: 18.115942028985508vh;
   }
-  
+
   .map-text h1 {
     font-family: "Barlow Condensed", sans-serif;
     font-size: 60px;
     color: white;
   }
-  
+
   #map {
     float: left;
-    margin-left: .5%;
+    margin-left: 0.5%;
     width: 99%;
     height: 85vh;
     margin-bottom: 6.038647342995169vh;
   }
-  
+
   #filter-button {
     background-color: #e8308a;
     width: 100%;
@@ -846,7 +842,7 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     border-radius: 0.6038647342995169vh;
     border: 1px solid white;
   }
-  
+
   #filter-button h1 {
     font-size: 1.8115942028985508vh;
     padding-top: 0.6038647342995169vh;
@@ -854,7 +850,7 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     color: white;
     font-family: "Barlow Condensed", sans-serif;
   }
-  
+
   #filter-button:hover {
     background-color: #f256a1;
     cursor: pointer;
@@ -868,7 +864,7 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     border-radius: 0.6038647342995169vh;
     border: 1px solid white;
   }
-  
+
   #filter-button-two h1 {
     font-size: 1.8115942028985508vh;
     padding-top: 0.6038647342995169vh;
@@ -876,12 +872,12 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     color: white;
     font-family: "Barlow Condensed", sans-serif;
   }
-  
+
   #filter-button-two:hover {
     background-color: #f256a1;
     cursor: pointer;
   }
-  
+
   .checkboxes {
     float: right;
     margin-left: 2%;
@@ -889,48 +885,47 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     height: auto;
     margin-bottom: 12.077294685990339vh;
   }
-  
+
   .checkboxe-text h1 {
     font-size: 4.830917874396135vh;
     margin-bottom: 1.2077294685990339vh;
     color: white;
-    font-family: "Barlow Condensed", sans-serif;;
+    font-family: "Barlow Condensed", sans-serif;
   }
-  
+
   .individual-checkboxes {
     width: 48%;
     float: left;
     margin-bottom: 0.6038647342995169vh;
   }
-  
-  .individual-checkboxes input.places{
+
+  .individual-checkboxes input.places {
     height: 2.4154589371980677vh;
     width: 2.4154589371980677vh;
   }
-  
+
   .individual-checkboxes label {
     font-size: 2.4154589371980677vh;
     color: white;
-    font-family: "Barlow Condensed", sans-serif;;
+    font-family: "Barlow Condensed", sans-serif;
   }
-  
+
   .icons {
     width: 100%;
     float: left;
     margin-bottom: 6.038647342995169vh;
   }
-  
+
   #sports-icon-container {
-  
   }
-  
+
   #tooltip {
     position: relative;
     width: 23.5%;
     margin: 2px;
     display: inline-block;
   }
-  
+
   .tooltiptext {
     display: none;
     visibility: hidden;
@@ -947,11 +942,11 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     position: absolute;
     z-index: 1;
   }
-  
+
   #tooltip:hover .tooltiptext {
     visibility: visible;
   }
-  
+
   .triangle-wrapper {
     display: flex;
     width: 100%;
@@ -960,7 +955,7 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     left: 0;
     overflow: hidden;
   }
-  
+
   #triangle-up {
     width: 0;
     height: 0;
@@ -975,23 +970,23 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     background-color: #e8308a;
     text-align: center;
   }
-  
+
   .directions-inner {
     height: 100%;
     width: 100%;
   }
-  
+
   .directions-text {
     height: 18.115942028985508vh;
     width: 98%;
   }
-  
+
   .directions-text h1 {
     font-family: "Barlow Condensed", sans-serif;
     font-size: 60px;
     color: white;
   }
-  
+
   .directions-inner summary {
     border: #e3e3e3 solid 2px;
     padding: 1.2077294685990339vh;
@@ -1006,77 +1001,74 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     color: white;
     font-family: "Barlow Condensed", sans-serif;
   }
-  
+
   #directions {
     background-color: #2196f3;
     margin-bottom: 6.038647342995169vh;
   }
-  
+
   #control-panel {
     height: auto;
     width: 100%;
     display: inline-block;
   }
-  
-  #control-panel input{
+
+  #control-panel input {
     border: #e3e3e3 solid 2px;
-      padding: 1.2077294685990339vh;
-      display: inline-block;
-      background-color: white;
-      border-radius: 0.6038647342995169vh;
-      cursor: pointer;
-      font-size: 2.4154589371980677vh;
-      padding-top: 0.6038647342995169vh;
-      padding-bottom: 0.6038647342995169vh;
-      margin-bottom: 2.4154589371980677vh;
-      color: #804f9b;
-      font-family: "Barlow Condensed", sans-serif;
+    padding: 1.2077294685990339vh;
+    display: inline-block;
+    background-color: white;
+    border-radius: 0.6038647342995169vh;
+    cursor: pointer;
+    font-size: 2.4154589371980677vh;
+    padding-top: 0.6038647342995169vh;
+    padding-bottom: 0.6038647342995169vh;
+    margin-bottom: 2.4154589371980677vh;
+    color: #804f9b;
+    font-family: "Barlow Condensed", sans-serif;
   }
-  
+
   #stops-button {
     background-color: #804f9b !important;
     color: white !important;
   }
-  
+
   #stops {
     font-family: "Barlow Condensed", sans-serif;
     font-size: 3.0193236714975846vh;
     color: white;
   }
-  
-  #control-panel button{
+
+  #control-panel button {
     border: #e3e3e3 solid 2px;
-      padding: 1.2077294685990339vh;
-      display: inline-block;
-      background-color: #804f9b;
-      border-radius: 0.6038647342995169vh;
-      cursor: pointer;
-      font-size: 2.4154589371980677vh;
-      padding-top: 0.6038647342995169vh;
-      padding-bottom: 0.6038647342995169vh;
-      margin-bottom: 2.4154589371980677vh;
-      color: white;
-      font-family: "Barlow Condensed", sans-serif;
+    padding: 1.2077294685990339vh;
+    display: inline-block;
+    background-color: #804f9b;
+    border-radius: 0.6038647342995169vh;
+    cursor: pointer;
+    font-size: 2.4154589371980677vh;
+    padding-top: 0.6038647342995169vh;
+    padding-bottom: 0.6038647342995169vh;
+    margin-bottom: 2.4154589371980677vh;
+    color: white;
+    font-family: "Barlow Condensed", sans-serif;
   }
-  
+
   .select-location-label {
     font-family: "Barlow Condensed", sans-serif;
     font-size: 4.830917874396135vh;
     margin-right: 1.2077294685990339vh;
     color: white;
   }
-  
+
   .common-link {
     height: 6.038647342995169vh;
     width: 100%;
     background-color: #f1f1f1;
   }
-  .infowindow
-  {
-  
+  .infowindow {
   }
-  .infowindow-image
-  {
+  .infowindow-image {
     width: 30vw;
   }
   .infowindow-tooltip {
@@ -1087,7 +1079,7 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
   .infowindow-tooltip:hover .tooltiptext {
     visibility: visible;
   }
-  
+
   .infowindow-tooltip .tooltiptext::after {
     content: " ";
     position: absolute;
@@ -1113,7 +1105,7 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     border-radius: 2.4154589371980677vh;
     margin-left: 0.6038647342995169vh;
   }
-  
+
   /* The switch - the box around the slider */
   .switch {
     position: relative;
@@ -1122,14 +1114,14 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     height: 34px;
     margin: 6px;
   }
-  
+
   /* Hide default HTML checkbox */
   .switch input {
     opacity: 0;
     width: 0;
     height: 0;
   }
-  
+
   /* The slider */
   .slider {
     position: absolute;
@@ -1142,7 +1134,7 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     -webkit-transition: 0.4s;
     transition: 0.4s;
   }
-  
+
   .slider:before {
     position: absolute;
     content: "";
@@ -1154,30 +1146,30 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     -webkit-transition: 0.4s;
     transition: 0.4s;
   }
-  
+
   input:checked + .slider {
     background-color: #2196f3;
   }
-  
+
   input:focus + .slider {
     box-shadow: 0 0 1px #2196f3;
   }
-  
+
   input:checked + .slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
   }
-  
+
   /* Rounded sliders */
   .slider.round {
     border-radius: 34px;
   }
-  
+
   .slider.round:before {
     border-radius: 50%;
   }
-  
+
   /* Qatar World Cup Timer*/
   .countdown-wrapper-sec {
     position: relative;
@@ -1186,31 +1178,31 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     width: 100%;
     background-color: white;
   }
-  
+
   .countdown-inner-sec {
     left: 50%;
     top: 50%;
     position: absolute;
     transform: translate(-50%, -50%);
   }
-  
+
   .countdown-text-sec h1 {
     font-family: "Barlow Condensed", sans-serif;
     text-transform: uppercase;
-    color: #9A1032;
+    color: #9a1032;
     font-size: 3.6231884057971016vh;
     text-align: center;
   }
-  
+
   .countdown-timer-sec {
     font-family: "Barlow Condensed", sans-serif;
     font-size: 12.077294685990339vh;
-    color: #9A1032;
+    color: #9a1032;
     margin-bottom: 2.4154589371980677vh;
     display: flex;
     text-align: center;
   }
-  
+
   #triangle-bottomleft-sec {
     display: none;
     width: 0;
@@ -1220,65 +1212,65 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     border-bottom: 9.66183574879227vh solid #804f9b;
     border-right: 60.38647342995169vh solid transparent;
   }
-  
+
   .days-sec {
-    color: #9A1032;
+    color: #9a1032;
     font-size: 70px;
     margin-right: 2.4154589371980677vh;
     margin-left: 2.4154589371980677vh;
   }
-  
+
   .days-sec h1 {
-    color: #9A1032;
+    color: #9a1032;
     font-size: 3.6231884057971016vh;
   }
-  
+
   .hrs-sec {
-    color: #9A1032;
+    color: #9a1032;
     font-size: 70px;
     margin-right: 2.4154589371980677vh;
     margin-left: 2.4154589371980677vh;
   }
-  
+
   .hrs-sec h1 {
-    color: #9A1032;
+    color: #9a1032;
     font-size: 3.6231884057971016vh;
   }
-  
+
   .mins-sec {
-    color: #9A1032;
+    color: #9a1032;
     font-size: 70px;
     margin-right: 2.4154589371980677vh;
     margin-left: 2.4154589371980677vh;
   }
-  
+
   .mins-sec h1 {
-    color: #9A1032;
+    color: #9a1032;
     font-size: 3.6231884057971016vh;
   }
-  
+
   .secs-sec {
-    color: #9A1032;
+    color: #9a1032;
     font-size: 70px;
     margin-right: 2.4154589371980677vh;
     margin-left: 2.4154589371980677vh;
   }
-  
+
   .secs-sec h1 {
-    color: #9A1032;
+    color: #9a1032;
     font-size: 3.6231884057971016vh;
   }
-  
+
   footer {
     background-color: #804f9b;
     width: 100%;
     height: 5.098855359001041vh;
   }
-  
+
   footer .footer-bottom {
     height: 5.098855359001041vh;
   }
-  
+
   footer .footer-bottom .footer-bottom-container {
     margin-left: 15%;
     margin-right: 15%;
@@ -1286,60 +1278,60 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     position: relative;
   }
-  
+
   footer .footer-bottom .footer-bottom-container .footer-bottom-copyright {
-    width: 33%; 
+    width: 33%;
     float: left;
     top: 50%;
     transform: translate(-0%, -50%);
     position: relative;
     display: inline-block;
   }
-  
+
   footer .footer-bottom .footer-bottom-container .footer-bottom-copyright h3 {
     font-family: "Barlow Condensed", sans-serif;
     font-size: 2.4154589371980677vh;
     font-weight: 600;
     color: white;
-    opacity: .75;
+    opacity: 0.75;
   }
-  
+
   footer .footer-bottom .footer-bottom-container .footer-bottom-credit {
-    width: 33%; 
+    width: 33%;
     float: right;
     top: 50%;
     transform: translate(-0%, -50%);
     position: relative;
     display: inline-block;
   }
-  
+
   footer .footer-bottom .footer-bottom-container .footer-bottom-credit h3 {
     font-family: "Barlow Condensed", sans-serif;
     font-size: 2.4154589371980677vh;
     font-weight: 600;
     color: white;
     text-align: right;
-    opacity: .75;
+    opacity: 0.75;
   }
-  
+
   footer .footer-bottom .footer-bottom-container .footer-bottom-extra {
-    width: 33%; 
+    width: 33%;
     top: 50%;
     transform: translate(-0%, -50%);
     position: relative;
     display: inline-block;
   }
-  
+
   footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 {
     text-align: center;
   }
-  
+
   footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     font-family: "Barlow Condensed", sans-serif;
     font-size: 2.4154589371980677vh;
     font-weight: 600;
     color: white;
-    opacity: .75;
+    opacity: 0.75;
   }
 }
 
@@ -1350,7 +1342,7 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     padding-top: 6.038647342995169vh;
     background-color: #f1f1f1;
   }
-  
+
   .countdown-wrapper {
     position: relative;
     padding-top: 6.038647342995169vh;
@@ -1358,14 +1350,14 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     width: 100%;
     background-color: #e8308a;
   }
-  
+
   .countdown-inner {
     left: 50%;
     top: 50%;
     position: absolute;
     transform: translate(-50%, -50%);
   }
-  
+
   .countdown-text h1 {
     font-family: "Barlow Condensed", sans-serif;
     text-transform: uppercase;
@@ -1373,7 +1365,7 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     font-size: 3.6231884057971016vh;
     text-align: center;
   }
-  
+
   .countdown-timer {
     font-family: "Barlow Condensed", sans-serif;
     font-size: 12.077294685990339vh;
@@ -1382,7 +1374,7 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     display: flex;
     text-align: center;
   }
-  
+
   #triangle-bottomleft {
     width: 0;
     height: 0;
@@ -1392,77 +1384,77 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     border-bottom: 9.66183574879227vh solid #804f9b;
     border-right: 60.38647342995169vh solid transparent;
   }
-  
+
   .days {
     color: white;
     font-size: 12.077294685990339vh;
     margin-right: 2.4154589371980677vh;
     margin-left: 2.4154589371980677vh;
   }
-  
+
   .days h1 {
     color: white;
     font-size: 3.6231884057971016vh;
   }
-  
+
   .hrs {
     color: white;
     font-size: 12.077294685990339vh;
     margin-right: 2.4154589371980677vh;
     margin-left: 2.4154589371980677vh;
   }
-  
+
   .hrs h1 {
     color: white;
     font-size: 3.6231884057971016vh;
   }
-  
+
   .mins {
     color: white;
     font-size: 12.077294685990339vh;
     margin-right: 2.4154589371980677vh;
     margin-left: 2.4154589371980677vh;
   }
-  
+
   .mins h1 {
     color: white;
     font-size: 3.6231884057971016vh;
   }
-  
+
   .secs {
     color: white;
     font-size: 12.077294685990339vh;
     margin-right: 2.4154589371980677vh;
     margin-left: 2.4154589371980677vh;
   }
-  
+
   .secs h1 {
     color: white;
     font-size: 3.6231884057971016vh;
   }
-  
+
   .map-wrapper {
     height: 120.77294685990339vh;
     padding-top: 6.038647342995169vh;
     position: relative;
     background-color: #804f9b;
   }
-  
+
   .map-inner {
     height: 100%;
     width: 90%;
   }
-  
+
   .map-text {
     height: 18.115942028985508vh;
   }
-  
+
   .map-text h1 {
     font-family: "Barlow Condensed", sans-serif;
     font-size: 9.66183574879227vh;
     color: white;
   }
-  
+
   #map {
     float: left;
     margin-left: 2%;
@@ -1470,7 +1462,7 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     height: 85vh;
     margin-bottom: 12.077294685990339vh;
   }
-  
+
   #filter-button {
     background-color: #e8308a;
     width: 100%;
@@ -1478,7 +1470,7 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     border-radius: 0.6038647342995169vh;
     border: 1px solid white;
   }
-  
+
   #filter-button h1 {
     font-size: 1.8115942028985508vh;
     padding-top: 0.6038647342995169vh;
@@ -1486,16 +1478,16 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     color: white;
     font-family: "Barlow Condensed", sans-serif;
   }
-  
+
   #filter-button:hover {
     background-color: #f256a1;
     cursor: pointer;
   }
-  
+
   #filter-button-two {
     display: none;
   }
-  
+
   .checkboxes {
     float: right;
     margin-left: 2%;
@@ -1503,45 +1495,44 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     height: 90vh;
     margin-bottom: 12.077294685990339vh;
   }
-  
+
   .checkboxe-text h1 {
     font-size: 4.830917874396135vh;
     margin-bottom: 1.2077294685990339vh;
     color: white;
-    font-family: "Barlow Condensed", sans-serif;;
+    font-family: "Barlow Condensed", sans-serif;
   }
-  
+
   .individual-checkboxes {
     margin-bottom: 0.6038647342995169vh;
   }
-  
-  .individual-checkboxes input.places{
+
+  .individual-checkboxes input.places {
     height: 2.4154589371980677vh;
     width: 2.4154589371980677vh;
   }
-  
+
   .individual-checkboxes label {
     font-size: 2.4154589371980677vh;
     color: white;
-    font-family: "Barlow Condensed", sans-serif;;
+    font-family: "Barlow Condensed", sans-serif;
   }
-  
+
   .icons {
     width: 15%;
     float: left;
   }
-  
+
   #sports-icon-container {
-  
   }
-  
+
   #tooltip {
     position: relative;
     width: 30.5%;
     margin: 2px;
     display: inline-block;
   }
-  
+
   .tooltiptext {
     visibility: hidden;
     width: 14.492753623188406vhpx;
@@ -1557,11 +1548,11 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     position: absolute;
     z-index: 1;
   }
-  
+
   #tooltip:hover .tooltiptext {
     visibility: visible;
   }
-  
+
   #tooltip .tooltiptext::after {
     content: " ";
     position: absolute;
@@ -1572,7 +1563,7 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     border-style: solid;
     border-color: transparent #e8308a transparent transparent;
   }
-  
+
   .triangle-wrapper {
     display: flex;
     width: 100%;
@@ -1581,7 +1572,7 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     left: 0;
     overflow: hidden;
   }
-  
+
   #triangle-up {
     width: 0;
     height: 0;
@@ -1596,23 +1587,23 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     background-color: #e8308a;
     text-align: center;
   }
-  
+
   .directions-inner {
     height: 100%;
     width: 90%;
   }
-  
+
   .directions-text {
     height: 18.115942028985508vh;
     width: 100%;
   }
-  
+
   .directions-text h1 {
     font-family: "Barlow Condensed", sans-serif;
     font-size: 9.66183574879227vh;
     color: white;
   }
-  
+
   .directions-inner summary {
     border: #e3e3e3 solid 2px;
     padding: 1.2077294685990339vh;
@@ -1627,77 +1618,74 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     color: white;
     font-family: "Barlow Condensed", sans-serif;
   }
-  
+
   #directions {
     background-color: #2196f3;
     margin-bottom: 6.038647342995169vh;
   }
-  
+
   #control-panel {
     height: auto;
     width: 100%;
     display: inline-block;
   }
-  
-  #control-panel input{
+
+  #control-panel input {
     border: #e3e3e3 solid 2px;
-      padding: 1.2077294685990339vh;
-      display: inline-block;
-      background-color: white;
-      border-radius: 0.6038647342995169vh;
-      cursor: pointer;
-      font-size: 2.4154589371980677vh;
-      padding-top: 0.6038647342995169vh;
-      padding-bottom: 0.6038647342995169vh;
-      margin-bottom: 2.4154589371980677vh;
-      color: #804f9b;
-      font-family: "Barlow Condensed", sans-serif;
+    padding: 1.2077294685990339vh;
+    display: inline-block;
+    background-color: white;
+    border-radius: 0.6038647342995169vh;
+    cursor: pointer;
+    font-size: 2.4154589371980677vh;
+    padding-top: 0.6038647342995169vh;
+    padding-bottom: 0.6038647342995169vh;
+    margin-bottom: 2.4154589371980677vh;
+    color: #804f9b;
+    font-family: "Barlow Condensed", sans-serif;
   }
-  
+
   #stops-button {
     background-color: #804f9b !important;
     color: white !important;
   }
-  
+
   #stops {
     font-family: "Barlow Condensed", sans-serif;
     font-size: 3.0193236714975846vh;
     color: white;
   }
-  
-  #control-panel button{
+
+  #control-panel button {
     border: #e3e3e3 solid 2px;
-      padding: 1.2077294685990339vh;
-      display: inline-block;
-      background-color: #804f9b;
-      border-radius: 0.6038647342995169vh;
-      cursor: pointer;
-      font-size: 2.4154589371980677vh;
-      padding-top: 0.6038647342995169vh;
-      padding-bottom: 0.6038647342995169vh;
-      margin-bottom: 2.4154589371980677vh;
-      color: white;
-      font-family: "Barlow Condensed", sans-serif;
+    padding: 1.2077294685990339vh;
+    display: inline-block;
+    background-color: #804f9b;
+    border-radius: 0.6038647342995169vh;
+    cursor: pointer;
+    font-size: 2.4154589371980677vh;
+    padding-top: 0.6038647342995169vh;
+    padding-bottom: 0.6038647342995169vh;
+    margin-bottom: 2.4154589371980677vh;
+    color: white;
+    font-family: "Barlow Condensed", sans-serif;
   }
-  
+
   .select-location-label {
     font-family: "Barlow Condensed", sans-serif;
     font-size: 4.830917874396135vh;
     margin-right: 1.2077294685990339vh;
     color: white;
   }
-  
+
   .common-link {
     height: 6.038647342995169vh;
     width: 100%;
     background-color: #f1f1f1;
   }
-  .infowindow
-  {
-  
+  .infowindow {
   }
-  .infowindow-image
-  {
+  .infowindow-image {
     width: 30vw;
   }
   .infowindow-tooltip {
@@ -1708,7 +1696,7 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
   .infowindow-tooltip:hover .tooltiptext {
     visibility: visible;
   }
-  
+
   .infowindow-tooltip .tooltiptext::after {
     content: " ";
     position: absolute;
@@ -1734,7 +1722,7 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     border-radius: 2.4154589371980677vh;
     margin-left: 0.6038647342995169vh;
   }
-  
+
   /* The switch - the box around the slider */
   .switch {
     position: relative;
@@ -1743,14 +1731,14 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     height: 34px;
     margin: 6px;
   }
-  
+
   /* Hide default HTML checkbox */
   .switch input {
     opacity: 0;
     width: 0;
     height: 0;
   }
-  
+
   /* The slider */
   .slider {
     position: absolute;
@@ -1763,7 +1751,7 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     -webkit-transition: 0.4s;
     transition: 0.4s;
   }
-  
+
   .slider:before {
     position: absolute;
     content: "";
@@ -1775,30 +1763,30 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     -webkit-transition: 0.4s;
     transition: 0.4s;
   }
-  
+
   input:checked + .slider {
     background-color: #2196f3;
   }
-  
+
   input:focus + .slider {
     box-shadow: 0 0 1px #2196f3;
   }
-  
+
   input:checked + .slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
   }
-  
+
   /* Rounded sliders */
   .slider.round {
     border-radius: 34px;
   }
-  
+
   .slider.round:before {
     border-radius: 50%;
   }
-  
+
   /* Qatar World Cup Timer*/
   .countdown-wrapper-sec {
     position: relative;
@@ -1807,31 +1795,31 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     width: 100%;
     background-color: white;
   }
-  
+
   .countdown-inner-sec {
     left: 50%;
     top: 50%;
     position: absolute;
     transform: translate(-50%, -50%);
   }
-  
+
   .countdown-text-sec h1 {
     font-family: "Barlow Condensed", sans-serif;
     text-transform: uppercase;
-    color: #9A1032;
+    color: #9a1032;
     font-size: 3.6231884057971016vh;
     text-align: center;
   }
-  
+
   .countdown-timer-sec {
     font-family: "Barlow Condensed", sans-serif;
     font-size: 12.077294685990339vh;
-    color: #9A1032;
+    color: #9a1032;
     margin-bottom: 2.4154589371980677vh;
     display: flex;
     text-align: center;
   }
-  
+
   #triangle-bottomleft-sec {
     width: 0;
     height: 0;
@@ -1840,61 +1828,61 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     border-bottom: 9.66183574879227vh solid #804f9b;
     border-right: 60.38647342995169vh solid transparent;
   }
-  
+
   .days-sec {
-    color: #9A1032;
+    color: #9a1032;
     margin-right: 2.4154589371980677vh;
     margin-left: 2.4154589371980677vh;
   }
-  
+
   .days-sec h1 {
-    color: #9A1032;
+    color: #9a1032;
     font-size: 3.6231884057971016vh;
   }
-  
+
   .hrs-sec {
-    color: #9A1032;
+    color: #9a1032;
     margin-right: 2.4154589371980677vh;
     margin-left: 2.4154589371980677vh;
   }
-  
+
   .hrs-sec h1 {
-    color: #9A1032;
+    color: #9a1032;
     font-size: 3.6231884057971016vh;
   }
-  
+
   .mins-sec {
-    color: #9A1032;
+    color: #9a1032;
     margin-right: 2.4154589371980677vh;
     margin-left: 2.4154589371980677vh;
   }
-  
+
   .mins-sec h1 {
-    color: #9A1032;
+    color: #9a1032;
     font-size: 3.6231884057971016vh;
   }
-  
+
   .secs-sec {
-    color: #9A1032;
+    color: #9a1032;
     margin-right: 2.4154589371980677vh;
     margin-left: 2.4154589371980677vh;
   }
-  
+
   .secs-sec h1 {
-    color: #9A1032;
+    color: #9a1032;
     font-size: 3.6231884057971016vh;
   }
-  
+
   footer {
     background-color: #804f9b;
     width: 100%;
     height: 5.098855359001041vh;
   }
-  
+
   footer .footer-bottom {
     height: 5.098855359001041vh;
   }
-  
+
   footer .footer-bottom .footer-bottom-container {
     margin-left: 15%;
     margin-right: 15%;
@@ -1902,60 +1890,60 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     position: relative;
   }
-  
+
   footer .footer-bottom .footer-bottom-container .footer-bottom-copyright {
-    width: 33%; 
+    width: 33%;
     float: left;
     top: 50%;
     transform: translate(-0%, -50%);
     position: relative;
     display: inline-block;
   }
-  
+
   footer .footer-bottom .footer-bottom-container .footer-bottom-copyright h3 {
     font-family: "Barlow Condensed", sans-serif;
     font-size: 2.4154589371980677vh;
     font-weight: 600;
     color: white;
-    opacity: .75;
+    opacity: 0.75;
   }
-  
+
   footer .footer-bottom .footer-bottom-container .footer-bottom-credit {
-    width: 33%; 
+    width: 33%;
     float: right;
     top: 50%;
     transform: translate(-0%, -50%);
     position: relative;
     display: inline-block;
   }
-  
+
   footer .footer-bottom .footer-bottom-container .footer-bottom-credit h3 {
     font-family: "Barlow Condensed", sans-serif;
     font-size: 2.4154589371980677vh;
     font-weight: 600;
     color: white;
     text-align: right;
-    opacity: .75;
+    opacity: 0.75;
   }
-  
+
   footer .footer-bottom .footer-bottom-container .footer-bottom-extra {
-    width: 33%; 
+    width: 33%;
     top: 50%;
     transform: translate(-0%, -50%);
     position: relative;
     display: inline-block;
   }
-  
+
   footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 {
     text-align: center;
   }
-  
+
   footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     font-family: "Barlow Condensed", sans-serif;
     font-size: 2.4154589371980677vh;
     font-weight: 600;
     color: white;
-    opacity: .75;
+    opacity: 0.75;
   }
 }
 
@@ -1966,7 +1954,7 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     padding-top: 6.038647342995169vh;
     background-color: #f1f1f1;
   }
-  
+
   .countdown-wrapper {
     position: relative;
     padding-top: 6.038647342995169vh;
@@ -1974,14 +1962,14 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     width: 100%;
     background-color: #e8308a;
   }
-  
+
   .countdown-inner {
     left: 50%;
     top: 50%;
     position: absolute;
     transform: translate(-50%, -50%);
   }
-  
+
   .countdown-text h1 {
     font-family: "Barlow Condensed", sans-serif;
     text-transform: uppercase;
@@ -1989,7 +1977,7 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     font-size: 3.6231884057971016vh;
     text-align: center;
   }
-  
+
   .countdown-timer {
     font-family: "Barlow Condensed", sans-serif;
     font-size: 12.077294685990339vh;
@@ -1998,7 +1986,7 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     display: flex;
     text-align: center;
   }
-  
+
   #triangle-bottomleft {
     display: none;
     width: 0;
@@ -2009,84 +1997,84 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     border-bottom: 9.66183574879227vh solid #804f9b;
     border-right: 60.38647342995169vh solid transparent;
   }
-  
+
   .days {
     color: white;
     font-size: 70px;
     margin-right: 2.4154589371980677vh;
     margin-left: 2.4154589371980677vh;
   }
-  
+
   .days h1 {
     color: white;
     font-size: 3.6231884057971016vh;
   }
-  
+
   .hrs {
     color: white;
     font-size: 70px;
     margin-right: 2.4154589371980677vh;
     margin-left: 2.4154589371980677vh;
   }
-  
+
   .hrs h1 {
     color: white;
     font-size: 3.6231884057971016vh;
   }
-  
+
   .mins {
     color: white;
     font-size: 70px;
     margin-right: 2.4154589371980677vh;
     margin-left: 2.4154589371980677vh;
   }
-  
+
   .mins h1 {
     color: white;
     font-size: 3.6231884057971016vh;
   }
-  
+
   .secs {
     color: white;
     font-size: 70px;
     margin-right: 2.4154589371980677vh;
     margin-left: 2.4154589371980677vh;
   }
-  
+
   .secs h1 {
     color: white;
     font-size: 3.6231884057971016vh;
   }
-  
+
   .map-wrapper {
     height: 3800px;
     padding-top: 6.038647342995169vh;
     position: relative;
     background-color: #804f9b;
   }
-  
+
   .map-inner {
     height: 100%;
   }
-  
+
   .map-text {
     height: 18.115942028985508vh;
   }
-  
+
   .map-text h1 {
     font-family: "Barlow Condensed", sans-serif;
     font-size: 60px;
     color: white;
   }
-  
+
   #map {
     float: left;
-    margin-left: .5%;
+    margin-left: 0.5%;
     width: 99%;
     height: 85vh;
     margin-bottom: 6.038647342995169vh;
   }
-  
+
   #filter-button {
     background-color: #e8308a;
     width: 100%;
@@ -2094,7 +2082,7 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     border-radius: 0.6038647342995169vh;
     border: 1px solid white;
   }
-  
+
   #filter-button h1 {
     font-size: 1.8115942028985508vh;
     padding-top: 0.6038647342995169vh;
@@ -2102,7 +2090,7 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     color: white;
     font-family: "Barlow Condensed", sans-serif;
   }
-  
+
   #filter-button:hover {
     background-color: #f256a1;
     cursor: pointer;
@@ -2116,7 +2104,7 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     border-radius: 0.6038647342995169vh;
     border: 1px solid white;
   }
-  
+
   #filter-button-two h1 {
     font-size: 1.8115942028985508vh;
     padding-top: 0.6038647342995169vh;
@@ -2124,12 +2112,12 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     color: white;
     font-family: "Barlow Condensed", sans-serif;
   }
-  
+
   #filter-button-two:hover {
     background-color: #f256a1;
     cursor: pointer;
   }
-  
+
   .checkboxes {
     float: right;
     margin-left: 2%;
@@ -2137,48 +2125,47 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     height: auto;
     margin-bottom: 12.077294685990339vh;
   }
-  
+
   .checkboxe-text h1 {
     font-size: 4.830917874396135vh;
     margin-bottom: 1.2077294685990339vh;
     color: white;
-    font-family: "Barlow Condensed", sans-serif;;
+    font-family: "Barlow Condensed", sans-serif;
   }
-  
+
   .individual-checkboxes {
     width: 48%;
     float: left;
     margin-bottom: 0.6038647342995169vh;
   }
-  
-  .individual-checkboxes input.places{
+
+  .individual-checkboxes input.places {
     height: 2.4154589371980677vh;
     width: 2.4154589371980677vh;
   }
-  
+
   .individual-checkboxes label {
     font-size: 2.4154589371980677vh;
     color: white;
-    font-family: "Barlow Condensed", sans-serif;;
+    font-family: "Barlow Condensed", sans-serif;
   }
-  
+
   .icons {
     width: 100%;
     float: left;
     margin-bottom: 6.038647342995169vh;
   }
-  
+
   #sports-icon-container {
-  
   }
-  
+
   #tooltip {
     position: relative;
     width: 23.5%;
     margin: 2px;
     display: inline-block;
   }
-  
+
   .tooltiptext {
     display: none;
     visibility: hidden;
@@ -2195,11 +2182,11 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     position: absolute;
     z-index: 1;
   }
-  
+
   #tooltip:hover .tooltiptext {
     visibility: visible;
   }
-  
+
   .triangle-wrapper {
     display: flex;
     width: 100%;
@@ -2208,7 +2195,7 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     left: 0;
     overflow: hidden;
   }
-  
+
   #triangle-up {
     width: 0;
     height: 0;
@@ -2223,23 +2210,23 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     background-color: #e8308a;
     text-align: center;
   }
-  
+
   .directions-inner {
     height: 100%;
     width: 100%;
   }
-  
+
   .directions-text {
     height: 18.115942028985508vh;
     width: 98%;
   }
-  
+
   .directions-text h1 {
     font-family: "Barlow Condensed", sans-serif;
     font-size: 60px;
     color: white;
   }
-  
+
   .directions-inner summary {
     border: #e3e3e3 solid 2px;
     padding: 1.2077294685990339vh;
@@ -2254,77 +2241,74 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     color: white;
     font-family: "Barlow Condensed", sans-serif;
   }
-  
+
   #directions {
     background-color: #2196f3;
     margin-bottom: 6.038647342995169vh;
   }
-  
+
   #control-panel {
     height: auto;
     width: 100%;
     display: inline-block;
   }
-  
-  #control-panel input{
+
+  #control-panel input {
     border: #e3e3e3 solid 2px;
-      padding: 1.2077294685990339vh;
-      display: inline-block;
-      background-color: white;
-      border-radius: 0.6038647342995169vh;
-      cursor: pointer;
-      font-size: 2.4154589371980677vh;
-      padding-top: 0.6038647342995169vh;
-      padding-bottom: 0.6038647342995169vh;
-      margin-bottom: 2.4154589371980677vh;
-      color: #804f9b;
-      font-family: "Barlow Condensed", sans-serif;
+    padding: 1.2077294685990339vh;
+    display: inline-block;
+    background-color: white;
+    border-radius: 0.6038647342995169vh;
+    cursor: pointer;
+    font-size: 2.4154589371980677vh;
+    padding-top: 0.6038647342995169vh;
+    padding-bottom: 0.6038647342995169vh;
+    margin-bottom: 2.4154589371980677vh;
+    color: #804f9b;
+    font-family: "Barlow Condensed", sans-serif;
   }
-  
+
   #stops-button {
     background-color: #804f9b !important;
     color: white !important;
   }
-  
+
   #stops {
     font-family: "Barlow Condensed", sans-serif;
     font-size: 3.0193236714975846vh;
     color: white;
   }
-  
-  #control-panel button{
+
+  #control-panel button {
     border: #e3e3e3 solid 2px;
-      padding: 1.2077294685990339vh;
-      display: inline-block;
-      background-color: #804f9b;
-      border-radius: 0.6038647342995169vh;
-      cursor: pointer;
-      font-size: 2.4154589371980677vh;
-      padding-top: 0.6038647342995169vh;
-      padding-bottom: 0.6038647342995169vh;
-      margin-bottom: 2.4154589371980677vh;
-      color: white;
-      font-family: "Barlow Condensed", sans-serif;
+    padding: 1.2077294685990339vh;
+    display: inline-block;
+    background-color: #804f9b;
+    border-radius: 0.6038647342995169vh;
+    cursor: pointer;
+    font-size: 2.4154589371980677vh;
+    padding-top: 0.6038647342995169vh;
+    padding-bottom: 0.6038647342995169vh;
+    margin-bottom: 2.4154589371980677vh;
+    color: white;
+    font-family: "Barlow Condensed", sans-serif;
   }
-  
+
   .select-location-label {
     font-family: "Barlow Condensed", sans-serif;
     font-size: 4.830917874396135vh;
     margin-right: 1.2077294685990339vh;
     color: white;
   }
-  
+
   .common-link {
     height: 6.038647342995169vh;
     width: 100%;
     background-color: #f1f1f1;
   }
-  .infowindow
-  {
-  
+  .infowindow {
   }
-  .infowindow-image
-  {
+  .infowindow-image {
     width: 30vw;
   }
   .infowindow-tooltip {
@@ -2335,7 +2319,7 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
   .infowindow-tooltip:hover .tooltiptext {
     visibility: visible;
   }
-  
+
   .infowindow-tooltip .tooltiptext::after {
     content: " ";
     position: absolute;
@@ -2361,7 +2345,7 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     border-radius: 2.4154589371980677vh;
     margin-left: 0.6038647342995169vh;
   }
-  
+
   /* The switch - the box around the slider */
   .switch {
     position: relative;
@@ -2370,14 +2354,14 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     height: 34px;
     margin: 6px;
   }
-  
+
   /* Hide default HTML checkbox */
   .switch input {
     opacity: 0;
     width: 0;
     height: 0;
   }
-  
+
   /* The slider */
   .slider {
     position: absolute;
@@ -2390,7 +2374,7 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     -webkit-transition: 0.4s;
     transition: 0.4s;
   }
-  
+
   .slider:before {
     position: absolute;
     content: "";
@@ -2402,30 +2386,30 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     -webkit-transition: 0.4s;
     transition: 0.4s;
   }
-  
+
   input:checked + .slider {
     background-color: #2196f3;
   }
-  
+
   input:focus + .slider {
     box-shadow: 0 0 1px #2196f3;
   }
-  
+
   input:checked + .slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
   }
-  
+
   /* Rounded sliders */
   .slider.round {
     border-radius: 34px;
   }
-  
+
   .slider.round:before {
     border-radius: 50%;
   }
-  
+
   /* Qatar World Cup Timer*/
   .countdown-wrapper-sec {
     position: relative;
@@ -2434,31 +2418,31 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     width: 100%;
     background-color: white;
   }
-  
+
   .countdown-inner-sec {
     left: 50%;
     top: 50%;
     position: absolute;
     transform: translate(-50%, -50%);
   }
-  
+
   .countdown-text-sec h1 {
     font-family: "Barlow Condensed", sans-serif;
     text-transform: uppercase;
-    color: #9A1032;
+    color: #9a1032;
     font-size: 3.6231884057971016vh;
     text-align: center;
   }
-  
+
   .countdown-timer-sec {
     font-family: "Barlow Condensed", sans-serif;
     font-size: 12.077294685990339vh;
-    color: #9A1032;
+    color: #9a1032;
     margin-bottom: 2.4154589371980677vh;
     display: flex;
     text-align: center;
   }
-  
+
   #triangle-bottomleft-sec {
     display: none;
     width: 0;
@@ -2468,65 +2452,65 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     border-bottom: 9.66183574879227vh solid #804f9b;
     border-right: 60.38647342995169vh solid transparent;
   }
-  
+
   .days-sec {
-    color: #9A1032;
+    color: #9a1032;
     font-size: 70px;
     margin-right: 2.4154589371980677vh;
     margin-left: 2.4154589371980677vh;
   }
-  
+
   .days-sec h1 {
-    color: #9A1032;
+    color: #9a1032;
     font-size: 3.6231884057971016vh;
   }
-  
+
   .hrs-sec {
-    color: #9A1032;
+    color: #9a1032;
     font-size: 70px;
     margin-right: 2.4154589371980677vh;
     margin-left: 2.4154589371980677vh;
   }
-  
+
   .hrs-sec h1 {
-    color: #9A1032;
+    color: #9a1032;
     font-size: 3.6231884057971016vh;
   }
-  
+
   .mins-sec {
-    color: #9A1032;
+    color: #9a1032;
     font-size: 70px;
     margin-right: 2.4154589371980677vh;
     margin-left: 2.4154589371980677vh;
   }
-  
+
   .mins-sec h1 {
-    color: #9A1032;
+    color: #9a1032;
     font-size: 3.6231884057971016vh;
   }
-  
+
   .secs-sec {
-    color: #9A1032;
+    color: #9a1032;
     font-size: 70px;
     margin-right: 2.4154589371980677vh;
     margin-left: 2.4154589371980677vh;
   }
-  
+
   .secs-sec h1 {
-    color: #9A1032;
+    color: #9a1032;
     font-size: 3.6231884057971016vh;
   }
-  
+
   footer {
     background-color: #804f9b;
     width: 100%;
     height: 5.098855359001041vh;
   }
-  
+
   footer .footer-bottom {
     height: 5.098855359001041vh;
   }
-  
+
   footer .footer-bottom .footer-bottom-container {
     margin-left: 15%;
     margin-right: 15%;
@@ -2534,59 +2518,59 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     position: relative;
   }
-  
+
   footer .footer-bottom .footer-bottom-container .footer-bottom-copyright {
-    width: 33%; 
+    width: 33%;
     float: left;
     top: 50%;
     transform: translate(-0%, -50%);
     position: relative;
     display: inline-block;
   }
-  
+
   footer .footer-bottom .footer-bottom-container .footer-bottom-copyright h3 {
     font-family: "Barlow Condensed", sans-serif;
     font-size: 2.4154589371980677vh;
     font-weight: 600;
     color: white;
-    opacity: .75;
+    opacity: 0.75;
   }
-  
+
   footer .footer-bottom .footer-bottom-container .footer-bottom-credit {
-    width: 33%; 
+    width: 33%;
     float: right;
     top: 50%;
     transform: translate(-0%, -50%);
     position: relative;
     display: inline-block;
   }
-  
+
   footer .footer-bottom .footer-bottom-container .footer-bottom-credit h3 {
     font-family: "Barlow Condensed", sans-serif;
     font-size: 2.4154589371980677vh;
     font-weight: 600;
     color: white;
     text-align: right;
-    opacity: .75;
+    opacity: 0.75;
   }
-  
+
   footer .footer-bottom .footer-bottom-container .footer-bottom-extra {
-    width: 33%; 
+    width: 33%;
     top: 50%;
     transform: translate(-0%, -50%);
     position: relative;
     display: inline-block;
   }
-  
+
   footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 {
     text-align: center;
   }
-  
+
   footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     font-family: "Barlow Condensed", sans-serif;
     font-size: 2.4154589371980677vh;
     font-weight: 600;
     color: white;
-    opacity: .75;
+    opacity: 0.75;
   }
 }

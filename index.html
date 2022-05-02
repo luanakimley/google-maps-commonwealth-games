@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed&display=swap" rel="stylesheet">
-    
+
     <title>2022 Commonwealth Games Birmingham</title>
 
     <style>
@@ -69,12 +69,12 @@
 
                 })
 
-            let venueBounds = new google.maps.LatLngBounds(
+            const venueBounds = new google.maps.LatLngBounds(
                 new google.maps.LatLng(51.49938624569705, -2.5537342379386976),
                 new google.maps.LatLng(53.00661028379348, -0.00977991807636163)
             );
 
-            let autoCompleteOptions = { bounds: venueBounds, componentRestrictions: { country: ["uk"] }, strictBounds: true, }
+            const autoCompleteOptions = { bounds: venueBounds, componentRestrictions: { country: ["uk"] }, strictBounds: true, }
 
             new google.maps.places.Autocomplete(start, autoCompleteOptions);
             new google.maps.places.Autocomplete(end, autoCompleteOptions);
@@ -176,10 +176,7 @@
                 var address = localStorage.getItem("default")
                 geocoder.geocode({ 'address': address }, function (results, status) {
                     if (status == 'OK') {
-
                         services_centre_location = results[0].geometry.location;
-                        console.log(services_centre_location)
-
                         defaultMarker
                             = new google.maps.Marker({
                                 map: map,
@@ -283,16 +280,14 @@
                 })
                 let lat = totalX / count;
                 let long = totalY / count;
-console.log(count)
-                if(count > 1)
-                {
+
+                if (count > 1) {
                     map.setZoom(9)
                     map.panTo(new google.maps.LatLng(lat, long))
                 }
-                else
-                {
-                map.setZoom(15)
-                map.panTo(new google.maps.LatLng(lat, long))
+                else {
+                    map.setZoom(15)
+                    map.panTo(new google.maps.LatLng(lat, long))
                 }
             }
 
@@ -372,10 +367,9 @@ console.log(count)
                     }, callback)
                 })
             }
-console.log(filteredSports)
-            if(sports.length === 0){
-            map.setZoom(15)
-            map.panTo(services_centre_location)
+            if (sports.length === 0) {
+                map.setZoom(15)
+                map.panTo(services_centre_location)
             }
             places = []
 
@@ -401,55 +395,41 @@ console.log(filteredSports)
 
             venueMarkers.push(marker)
 
-                    google.maps.event.addListener(marker, "click", () => {
-                        infoWindow.setContent(`
+            google.maps.event.addListener(marker, "click", () => {
+                infoWindow.setContent(`
 
-<div class="infowindow">
-<h1>${location.name}</h1>
-                                <p>${location.description}</p>
+                        <div class="infowindow">
+                        <h1 style="text-align: center; margin-bottom: 10px; color: #e8308a">${location.name}</h1>
+                                <p >${location.description}</p>
                                 <p>${location.address}</p>
+                                <br>
                                 <h3>Sports: </h3>
 
                                 ${location.sports.map(sport => `<a class="infowindow-tooltip"><span class="tooltiptext">${sport}</span><img src="sport-icons/${sport.toLowerCase().replaceAll(" ", "-")}.png" width=50 style="cursor: pointer;"></a>`).join('')}
 
+                                <br>
 
-                                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                                    <div class="carousel-inner">
-                                        <div class="carousel-item active">
-                                        <img src = ${location.url} class="d-block w-100" alt="...">
-                                        </div>
-                                        <div class="carousel-item">
-                                        <img src="logo/logo-pic.jpg" class="d-block w-100" alt="...">
-                                        </div>
-                                    </div>
-                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Previous</span>
-                                    </button>
-                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Next</span>
-                                    </button>
-                                    </div>
+                                        <img src = ${location.url} style="width: 100%" alt="...">
+                            
 
                                 </div>
                                 `)
 
-                        infoWindow.open(map, marker)
-                    })
-                }
-                // <img class="infowindow-image" src = ${location.url} width=200>
-                function getVenueMarkers(location) {
-                    venueMarkers.map(marker => marker.setVisible(false))
-                    venueMarkers = []
-                    location.map(result => {
-                        createVenueMarkers(result)
-                    })
-                }
+                infoWindow.open(map, marker)
+            })
+        }
+        // <img class="infowindow-image" src = ${location.url} width=200>
+        function getVenueMarkers(location) {
+            venueMarkers.map(marker => marker.setVisible(false))
+            venueMarkers = []
+            location.map(result => {
+                createVenueMarkers(result)
+            })
+        }
 
 
 
-                function createNearbyServicesMarker(place) {
+        function createNearbyServicesMarker(place) {
 
             let icon = {
                 //url: place.icon,
@@ -474,7 +454,6 @@ console.log(filteredSports)
 
                 let photo = null
                 if (typeof (place.photos) !== "undefined") {
-                    console.log(place.photos)
                     photo = place.photos[0].getUrl()
                 }
 
@@ -522,10 +501,17 @@ console.log(filteredSports)
             let name = "stop" + counter;
             let spanName = "input" + counter
             newdiv.id = spanName
-            newdiv.innerHTML = `<br>Stop<br><input type='text' id='${name}'> <input type='button' value='-' onClick='removeInput("input${counter}")'>`
+            newdiv.innerHTML = `<br>Stop<br><input type='text' id='${name}' style="width:50%"> <input type='button' value='-' onClick='removeInput("input${counter}")'>`
             document.getElementById('stops').appendChild(newdiv);
             let stop = document.getElementById(name)
-            new google.maps.places.Autocomplete(stop);
+            const venueBounds = new google.maps.LatLngBounds(
+                new google.maps.LatLng(51.49938624569705, -2.5537342379386976),
+                new google.maps.LatLng(53.00661028379348, -0.00977991807636163)
+            );
+
+            const autoCompleteOptions = { bounds: venueBounds, componentRestrictions: { country: ["uk"] }, strictBounds: true, }
+
+            new google.maps.places.Autocomplete(stop, autoCompleteOptions);
             stops.push(name)
             counter++;
         }
@@ -686,14 +672,12 @@ console.log(filteredSports)
 
         <div class="map-wrapper">
             <div class="map-inner">
-                <div id="map-text"class="map-text">
+                <div id="map-text" class="map-text">
                     <h1>Find Your Sport!</h1>
                 </div>
                 <div class="icons">
                     <div id="sports-icon-container"></div>
-                    <button id="filter-button-two" onclick="filterbySports(); filteredSports = []; servicesSearch();">
-                        <h1>Filter</h1>
-                    </button>
+
                 </div>
                 <input id="pac-input" class="controls" type="text" placeholder="Search Box" />
                 <div id="traffic-toggle">
@@ -756,100 +740,102 @@ console.log(filteredSports)
                         <h1>Filter</h1>
                     </button>
                     <button id="filter-button" type="reset"
-                        onclick="uncheckAll(); sports = []; services_centre_location={ lat: 52.489471, lng: -1.898575 }; filterbySports(); placeType = []; "><h1>Reset</h1></button>
+                        onclick="uncheckAll(); sports = []; services_centre_location={ lat: 52.489471, lng: -1.898575 }; filterbySports(); placeType = []; ">
+                        <h1>Reset</h1>
+                    </button>
                     <br>
                 </div>
 
-            <div class="triangle-wrapper">
-                <div id="triangle-up"></div>
-                <div id="triangle-up"></div>
-                <div id="triangle-up"></div>
-                <div id="triangle-up"></div>
-                <div id="triangle-up"></div>
-                <div id="triangle-up"></div>
-                <div id="triangle-up"></div>
-                <div id="triangle-up"></div>
-                <div id="triangle-up"></div>
-                <div id="triangle-up"></div>
-                <div id="triangle-up"></div>
-                <div id="triangle-up"></div>
-                <div id="triangle-up"></div>
-                <div id="triangle-up"></div>
-                <div id="triangle-up"></div>
-                <div id="triangle-up"></div>
-                <div id="triangle-up"></div>
-                <div id="triangle-up"></div>
-                <div id="triangle-up"></div>
-                <div id="triangle-up"></div>
+                <div class="triangle-wrapper">
+                    <div id="triangle-up"></div>
+                    <div id="triangle-up"></div>
+                    <div id="triangle-up"></div>
+                    <div id="triangle-up"></div>
+                    <div id="triangle-up"></div>
+                    <div id="triangle-up"></div>
+                    <div id="triangle-up"></div>
+                    <div id="triangle-up"></div>
+                    <div id="triangle-up"></div>
+                    <div id="triangle-up"></div>
+                    <div id="triangle-up"></div>
+                    <div id="triangle-up"></div>
+                    <div id="triangle-up"></div>
+                    <div id="triangle-up"></div>
+                    <div id="triangle-up"></div>
+                    <div id="triangle-up"></div>
+                    <div id="triangle-up"></div>
+                    <div id="triangle-up"></div>
+                    <div id="triangle-up"></div>
+                    <div id="triangle-up"></div>
+                </div>
+
             </div>
+            <div class="directions-wrapper">
+                <div class="directions-inner">
+                    <div class="directions-text">
+                        <h1>Plan Your Trip!</h1>
+                    </div>
+                    <div id="control-panel">
+                        <button onclick="travelMode = 'DRIVING'; calculateRoute('start', 'end', stops)"><span
+                                class="material-icons">
+                                directions_car_filled
+                            </span></button>
+                        <button onclick="travelMode = 'BICYCLING'; calculateRoute('start', 'end', stops)"><span
+                                class="material-icons">
+                                directions_bike
+                            </span></button>
+                        <button onclick="travelMode = 'TRANSIT'; calculateRoute('start', 'end', stops)"><span
+                                class="material-icons">
+                                directions_bus
+                            </span></button>
+                        <button onclick="travelMode = 'WALKING'; calculateRoute('start', 'end', stops)"><span
+                                class="material-icons">
+                                directions_walk
+                            </span></button>
+                        <br><br>
+                        <span class=select-location-label>Start:</span>
+                        <input style="width:50%" id="start">
+                        <input type="button" id="stops-button" value="Add stop" onClick="addInput();">
+                        <input id="default-location" type="button" value="Set Default Start Location"
+                            onClick="setDefault();">
 
-        </div>
-        <div class="directions-wrapper">
-            <div class="directions-inner">
-                <div class="directions-text">
-                    <h1>Plan Your Trip!</h1>
-                </div>
-                <div id="control-panel">
-                    <button onclick="travelMode = 'DRIVING'; calculateRoute('start', 'end', stops)"><span
-                            class="material-icons">
-                            directions_car_filled
-                        </span></button>
-                    <button onclick="travelMode = 'BICYCLING'; calculateRoute('start', 'end', stops)"><span
-                            class="material-icons">
-                            directions_bike
-                        </span></button>
-                    <button onclick="travelMode = 'TRANSIT'; calculateRoute('start', 'end', stops)"><span
-                            class="material-icons">
-                            directions_bus
-                        </span></button>
-                    <button onclick="travelMode = 'WALKING'; calculateRoute('start', 'end', stops)"><span
-                            class="material-icons">
-                            directions_walk
-                        </span></button>
-                    <br><br>
-                    <span class=select-location-label>Start:</span>
-                    <input style="width:50%" id="start">
-                    <input type="button" id="stops-button" value="Add stop" onClick="addInput();">
-                    <input id="default-location" type="button" value="Set Default Start Location"
-                        onClick="setDefault();">
+                        <br>
 
-                    <br>
+                        <div id="stops"></div>
 
-                    <div id="stops"></div>
+                        <br>
+                        <span class=select-location-label>End:</span>
+                        <input style="width:50%" id="end">
+                        <button onclick=" calculateRoute('start', 'end', stops); Scroll()">Submit</button>
+                        <button
+                            onclick="document.getElementById('start').value = ''; document.getElementById('end').value = ''">Clear
+                            Routes</button>
+                        <br><br>
 
-                    <br>
-                    <span class=select-location-label>End:</span>
-                    <input style="width:50%" id="end">
-                    <button onclick=" calculateRoute('start', 'end', stops); Scroll()">Submit</button>
-                    <button
-                        onclick="document.getElementById('start').value = ''; document.getElementById('end').value = ''">Clear
-                        Routes</button>
-                    <br><br>
+                        <details>
+                            <summary>Directions</summary>
+                            <div id=directions></div>
+                        </details>
 
-                    <details>
-                        <summary>Directions</summary>
-                        <div id=directions></div>
-                    </details>
-
-                </div>
-            </div>
-
-            <footer>
-                <div class="footer-bottom">
-                    <div class="footer-bottom-container">
-                        <div class="footer-bottom-copyright">
-                            <h3>© 2022</h3>
-                        </div>
-                        <div class="footer-bottom-extra">
-                            <h3><a href="localContext.html">Qatar World Cup</a></h3>
-                        </div>
-                        <div class="footer-bottom-credit">
-                            <h3>By David, Nathan & Luana</h3>
-                        </div>
                     </div>
                 </div>
-            </footer>
-        </div>
+
+                <footer>
+                    <div class="footer-bottom">
+                        <div class="footer-bottom-container">
+                            <div class="footer-bottom-copyright">
+                                <h3>© 2022</h3>
+                            </div>
+                            <div class="footer-bottom-extra">
+                                <h3><a href="localContext.html">Qatar World Cup</a></h3>
+                            </div>
+                            <div class="footer-bottom-credit">
+                                <h3>By David, Nathan & Luana</h3>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
 
     </main>
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -868,7 +854,9 @@ console.log(filteredSports)
         );
 
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
