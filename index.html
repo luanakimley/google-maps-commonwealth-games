@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    
     <title>2022 Commonwealth Games Birmingham</title>
 
     <style>
@@ -401,8 +401,8 @@ console.log(filteredSports)
 
             venueMarkers.push(marker)
 
-            google.maps.event.addListener(marker, "click", () => {
-                infoWindow.setContent(`
+                    google.maps.event.addListener(marker, "click", () => {
+                        infoWindow.setContent(`
 
 <div class="infowindow">
 <h1>${location.name}</h1>
@@ -414,49 +414,42 @@ console.log(filteredSports)
 
 
                                 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src = ${location.url} class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="logo/logo-pic.jpg" class="d-block w-100" alt="...">
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-
-
-
-
-
-
-
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                        <img src = ${location.url} class="d-block w-100" alt="...">
+                                        </div>
+                                        <div class="carousel-item">
+                                        <img src="logo/logo-pic.jpg" class="d-block w-100" alt="...">
+                                        </div>
+                                    </div>
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                    </div>
 
                                 </div>
                                 `)
 
-                infoWindow.open(map, marker)
-            })
-        }
-        // <img class="infowindow-image" src = ${location.url} width=200>
-        function getVenueMarkers(location) {
-            venueMarkers.map(marker => marker.setVisible(false))
-            venueMarkers = []
-            location.map(result => {
-                createVenueMarkers(result)
-            })
-        }
+                        infoWindow.open(map, marker)
+                    })
+                }
+                // <img class="infowindow-image" src = ${location.url} width=200>
+                function getVenueMarkers(location) {
+                    venueMarkers.map(marker => marker.setVisible(false))
+                    venueMarkers = []
+                    location.map(result => {
+                        createVenueMarkers(result)
+                    })
+                }
 
 
 
-        function createNearbyServicesMarker(place) {
+                function createNearbyServicesMarker(place) {
 
             let icon = {
                 //url: place.icon,
@@ -620,7 +613,7 @@ console.log(filteredSports)
         }, 1000);
 
         function Scroll() {
-            var elmnt = document.getElementById("map");
+            var elmnt = document.getElementById("map-text");
             elmnt.scrollIntoView({ behavior: 'smooth' });
         }
 
@@ -654,11 +647,6 @@ console.log(filteredSports)
                     <div class="header-right-inner">
                         <a href="https://tickets.birmingham2022.com/">
                             <h1>Tickets</h1>
-                        </a>
-                    </div>
-                    <div class="header-right-inner-right">
-                        <a href="localContext.html">
-                            <h1>Qatar World Cup</h1>
                         </a>
                     </div>
                 </div>
@@ -698,14 +686,12 @@ console.log(filteredSports)
 
         <div class="map-wrapper">
             <div class="map-inner">
-                <div class="map-text">
+                <div id="map-text"class="map-text">
                     <h1>Find Your Sport!</h1>
                 </div>
                 <div class="icons">
                     <div id="sports-icon-container"></div>
-                    <button id="filter-button" onclick="filterbySports(); filteredSports = []; servicesSearch();">
-                        <h1>Filter</h1>
-                    </button>
+                    
                 </div>
                 <input id="pac-input" class="controls" type="text" placeholder="Search Box" />
                 <div id="traffic-toggle">
@@ -715,31 +701,62 @@ console.log(filteredSports)
                     </label>
                     <p>Traffic layer</p>
                 </div>
-                <input class="places" type="checkbox" value="lodging">
-                <label>Accommodation</label>
-                <input class="places" type="checkbox" value="restaurant">
-                <label>Restaurant</label>
-                <input class="places" type="checkbox" value="bar">
-                <label>Bar</label>
-                <input class="places" type="checkbox" value="hospital">
-                <label>Hospital</label>
-                <input class="places" type="checkbox" value="bank">
-                <label>Bank</label>
-                <input class="places" type="checkbox" value="atm">
-                <label>ATM</label>
-                <input class="places" type="checkbox" value="shopping_mall">
-                <label>Shopping Mall</label>
-                <input class="places" type="checkbox" value="supermarket">
-                <label>Supermarket</label>
-                <input class="places" type="checkbox" value="convenience_store">
-                <label>Convenience Store</label>
-                <input class="places" type="checkbox" value="pharmacy">
-                <label>Pharmacy</label>
-                <input class="places" type="checkbox" value="tourist_attraction">
-                <label>Attraction</label>
                 <div id=map></div>
-
-            </div>
+                <div class="checkboxes">
+                    <div class="checkboxe-text">
+                        <h1>Services </h1>
+                    </div>
+                    <div class="individual-checkboxes">
+                        <input class="places" type="checkbox" value="lodging">
+                        <label>Accommodation</label>
+                    </div>
+                    <div class="individual-checkboxes">
+                        <input class="places" type="checkbox" value="restaurant">
+                        <label>Restaurant</label>
+                    </div>
+                    <div class="individual-checkboxes">
+                        <input class="places" type="checkbox" value="bar">
+                        <label>Bar</label>
+                    </div>
+                    <div class="individual-checkboxes">
+                        <input class="places" type="checkbox" value="hospital">
+                        <label>Hospital</label>
+                    </div>
+                    <div class="individual-checkboxes">
+                        <input class="places" type="checkbox" value="bank">
+                        <label>Bank</label>
+                    </div>
+                    <div class="individual-checkboxes">
+                        <input class="places" type="checkbox" value="atm">
+                        <label>ATM</label>
+                    </div>
+                    <div class="individual-checkboxes">
+                        <input class="places" type="checkbox" value="shopping_mall">
+                        <label>Shopping Mall</label>
+                    </div>
+                    <div class="individual-checkboxes">
+                        <input class="places" type="checkbox" value="supermarket">
+                        <label>Supermarket</label>
+                    </div>
+                    <div class="individual-checkboxes">
+                        <input class="places" type="checkbox" value="convenience_store">
+                        <label>Corner Store</label>
+                    </div>
+                    <div class="individual-checkboxes">
+                        <input class="places" type="checkbox" value="pharmacy">
+                        <label>Pharmacy</label>
+                    </div>
+                    <div class="individual-checkboxes">
+                        <input class="places" type="checkbox" value="tourist_attraction">
+                        <label>Attraction</label>
+                    </div>
+                    <button id="filter-button" onclick="filterbySports(); filteredSports = []; servicesSearch();">
+                        <h1>Filter</h1>
+                    </button>
+                    <button id="filter-button" type="reset"
+                        onclick="uncheckAll(); sports = []; services_centre_location={ lat: 52.489471, lng: -1.898575 }; filterbySports(); placeType = []; "><h1>Reset</h1></button>
+                    <br>
+                </div>
 
             <div class="triangle-wrapper">
                 <div id="triangle-up"></div>
@@ -790,7 +807,7 @@ console.log(filteredSports)
                     <br><br>
                     <span class=select-location-label>Start:</span>
                     <input style="width:50%" id="start">
-                    <input type="button" value="Add stop" onClick="addInput();">
+                    <input type="button" id="stops-button" value="Add stop" onClick="addInput();">
                     <input id="default-location" type="button" value="Set Default Start Location"
                         onClick="setDefault();">
 
@@ -801,7 +818,7 @@ console.log(filteredSports)
                     <br>
                     <span class=select-location-label>End:</span>
                     <input style="width:50%" id="end">
-                    <button onclick=" calculateRoute('start', 'end', stops)">Submit</button>
+                    <button onclick=" calculateRoute('start', 'end', stops); Scroll()">Submit</button>
                     <button
                         onclick="document.getElementById('start').value = ''; document.getElementById('end').value = ''">Clear
                         Routes</button>
@@ -814,12 +831,21 @@ console.log(filteredSports)
 
                 </div>
             </div>
-            <div class="common-link">
-
-            </div>
 
             <footer>
-
+                <div class="footer-bottom">
+                    <div class="footer-bottom-container">
+                        <div class="footer-bottom-copyright">
+                            <h3>© 2022</h3>
+                        </div>
+                        <div class="footer-bottom-extra">
+                            <h3><a href="localContext.html">Qatar World Cup</a></h3>
+                        </div>
+                        <div class="footer-bottom-credit">
+                            <h3>By David, Nathan & Luana</h3>
+                        </div>
+                    </div>
+                </div>
             </footer>
         </div>
 

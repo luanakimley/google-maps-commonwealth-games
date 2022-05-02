@@ -156,40 +156,88 @@
             }
         }
 
+        var countDownDate = new Date("Nov 21, 2022 00:00:00").getTime();
+
+        var x = setInterval(function () {
+
+            var now = new Date().getTime();
+
+            var distance = countDownDate - now;
+
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("daysTimer-sec").innerHTML = days;
+            document.getElementById("hrsTimer-sec").innerHTML = hours;
+            document.getElementById("minsTimer-sec").innerHTML = minutes;
+            document.getElementById("secsTimer-sec").innerHTML = seconds;
+
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown-timer-sec").innerHTML = "The Games Have Begun";
+            }
+        }, 1000);
+
     </script>
 </head>
-<header id="header">
-    <div class="header-wrapper">
-        <div class="header-inner">
-            <div class="header-left">
-                <div class="header-left-inner">
-                    <a href="https://www.birmingham2022.com/schedule/day-by-day">
-                        <h1>Schedule</h1>
-                    </a>
+<body>
+    <header id="header">
+        <div class="header-wrapper">
+            <div class="header-inner">
+                <div class="header-left">
+                    <div class="header-left-inner">
+                        <a href="https://www.fifa.com/tournaments/mens/worldcup/qatar2022/news/match-schedule-fwc22">
+                            <h1>Schedule</h1>
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="header-logo">
-                <img id="logoImg" src="logo\2022Qatar.png" />
-            </div>
-            <div class="header-right">
-                <div class="header-right-inner">
-                    <a href="https://tickets.birmingham2022.com/">
-                        <h1>Tickets</h1>
-                    </a>
+                <div class="header-logo">
+                    <img id="logoImg" src="logo\2022Qatar.png" />
                 </div>
-                <div class="header-right-inner-right">
-                    <a href="index.html">
-                        <h1>Birmingham CommonWealth Games</h1>
-                    </a>
+                <div class="header-right">
+                    <div class="header-right-inner">
+                        <a href="https://www.fifa.com/tournaments/mens/worldcup/qatar2022/tickets">
+                            <h1>Tickets</h1>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</header>
-
-<body>
+    </header>
     <main>
-        <div class="map-wrapper">
+        <div class="countdown-wrapper-sec">
+            <div class="countdown-inner-sec">
+                <div class="countdown-text-sec">
+                    <h1>The Games Begin in:</h1>
+                </div>
+                <div id="countdown-timer-sec" class="countdown-timer-sec">
+                    <div class="days-sec">
+                        <div id="daysTimer-sec"></div>
+                        <h1>Days</h1>
+                    </div>
+                    <div class="hrs-sec">
+                        <div id="hrsTimer-sec"></div>
+                        <h1>Hrs</h1>
+                    </div>
+                    <div class="mins-sec">
+                        <div id="minsTimer-sec"></div>
+                        <h1>Mins</h1>
+                    </div>
+                    <div class="secs-sec">
+                        <div id="secsTimer-sec"></div>
+                        <h1>Secs</h1>
+                    </div>
+                </div>
+                <div class="countdown-text-sec">
+                    <h1>21 Nov - 18 Dec 2022</h1>
+                </div>
+            </div>
+            <div id="triangle-bottomleft" style="border-bottom: 80px solid #9A1032;"></div>
+        </div>
+        <div class="map-wrapper" style="background-color: #9A1032;">
             <div class="map-inner">
 
                 <input id="pac-input" class="controls" type="text" placeholder="Search for a location" />
@@ -200,9 +248,37 @@
         </div>
 
     </main>
-    <footer>
-
+    <footer style="background-color: #9A1032;">
+        <div class="footer-bottom">
+            <div class="footer-bottom-container">
+                <div class="footer-bottom-copyright">
+                    <h3>© 2022</h3>
+                </div>
+                <div class="footer-bottom-extra">
+                    <h3><a href="index.html">Birmingham CommonWealth Games</a></h3>
+                </div>
+                <div class="footer-bottom-credit">
+                    <h3>By David, Nathan & Luana</h3>
+                </div>
+            </div>
+        </div>
     </footer>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script>
+
+        $(window).scroll(function () {
+            if ($(document).scrollTop() > 50) {
+                document.getElementById('header').style.height = '60px';
+                document.getElementById('logoImg').style.height = '60px';
+            } else {
+                document.getElementById('header').style.height = '';
+                document.getElementById('logoImg').style.height = '';
+            }
+        }
+        );
+
+    </script>
 </body>
 
 </html>
