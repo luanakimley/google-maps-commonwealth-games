@@ -437,6 +437,7 @@
 
                 let photo = null
                 if (typeof (place.photos) !== "undefined") {
+                    console.log(place.photos)
                     photo = place.photos[0].getUrl()
                 }
 
@@ -444,14 +445,14 @@
                     service.getDetails(request, (placeDetails) => {
                         infoWindow.setContent(`<p><strong> ${placeDetails.name}</strong><br>
                         ${(placeDetails.formatted_address).replaceAll(',', '</br>')}</br>
-                        ${placeDetails.formatted_phone_number}</p>`)
+                        ${placeDetails.formatted_phone_number !== undefined ? placeDetails.formatted_phone_number : ""}</p>`)
                     })
                 } else {
                     service.getDetails(request, (placeDetails) => {
                         infoWindow.setContent(`<p><strong> ${placeDetails.name}</strong><br>
                         ${(placeDetails.formatted_address).replaceAll(',', '</br>')}</br>
                         <img src="${photo}" width=200><br>
-                        ${placeDetails.formatted_phone_number}</p>`)
+                        ${placeDetails.formatted_phone_number !== undefined ? placeDetails.formatted_phone_number : ""}</p>`)
                     })
                 }
 
@@ -664,7 +665,9 @@
                     <p>Traffic layer</p>
                 </div>
                 <div id=map></div>
+
             </div>
+
             <div class="triangle-wrapper">
                 <div id="triangle-up"></div>
                 <div id="triangle-up"></div>
@@ -741,10 +744,33 @@
             <div class="common-link">
 
             </div>
+            <input class="places" type="checkbox" value="lodging">
+            <label>Accommodation</label>
+            <input class="places" type="checkbox" value="restaurant">
+            <label>Restaurant</label>
+            <input class="places" type="checkbox" value="bar">
+            <label>Bar</label>
+            <input class="places" type="checkbox" value="hospital">
+            <label>Hospital</label>
+            <input class="places" type="checkbox" value="bank">
+            <label>Bank</label>
+            <input class="places" type="checkbox" value="atm">
+            <label>ATM</label>
+            <input class="places" type="checkbox" value="shopping_mall">
+            <label>Shopping Mall</label>
+            <input class="places" type="checkbox" value="supermarket">
+            <label>Supermarket</label>
+            <input class="places" type="checkbox" value="convenience_store">
+            <label>Convenience Store</label>
+            <input class="places" type="checkbox" value="pharmacy">
+            <label>Pharmacy</label>
+            <input class="places" type="checkbox" value="tourist_attraction">
+            <label>Attraction</label>
             <footer>
 
             </footer>
         </div>
+
     </main>
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
