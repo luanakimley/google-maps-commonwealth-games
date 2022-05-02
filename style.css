@@ -276,7 +276,6 @@ main {
   border-color: transparent black transparent transparent;
 }
 
-
 .triangle-wrapper {
   display: flex;
   width: 100%;
@@ -329,13 +328,13 @@ main {
   border: none;
   border-radius: 20px;
 }
-#default-location
-{
+#default-location {
   width: 20%;
   margin-top: 11px;
   padding: 11px;
   border: none;
   border-radius: 20px;
+  margin-left: 5px;
 }
 footer {
   background-color: #0e1732;
