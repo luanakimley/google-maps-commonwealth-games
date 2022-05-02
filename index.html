@@ -283,9 +283,17 @@
                 })
                 let lat = totalX / count;
                 let long = totalY / count;
-
-                map.setZoom(10)
+console.log(count)
+                if(count > 1)
+                {
+                    map.setZoom(9)
+                    map.panTo(new google.maps.LatLng(lat, long))
+                }
+                else
+                {
+                map.setZoom(15)
                 map.panTo(new google.maps.LatLng(lat, long))
+                }
             }
 
         }
@@ -364,7 +372,11 @@
                     }, callback)
                 })
             }
-
+console.log(filteredSports)
+            if(sports.length === 0){
+            map.setZoom(15)
+            map.panTo(services_centre_location)
+            }
             places = []
 
         }
@@ -390,12 +402,16 @@
             venueMarkers.push(marker)
 
             google.maps.event.addListener(marker, "click", () => {
-                infoWindow.setContent(`<h1>${location.name}</h1>
+                infoWindow.setContent(`
+<div class="infowindow">
+<h1>${location.name}</h1>
                                 <p>${location.description}</p>
                                 <p>${location.address}</p>
+                                <h3>Sports: </h3>
 
-                                ${location.sports.map(sport => `<p>${sport}</p>`).join('')}
-                                <img src = ${location.url} width=200>
+                                ${location.sports.map(sport => `<a class="infowindow-tooltip"><span class="tooltiptext">${sport}</span><img src="sport-icons/${sport.toLowerCase().replaceAll(" ", "-")}.png" width=50 style="cursor: pointer;"></a>`).join('')}
+                                <img class="infowindow-image" src = ${location.url} width=200>
+                                </div>
                                 `)
 
                 infoWindow.open(map, marker)
@@ -443,16 +459,23 @@
 
                 if (photo === null) {
                     service.getDetails(request, (placeDetails) => {
-                        infoWindow.setContent(`<p><strong> ${placeDetails.name}</strong><br>
+                        infoWindow.setContent(`
+<div id="infowindow">
+<p><strong> ${placeDetails.name}</strong><br>
                         ${(placeDetails.formatted_address).replaceAll(',', '</br>')}</br>
-                        ${placeDetails.formatted_phone_number !== undefined ? placeDetails.formatted_phone_number : ""}</p>`)
+                        ${placeDetails.formatted_phone_number !== undefined ? placeDetails.formatted_phone_number : ""}</p>
+</div>
+`)
                     })
                 } else {
                     service.getDetails(request, (placeDetails) => {
-                        infoWindow.setContent(`<p><strong> ${placeDetails.name}</strong><br>
+                        infoWindow.setContent(`
+<div class="infowindow">
+<p><strong> ${placeDetails.name}</strong><br>
                         ${(placeDetails.formatted_address).replaceAll(',', '</br>')}</br>
                         <img src="${photo}" width=200><br>
-                        ${placeDetails.formatted_phone_number !== undefined ? placeDetails.formatted_phone_number : ""}</p>`)
+                        ${placeDetails.formatted_phone_number !== undefined ? placeDetails.formatted_phone_number : ""}</p>
+</div>`)
                     })
                 }
 
