@@ -35,6 +35,8 @@
         let autocomplete = null
         let defaultMarker = null
         let infoWindow = new google.maps.InfoWindow()
+        let showTraffic = false
+        let trafficLayer = new google.maps.TrafficLayer();
 
         window.onload = () => {
 
@@ -91,7 +93,7 @@
             const input = document.getElementById("pac-input");
             const searchBox = new google.maps.places.Autocomplete(input, autoCompleteOptions);
 
-
+            map.controls[google.maps.ControlPosition.TOP_LEFT].push(document.getElementById("traffic-toggle"));
             map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
             map.controls[google.maps.ControlPosition.TOP_LEFT].push(document.getElementById("default-location"));
             // Bias the SearchBox results towards current map's viewport.
@@ -569,6 +571,16 @@
             var elmnt = document.getElementById("map");
             elmnt.scrollIntoView({ behavior: 'smooth' });
         }
+
+        function trafficLayerToggle() {
+            if (trafficLayer.getMap() === undefined || trafficLayer.getMap() === null) {
+                //traffic layer is disabled.. enable it
+                trafficLayer.setMap(map);
+            } else {
+                //traffic layer is enabled.. disable it
+                trafficLayer.setMap(null);
+            }
+        }
     </script>
 </head>
 
@@ -644,6 +656,13 @@
                     </button>
                 </div>
                 <input id="pac-input" class="controls" type="text" placeholder="Search Box" />
+                <div id="traffic-toggle">
+                    <label class="switch">
+                        <input id="traffic-layer" type="checkbox" onchange="trafficLayerToggle();">
+                        <span class="slider round"></span>
+                    </label>
+                    <p>Traffic layer</p>
+                </div>
                 <div id=map></div>
             </div>
             <div class="triangle-wrapper">
@@ -696,7 +715,8 @@
                     <span class=select-location-label>Start:</span>
                     <input style="width:50%" id="start">
                     <input type="button" value="Add stop" onClick="addInput();">
-                    <input id="default-location"  type="button" value="Set Default Start Location" onClick="setDefault();">
+                    <input id="default-location" type="button" value="Set Default Start Location"
+                        onClick="setDefault();">
 
                     <br>
 
