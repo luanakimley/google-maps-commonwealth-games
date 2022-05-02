@@ -1272,8 +1272,8 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
   }
 
   footer .footer-bottom .footer-bottom-container {
-    margin-left: 15%;
-    margin-right: 15%;
+    margin-left: 5%;
+    margin-right: 5%;
     height: 100%;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     position: relative;
@@ -1290,7 +1290,7 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
 
   footer .footer-bottom .footer-bottom-container .footer-bottom-copyright h3 {
     font-family: "Barlow Condensed", sans-serif;
-    font-size: 2.4154589371980677vh;
+    font-size: 1.5608740894901145vh;
     font-weight: 600;
     color: white;
     opacity: 0.75;
@@ -1307,7 +1307,7 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
 
   footer .footer-bottom .footer-bottom-container .footer-bottom-credit h3 {
     font-family: "Barlow Condensed", sans-serif;
-    font-size: 2.4154589371980677vh;
+    font-size: 1.5608740894901145vh;
     font-weight: 600;
     color: white;
     text-align: right;
@@ -1328,7 +1328,7 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
 
   footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     font-family: "Barlow Condensed", sans-serif;
-    font-size: 2.4154589371980677vh;
+    font-size: 1.5608740894901145vh;
     font-weight: 600;
     color: white;
     opacity: 0.75;
@@ -1486,6 +1486,11 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
 
   #filter-button-two {
     display: none;
+    background-color: #e8308a;
+    width: 100%;
+    margin-top: 1.2077294685990339vh;
+    border-radius: 0.6038647342995169vh;
+    border: 1px solid white;
   }
 
   .checkboxes {
@@ -2530,7 +2535,7 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
 
   footer .footer-bottom .footer-bottom-container .footer-bottom-copyright h3 {
     font-family: "Barlow Condensed", sans-serif;
-    font-size: 2.4154589371980677vh;
+    font-size: 1.5608740894901145vh;
     font-weight: 600;
     color: white;
     opacity: 0.75;
@@ -2547,7 +2552,7 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
 
   footer .footer-bottom .footer-bottom-container .footer-bottom-credit h3 {
     font-family: "Barlow Condensed", sans-serif;
-    font-size: 2.4154589371980677vh;
+    font-size: 1.5608740894901145vh;
     font-weight: 600;
     color: white;
     text-align: right;
@@ -2568,7 +2573,7 @@ footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
 
   footer .footer-bottom .footer-bottom-container .footer-bottom-extra h3 a {
     font-family: "Barlow Condensed", sans-serif;
-    font-size: 2.4154589371980677vh;
+    font-size: 1.5608740894901145vh;
     font-weight: 600;
     color: white;
     opacity: 0.75;
